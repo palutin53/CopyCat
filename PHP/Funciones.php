@@ -1,0 +1,73 @@
+<?php
+
+function mquery( $queryText ){
+
+	require("db_connect.php");
+				
+		$resultado = mysqli_query($connect, $queryText);
+		$error = mysqli_error($connect);
+		if ($error != "") echo "<b>" . $error . "</b><br>" . $queryText;
+		return $resultado;
+}
+
+function Cargar_Combo($queryText,$ID,$Name){
+
+require("db_connect.php");
+
+	//$Data_Result = mquery($queryText) or die ("Error al intentar Conectar: " . mysql_error());
+
+    	$ComboData="";
+
+    	while ($Data_Record = mysqli_fetch_array($Data_Result)) :
+        	$ComboData .=" <option value='".$Data_Record[$ID]."'>".utf8_encode($Data_Record[$Name])."</option>"; //concatenamos el los options para luego ser insertado en el HTML
+    	endwhile;
+
+echo $ComboData;
+
+}
+
+function Obtener_Combo($Name){
+
+	$Dato = $_POST[$Name];
+
+	echo $Dato;
+
+}
+
+function Insertar_Data($Tabla,$Campos,$Valores)
+{
+	$longC = count($Campos);
+	$Info_Campos = "";
+	$longV = count($Valores);
+	$Info_Valores = "";
+
+	for($i=0; $i<$longC; $i++){
+      
+      	if($i == ($longC - 1)){
+      		$Info_Campos = $Info_Campos . $Campos[$i] . ') VALUES(';
+      	}
+      	else{
+      		$Info_Campos = $Info_Campos . $Campos[$i] . ',';
+      	}
+
+    }
+
+    for($i=0; $i<$longV; $i++){
+      
+      	if($i == ($longV - 1)){
+      		$Info_Valores = $Info_Valores . $Valores[$i] . ');';
+      	}
+      	else{
+      		$Info_Valores = $Info_Valores . $Valores[$i] . ',';
+      	}
+
+    }
+
+	$SQL = "INSERT INTO " . $Tabla . "(" . $Info_Campos . $Info_Valores;
+	
+	$resultado = mquery($SQL);
+	echo $resultado;
+
+}
+
+?>
