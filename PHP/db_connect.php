@@ -14,6 +14,6 @@ $usr="root";
 $pwd="";
 $db="cmvz";
 
-$connect = mysqli_connect($srv,$usr,$pwd,$db) or die ("Error al intentar Conectar: " . mysql_error()); 
+// $connect = mysqli_connect($srv,$usr,$pwd,$db) or die ("Error al intentar Conectar: " . mysql_error()); 
 
 ?>
