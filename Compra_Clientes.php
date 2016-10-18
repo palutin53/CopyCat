@@ -51,9 +51,10 @@
 	<form class="forms" action="" method="post">
 		<fieldset>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-			<div>
+			<div class="linea"></div>
+			<div style="padding: 10px;">
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio sub-div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-				<div style="float: left; width: 70%; height: 100%; border:1px solid black;">
+					<div style="width: 70%; float: left;">
 					<table name="DatosProveedor">
 						<tr>
 							<td class="nombrecampo">
@@ -107,7 +108,7 @@
 				</div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final sub-div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio sub-div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-				<div style="float: right; width: 29%;height: 333px; border:1px solid black;">
+				<div style="float: right; width: 29%;height: 100%;">
 					<table name="FacturaCompra">
 						<tr>
 							<td calss="nombrecampo">
@@ -166,91 +167,64 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final sub-div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			</div>	
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<div class="linea"></div>
+		<div class="clear1"></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-			<div style="width: 100%;">
-				<table name="AgregarProducto">
-					<tr>
-						<td class="nombrecampo">
-							Articulo
-						</td>
-						<td class="nombrecampo">
-							Cantidad
-						</td>
-						<td class="nombrecampo">
-							Embalaje
-						</td>
-						<td class="nombrecampo">
-							Unidades por Embalaje
-						</td>
-						<td class="nombrecampo">
-							Precio Unitario por Embalaje
-						</td>
-						<td class="nombrecampo">
-							% Descuento
-						</td>
-						<td class="nombrecampo">
-							% Impuesto
-						</td>
-						<td></td>
-					</tr>
-						<td class="campo">
-							<select name="" id=""></select>
-						</td>
-						<td class="campo">
-							<input type="text" class="text-input required" />
-						</td>
-						<td class="campo">
-							<select name="" id=""></select>
-						</td>
-						<td class="campo">
-							<input type="text" class="text-input required" />
-						</td>
-						<td class="campo">
-							<input type="text" class="text-input required" />
-						</td>
-						<td class="campo">
-							<input type="text" class="text-input required" />
-						</td>
-						<td class="campo">
-							<input type="text" class="text-input required" />
-						</td>
-						<td class="campo">
-							<input type="submit" value="Enviar" class="text-input required" />
-						</td>
-				</table>
-			</div>	
+			<div style="width: 100%; padding: 5%;">
+						<div class="clase1">Articulo</div>
+						<div class="clase1">Descripción</div>
+						<div class="clase1">Cantidad</div>
+						<div class="clase1">Embalaje</div>
+						<div class="clase1">Unidad</div>
+						<div class="clase1">Precio</div>
+						<div class="clase1">Descuento</div>
+						<div class="clase1">Impuesto</div>
+						<div style="width: 10%; float: left; clear: both;"></div>
+			</div>
+			<div style="width: 100%; padding: 5%;">
+						<div class="clase1"><input type="text"></div>
+						<div class="clase1"><input type="text"></div>
+						<div class="clase1"><input type="text"></div>
+						<div class="clase1"><input type="text"></div>
+						<div class="clase1"><input type="text"></div>
+						<div class="clase1"><input type="text"></div>
+						<div class="clase1"><input type="text"></div>
+						<div class="clase1"><input type="text"></div>
+						<div style="width: 10%; float: left;"><input type="submit" value="Enviar"></div>
+			</div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<div class="clear1"></div>
+		<div class="linea"></div>
+		<div class="clear1"></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-			<div style="width: 100%; border:1px solid black;">
-				<table name="Resumen">
-					<tr>
-						<td class="nombrecampo">Articulo</td>
-						<td class="nombrecampo">Descripciónx</td>
-						<td class="nombrecampo">Cantidad</td>
-						<td class="nombrecampo">Embalaje</td>
-						<td class="nombrecampo">Unidad</td>
-						<td class="nombrecampo">Precio</td>
-						<td class="nombrecampo">Descuento</td>
-						<td class="nombrecampo">Impuesto</td>
-						<td class="nombrecampo">Importe</td>
-					</tr>
-					<tr>
-						<td class="campo"></td>
-						<td class="campo"></td>
-						<td class="campo"></td>
-						<td class="campo"></td>
-						<td class="campo"></td>
-						<td class="campo"></td>
-						<td class="campo"></td>
-						<td class="campo"></td>
-						<td class="campo"></td>
-					</tr>
-				</table>
+			<div style="width: 100%; padding: 5%;">
+						<div class="clase1">Articulo</div>
+						<div class="clase1">Descripción</div>
+						<div class="clase1">Cantidad</div>
+						<div class="clase1">Embalaje</div>
+						<div class="clase1">Unidad</div>
+						<div class="clase1">Precio</div>
+						<div class="clase1">Descuento</div>
+						<div class="clase1">Impuesto</div>
+						<div class="clase1">Importe</div>
+			</div>
+			<div style="width: 100%; padding: 5%;">
+						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
+						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
+						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
+						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
+						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
+						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
+						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
+						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
+						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
 			</div>	
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<div class="clear1"></div>
+		<div class="linea" "></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-			<div style="width: 50%;"></div>
-			<div style="width: 50%; float: right; border:1px solid black;">
+			<div style="width: 50%;float: left;"></div>
+			<div style="width: 50%; padding: 10px; float: right;">
 				<table name="EnviarCompra">
 					<tr>
 						<td class="nombrecampo">
@@ -295,6 +269,7 @@
 				</table>
 			</div>	
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<div class="linea"></div>
 		</fieldset>
 	</form>
 	<br>
