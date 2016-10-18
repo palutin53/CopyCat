@@ -179,7 +179,7 @@
 						<div class="clase1">Precio</div>
 						<div class="clase1">Descuento</div>
 						<div class="clase1">Impuesto</div>
-						<div class="clear1"></div>
+						<div style="width: 10%; float: left; clear: both;"></div>
 			</div>
 			<div style="width: 100%; padding: 5%;">
 						<div class="clase1"><input type="text"></div>
