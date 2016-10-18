@@ -17,10 +17,6 @@
 <!--[if IE 9]>
 <link rel="stylesheet" type="text/css" href="style/css/ie9.css" media="all" />
 <![endif]-->
-<style>
-	.clase1 {width: 10%; float: left; border:1px solid black;}
-	.clear1 {width: 100%; height: ;float: left; border:1px solid black;}
-</style>
 <script type="text/javascript" src="style/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="style/js/ddsmoothmenu.js"></script>
 <script type="text/javascript" src="style/js/retina.js"></script>
@@ -55,10 +51,9 @@
 	<form class="forms" action="" method="post">
 		<fieldset>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-			<div style="width: 100%; height: 2px; background: black; float: left;"></div>
+			<div class="linea"></div>
 			<div style="padding: 10px;">
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio sub-div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<!--				<div style="float: left; width: 70%; height: 100%; border:1px solid black;"> -->
 					<div style="width: 70%; float: left;">
 					<table name="DatosProveedor">
 						<tr>
@@ -172,8 +167,8 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final sub-div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			</div>	
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-		<div style="width: 100%; height: 2px; background: black; float: left;"></div>
-		<div style="width: 100%; height: 15px; clear: both; float: left;"></div>
+		<div class="linea"></div>
+		<div class="clear1"></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			<div style="width: 100%; padding: 5%;">
 						<div class="clase1">Articulo</div>
@@ -184,7 +179,7 @@
 						<div class="clase1">Precio</div>
 						<div class="clase1">Descuento</div>
 						<div class="clase1">Impuesto</div>
-						<div style="width: 10%; float: left; clear: both;"></div>
+						<div class="clear1"></div>
 			</div>
 			<div style="width: 100%; padding: 5%;">
 						<div class="clase1"><input type="text"></div>
@@ -198,9 +193,9 @@
 						<div style="width: 10%; float: left;"><input type="submit" value="Enviar"></div>
 			</div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-		<div style="width: 100%; height: 15px; clear: both; float: left;"></div>
-		<div style="width: 100%; height: 2px; background: black; float: left;"></div>
-		<div style="width: 100%; height: 15px; clear: both; float: left;"></div>
+		<div class="clear1"></div>
+		<div class="linea"></div>
+		<div class="clear1"></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			<div style="width: 100%; padding: 5%;">
 						<div class="clase1">Articulo</div>
@@ -225,8 +220,8 @@
 						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
 			</div>	
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-		<div style="width: 100%; height: 15px; clear: both; float: left;"></div>
-		<div style="width: 100%; height: 2px; background: black; float: left;"></div>
+		<div class="clear1"></div>
+		<div class="linea" "></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			<div style="width: 50%;float: left;"></div>
 			<div style="width: 50%; padding: 10px; float: right;">
@@ -274,7 +269,7 @@
 				</table>
 			</div>	
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-		<div style="width: 100%; height: 2px; background: black; float: left;"></div>
+		<div class="linea"></div>
 		</fieldset>
 	</form>
 	<br>
