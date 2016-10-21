@@ -1571,24 +1571,28 @@ label:before {
 }
 
 .TableHeader {
-    background-color: #669933;
+    background-color: #065b7a;
     color: #FFFFFF;
     text-align: center;
     border-radius: 10px;
 }
 .TableDetail1 {
-    background-color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px black;
     border-radius: 10px;
+    text-align: center;
 }
 .TableDetail2 {
     background-color: #E9E9E9;
     border-radius: 10px;
+    text-align: center;
 }
 
 .tableData {
     border-collapse:separate;
     border-spacing:5px;
     width: 100%;
+    border: 1px solid;
 }
 .clase1 {
     width: 10%; float: left; border:1px solid black;
@@ -1599,3 +1603,359 @@ label:before {
 .linea {
     width: 100%; height: 2px; background: black; float: left;
 }
+
+
+/****************************************/
+    .cajaexterna {
+        background-color: rgba(0, 0, 0, 0.8);
+        bottom: 0;
+        display: none;
+        left: 0;
+        overflow: auto;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 0;
+        border-radius: 7px;
+        border: 1px white; /***/
+    }
+    .cajainterna {
+        background: #fff;
+        margin: 10em auto 0;
+        position: relative;
+        width: 75%;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .cajacentrada {
+        margin: 0 auto;
+        text-align: center;
+        padding: 1em;
+        border-radius: 7px;
+    }
+    .cajacentrada h2 {
+        background: none repeat scroll 0 0 skyblue;
+        box-sizing: border-box;
+        color: white;
+        font-size: 24px bold;
+        left: 0;
+        margin: 0;
+        padding: 5px;
+        position: absolute;
+        text-align: left;
+        top: 0;
+        width: 100%;
+        height: 40px;
+        border-radius: 7px;
+        border: 1px white;
+    }
+    .cajacentrada p {
+        margin-top: 50px;
+    }
+    .cerrar {
+        position: absolute;
+        right: 16px;
+        top: 13px;
+    }
+
+
+    .cajaexterna2 { /*Desempeño*/
+        background-color: rgba(0, 0, 0, 0.8);
+        bottom: 0;
+        display: none;
+        left: 0;
+        overflow: auto;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 0;
+        border-radius: 7px;
+        border: 1px white; /***/
+    }
+    .cajainterna2 {
+        background: #fff;
+        margin: 10em auto 0;
+        position: relative;
+        width: 40%;
+        border-radius: 7px;
+    }
+    .cajacentrada2 {
+        margin: 0 auto;
+        text-align: center;
+        padding: 1em;
+        border-radius: 7px;
+    }
+    .cajacentrada2 h2 {
+        background: none repeat scroll 0 0 #D0DD18;
+        box-sizing: border-box;
+        color: white;
+        font-size: 15px;
+        left: 0;
+        margin: 0;
+        padding: 5px;
+        position: absolute;
+        text-align: left;
+        top: 0;
+        width: 100%;
+        height: 40px;
+        border-radius: 7px;
+        border: 1px white;
+    }
+    .cajacentrada2 p {
+        margin-top: 50px;
+    }
+    .cerrar {
+        position: absolute;
+        right: 16px;
+        top: 13px;
+    }
+
+    .cajaexterna3 { /*Informacion Salarial*/
+        background-color: rgba(0, 0, 0, 0.8);
+        bottom: 0;
+        display: none;
+        left: 0;
+        overflow: auto;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 0;
+        border-radius: 7px;
+        border: 1px white; /***/
+    }
+    .cajainterna3 {
+        background: #fff;
+        margin: 10em auto 0;
+        position: relative;
+        width: 40%;
+        border-radius: 7px;
+    }
+    .cajacentrada3 {
+        margin: 0 auto;
+        text-align: center;
+        padding: 1em;
+        border-radius: 7px;
+    }
+    .cajacentrada3 h2 {
+        background: none repeat scroll 0 0 #AC6BB3;
+        box-sizing: border-box;
+        color: white;
+        font-size: 15px;
+        left: 0;
+        margin: 0;
+        padding: 5px;
+        position: absolute;
+        text-align: left;
+        top: 0;
+        width: 100%;
+        height: 40px;
+        border-radius: 7px;
+        border: 1px white;
+    }
+    .cajacentrada3 p {
+        margin-top: 50px;
+    }
+
+    .cajaexterna4 { /*Informacion Necesidad de aprendizaje*/
+        background-color: rgba(0, 0, 0, 0.8);
+        bottom: 0;
+        display: none;
+        left: 0;
+        overflow: auto;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 0;
+        border-radius: 7px;
+        border: 1px white; /***/
+    }
+    .cajainterna4 {
+        background: #fff;
+        margin: 10em auto 0;
+        position: relative;
+        width: 40%;
+        border-radius: 7px;
+    }
+    .cajacentrada4 {
+        margin: 0 auto;
+        text-align: center;
+        padding: 1em;
+        border-radius: 7px;
+    }
+    .cajacentrada4 h2 {
+        background: none repeat scroll 0 0 #5A9A50;
+        box-sizing: border-box;
+        color: white;
+        font-size: 15px;
+        left: 0;
+        margin: 0;
+        padding: 5px;
+        position: absolute;
+        text-align: left;
+        top: 0;
+        width: 100%;
+        height: 40px;
+        border-radius: 7px;
+        border: 1px white;
+    }
+    .cajacentrada4 p {
+        margin-top: 50px;
+    }
+
+    .cajaexterna5 { /*Informacion Reclutamiento*/
+        background-color: rgba(0, 0, 0, 0.8);
+        bottom: 0;
+        display: none;
+        left: 0;
+        overflow: auto;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 0;
+        border-radius: 7px;
+        border: 1px white; /***/
+    }
+    .cajainterna5 {
+        background: #fff;
+        margin: 10em auto 0;
+        position: relative;
+        width: 40%;
+        border-radius: 7px;
+    }
+    .cajacentrada5 {
+        margin: 0 auto;
+        text-align: center;
+        padding: 1em;
+        border-radius: 7px;
+    }
+    .cajacentrada5 h2 {
+        background: none repeat scroll 0 0 #4BA53D;
+        box-sizing: border-box;
+        color: white;
+        font-size: 15px;
+        left: 0;
+        margin: 0;
+        padding: 5px;
+        position: absolute;
+        text-align: left;
+        top: 0;
+        width: 100%;
+        height: 40px;
+        border-radius: 7px;
+        border: 1px white;
+    }
+    .cajacentrada5 p {
+        margin-top: 50px;
+    }
+
+    .cajaexterna6 { /*Informacion Ausencias*/
+        background-color: rgba(0, 0, 0, 0.8);
+        bottom: 0;
+        display: none;
+        left: 0;
+        overflow: auto;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 0;
+        border-radius: 7px;
+        border: 1px white; /***/
+    }
+    .cajainterna6 {
+        background: #fff;
+        margin: 10em auto 0;
+        position: relative;
+        width: 40%;
+        border-radius: 7px;
+    }
+    .cajacentrada6 {
+        margin: 0 auto;
+        text-align: center;
+        padding: 1em;
+        border-radius: 7px;
+    }
+    .cajacentrada6 h2 {
+        background: none repeat scroll 0 0 #6F0FA3;
+        box-sizing: border-box;
+        color: white;
+        font-size: 15px;
+        left: 0;
+        margin: 0;
+        padding: 5px;
+        position: absolute;
+        text-align: left;
+        top: 0;
+        width: 100%;
+        height: 40px;
+        border-radius: 7px;
+        border: 1px white;
+    }
+    .cajacentrada6 p {
+        margin-top: 50px;
+    }
+    
+    /* Animaciones */
+    
+    .animated {
+      -webkit-animation-duration: 1s;
+              animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+              animation-fill-mode: both;
+    }
+    
+    .animated.infinite {
+      -webkit-animation-iteration-count: infinite;
+              animation-iteration-count: infinite;
+    }
+    @keyframes bounceIn {
+      0%, 20%, 40%, 60%, 80%, 100% {
+        -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+                transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+      }
+    
+      0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+                transform: scale3d(.3, .3, .3);
+      }
+    
+      20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+                transform: scale3d(1.1, 1.1, 1.1);
+      }
+    
+      40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+                transform: scale3d(.9, .9, .9);
+      }
+    
+      60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+                transform: scale3d(1.03, 1.03, 1.03);
+      }
+    
+      80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+                transform: scale3d(.97, .97, .97);
+      }
+    
+      100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+      }
+    }
+    
+    .bounceIn {
+      -webkit-animation-name: bounceIn;
+              animation-name: bounceIn;
+      -webkit-animation-duration: .75s;
+              animation-duration: .75s;
+    }
+    .element.bounceIn {    
+        -webkit-animation: bounceIn .7s 1;
+        -moz-animation: bounceIn .7s 1;
+        -o-animation: bounceIn .7s 1;
+        animation: bounceIn .7s 1;
+    }

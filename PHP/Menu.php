@@ -16,12 +16,13 @@ $encabezado = "<div class='header-wrapper opacity'>
 			<div id='menu' class='menu'>
 				<ul id='tiny'>
 					<li class='active'><a href='Portada.php'>INICIO</a></li>
-					<li><a href='#'>REGISTRO DE VENTAS</a>
+					<li><a href='#'>VENTAS/COMPRAS</a>
 						<ul>
-							<li><a href='Alta_Personal.php'>VENTA</a></li>
-							<li><a href='Baja_Personal.php'>DEVOLUCIÓN</a></li>
-							<li><a href='Baja_Personal.php'>RECLAMO</a></li>
-							<li><a href='#'>SOLICITUD CLIENTES</a></li>
+							<li><a href='Compra_Clientes.php'>VENTA</a></li>
+							<li><a href='#'>DEVOLUCIÓN</a></li>
+							<li><a href='#'>RECLAMO</a></li>
+							<li><a href='Solicitud_Clientes.php'>NUEVO PRODUCTO</a></li>
+							<li><a href='Compra_Proveedores.php'>INGRESO DE MERCADERIA</a></li>
 						</ul>
 					</li>
 					<li><a href='#'>CATALOGO PRODUCTOS</a>
