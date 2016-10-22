@@ -48,11 +48,28 @@
 <!-- Begin Container -->
 <div class="box">
 
-	<h1 class="title">Ingreso de Mercancía</h1>
+	<h1 class="title">Formulario de Devoluciones</h1>
 	<hr>
 <div class="form-container">
 	<form class="forms" action="" method="post">
 		<fieldset>
+
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Buscador ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<div class="linea"></div>
+		<div class="clear1"></div>
+			<div class="buscador">
+				<div style="width: 20%; float: left;">
+					Ingresar No. de Factura
+				</div>
+				<div style="width: 20%; float: left;">
+					<input type="text" name="" value="" class="text-input required" />
+				</div>
+				<div style="widows: 25%; float: left; padding: 5px;">
+					<input type="submit" value="Buscar" name="" class="btn-submit"/>
+				</div>
+			</div>
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Fin de Buscador~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<div class="clear1"></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			<div class="linea"></div>
 			<div style="padding: 10px;">
@@ -64,7 +81,7 @@
 								NIT:
 							</td>
 							<td class="campo">
-								<input type="text" name="" value="" class="text-input required" title="" />
+								<input type="text" name="" value="" class="text-input required" title="" disabled="" />
 							</td>
 						</tr>
 						<tr>
@@ -72,23 +89,15 @@
 								Nombre:
 							</td>
 							<td class="campo">
-								<input type="text" name="" value="" class="text-input required" title="" />
+								<input type="text" name="" value="" class="text-input required" title="" disabled="" />
 							</td>
 						</tr>
 						<tr>
 							<td class="nombrecampo">
 								Dirección:
 							</td>
-							<td  class="campo">
-								<input type="text" name="" value="" class="text-input required=" title="" />
-							</td>
-						</tr>
-						<tr>
-							<td class="nombrecampo">
-								Razón Social:
-							</td>
-							<td class="campo">
-								<input type="text" name="" value="" class="text-input required" title="" />
+							<td  class="campo" colspan="4">
+								<input type="text" name="" value="" class="text-input required=" title="" disabled="" />
 							</td>
 						</tr>
 					</table>
@@ -102,7 +111,7 @@
 								N.Factura
 							</td>
 							<td class="campo">
-								<input type="text" name="" value="" class="text-input required=" title="" />						
+								<input type="text" name="" value="" class="text-input required=" title="" disabled="" />						
 							</td>
 						</tr>
 						<tr>
@@ -110,15 +119,7 @@
 								Fecha
 							</td>
 							<td class="campo">
-								<input type="date" name="" value="" class="text-input required=" title="" />
-							</td>
-						</tr>
-						<tr>
-							<td class="nombrecampo">
-								E-mail:
-							</td>
-							<td class="campo">
-								<input type="text" name="" value="" class="text-input required" title="" />
+								<input type="date" name="" value="" class="text-input required=" title="" disabled="" />
 							</td>
 						</tr>
 					</table>
@@ -126,9 +127,10 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final sub-div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			</div>	
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<!-- Botón Modal
 		<div class="linea"></div>
 		<div class="clear1"></div>
-		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			
 			<table>
 					<tr>
@@ -141,6 +143,7 @@
 						</td>
 					</tr>
 			</table>
+			Fin de boton Modal -->
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<div class="linea"></div>
 		<div class="clear1"></div>
@@ -180,7 +183,7 @@
 							Importe
 						</td>
 						<td class="campo">
-							<input type="text" class="text-input required" />
+							<input type="text" class="text-input required" disabled=""/>
 						</td>
 					</tr>
 					<tr>
@@ -188,7 +191,7 @@
 							Descuento
 						</td>
 						<td class="campo">
-							<input type="text" class="text-input required" />
+							<input type="text" class="text-input required" disabled=""/>
 						</td>
 					</tr>
 					<tr>
@@ -196,15 +199,15 @@
 							Total
 						</td>
 						<td class="campo">
-							<input type="text" class="text-input required" />
+							<input type="text" class="text-input required" disabled=""/>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="submit" value="Cancelar Venta" name="Buscar_Data" class="btn-submit" />
+							<input type="submit" value="Cancelar Devolución" name="Buscar_Data" class="btn-submit" />
 						</td>
 						<td class="campo">
-							<input type="submit" value="Procesar Venta" name="Buscar_Data" class="btn-submit" />
+							<input type="submit" value="Procesar Devolución" name="Buscar_Data" class="btn-submit" />
 						</td>
 					</tr>
 				</table>
@@ -215,7 +218,7 @@
 	</form>
 	<br>
 
-	<!-- *********** MODAL *********** -->
+	<!-- *********** MODAL *********** 
 					<div class="cajaexterna">
 						<div class="cajainterna animated">
 						    <div class="cajacentrada">
@@ -281,7 +284,7 @@
 						    </div>
 						 </div>
 					</div>
-    <!-- *********** MODAL *********** --> 
+     *********** MODAL *********** --> 
 
 </div>
 	<hr>
