@@ -27,6 +27,9 @@
 <script type="text/javascript" src="style/js/jquery.dcflickr.1.0.js"></script>
 <script type="text/javascript" src="style/js/twitter.min.js"></script>
 
+<script type="text/javascript" src="style/js/jquery.js"></script>
+<script type="text/javascript" src="style/js/modal.js"></script>
+
 </head>
 <body>
 <div class="scanlines"></div>
@@ -45,7 +48,7 @@
 <!-- Begin Container -->
 <div class="box">
 
-	<h1 class="title">Compras de Clientes</h1>
+	<h1 class="title">Ventas y/o Servicios</h1>
 	<hr>
 <div class="form-container">
 	<form class="forms" action="" method="post">
@@ -54,11 +57,11 @@
 			<div class="linea"></div>
 			<div style="padding: 10px;">
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio sub-div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-					<div style="width: 70%; float: left;">
+					<div style="width: 50%; float: left;">
 					<table name="DatosProveedor">
 						<tr>
 							<td class="nombrecampo">
-								Nombre:
+								NIT:
 							</td>
 							<td class="campo">
 								<input type="text" name="" value="" class="text-input required" title="" />
@@ -80,35 +83,11 @@
 								<input type="text" name="" value="" class="text-input required=" title="" />
 							</td>
 						</tr>
-						<tr>
-							<td class="nombrecampo">
-								Razón Social:
-							</td>
-							<td class="campo" colspan="4">
-								<input type="text" name="" value="" class="text-input required=" title="" />
-							</td>
-						</tr>
-						<tr>
-							<td class="nombrecampo">
-								Teléfono:
-							</td>
-							<td class="campo" colspan="2">
-								<input type="text" name="" value="" class="text-input required=" title="" />
-							</td>
-						</tr>
-						<tr>
-							<td class="nombrecampo">
-								E-mail:
-							</td>
-							<td class="campo" colspan="3">
-								<input type="text" name="" value="" class="text-input required=" title="" />
-							</td>
-						</tr>
 					</table>
 				</div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final sub-div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio sub-div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-				<div style="float: right; width: 29%;height: 100%;">
+				<div style="float: right; width: 50%; height:100%;">
 					<table name="FacturaCompra">
 						<tr>
 							<td calss="nombrecampo">
@@ -119,47 +98,11 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="nombrecampo">
-								Serie
-							</td>
-							<td class="campo">
-								<input type="text" name="" value="" class="text-input required=" title="" />
-							</td>
-						</tr>
-						<tr>
 							<td class="nombreclase">
 								Fecha
 							</td>
 							<td class="campo">
 								<input type="date" name="" value="" class="text-input required=" title="" />
-							</td>
-						</tr>
-						<tr>
-							<td class="nombrecampo">
-								Dias Credito:
-							</td>
-							<td class="campo">
-								<input type="text" name="" value="" class="text-input required=" title="" />
-							</td>
-						</tr>
-						<tr>
-							<td class="nombrecampo">
-								Vence:
-							</td>
-							<td class="campo">
-								<input type="date" name="" value="" class="text-input required=" title="" />
-							</td>
-						</tr>
-						<tr>
-							<td class="nombrecampo">
-								Pago:
-							</td>
-							<td class="campo">
-								<select name="Forma de Pago" value="" class="text-input required=" title="">
-									<option value="Seleccionar">
-										Seleccionar
-									</option>
-								</select>
 							</td>
 						</tr>
 					</table>
@@ -170,61 +113,51 @@
 		<div class="linea"></div>
 		<div class="clear1"></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-			<div style="width: 100%; padding: 5%;">
-						<div class="clase1">Articulo</div>
-						<div class="clase1">Descripción</div>
-						<div class="clase1">Cantidad</div>
-						<div class="clase1">Embalaje</div>
-						<div class="clase1">Unidad</div>
-						<div class="clase1">Precio</div>
-						<div class="clase1">Descuento</div>
-						<div class="clase1">Impuesto</div>
-						<div style="width: 10%; float: left; clear: both;"></div>
-			</div>
-			<div style="width: 100%; padding: 5%;">
-						<div class="clase1"><input type="text"></div>
-						<div class="clase1"><input type="text"></div>
-						<div class="clase1"><input type="text"></div>
-						<div class="clase1"><input type="text"></div>
-						<div class="clase1"><input type="text"></div>
-						<div class="clase1"><input type="text"></div>
-						<div class="clase1"><input type="text"></div>
-						<div class="clase1"><input type="text"></div>
-						<div style="width: 10%; float: left;"><input type="submit" value="Enviar"></div>
-			</div>
+			
+			<table>
+					<tr>
+						<td class="campo">
+							<div class="contenido">
+								<a href="#" class="mostrarmodal">
+									<img src="style/images/boton.png">
+								</a>
+							</div>
+						</td>
+					</tr>
+			</table>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-		<div class="clear1"></div>
 		<div class="linea"></div>
 		<div class="clear1"></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-			<div style="width: 100%; padding: 5%;">
-						<div class="clase1">Articulo</div>
-						<div class="clase1">Descripción</div>
-						<div class="clase1">Cantidad</div>
-						<div class="clase1">Embalaje</div>
-						<div class="clase1">Unidad</div>
-						<div class="clase1">Precio</div>
-						<div class="clase1">Descuento</div>
-						<div class="clase1">Impuesto</div>
-						<div class="clase1">Importe</div>
-			</div>
-			<div style="width: 100%; padding: 5%;">
-						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
-						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
-						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
-						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
-						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
-						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
-						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
-						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
-						<div class="clase1"><input type="text" value="Dato de prueba" readonly></div>
-			</div>	
+			<table class="tableData">
+				<tr class="TableHeader">
+					<td><span class="ColumnHeader"><STRONG>Cantidad</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>Cod Producto</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>Descripción</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>Precio Q.</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>Total</STRONG></span></td>
+				</tr>
+				<tr class="TableDetail1">
+					<td><span class="ColumnHeader"><STRONG>1</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>TEI 1 D</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>Llavin de Casa</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>20.00</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>20.00</STRONG></span></td>
+				</tr>
+				<tr class="TableDetail2">
+					<td><span class="ColumnHeader"><STRONG>2</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>CHI5</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>Llavin de Casa</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>21.50</STRONG></span></td>
+					<td><span class="ColumnHeader"><STRONG>43.00</STRONG></span></td>
+				</tr>
+			</table>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<div class="clear1"></div>
-		<div class="linea" "></div>
+		<div class="linea"></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 4~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			<div style="width: 50%;float: left;"></div>
-			<div style="width: 50%; padding: 10px; float: right;">
+			<div style="width: 80%;  float: right;">
 				<table name="EnviarCompra">
 					<tr>
 						<td class="nombrecampo">
@@ -244,14 +177,6 @@
 					</tr>
 					<tr>
 						<td class="nombrecampo">
-							Impuestos
-						</td>
-						<td class="campo">
-							<input type="text" class="text-input required" />
-						</td>
-					</tr>
-					<tr>
-						<td class="nombrecampo">
 							Total
 						</td>
 						<td class="campo">
@@ -259,11 +184,11 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="boton">
-							<input type="submit" value="Cancelar" class="text-input required" />
+						<td>
+							<input type="submit" value="Cancelar Venta" name="Buscar_Data" class="btn-submit" />
 						</td>
-						<td class="boton">
-							<input type="submit" value="Procesar Compra" class="text-input required" />
+						<td class="campo">
+							<input type="submit" value="Procesar Venta" name="Buscar_Data" class="btn-submit" />
 						</td>
 					</tr>
 				</table>
@@ -273,6 +198,75 @@
 		</fieldset>
 	</form>
 	<br>
+
+	<!-- *********** MODAL *********** -->
+					<div class="cajaexterna">
+						<div class="cajainterna animated">
+						    <div class="cajacentrada">
+						        <h2>Seleccionar Producto</h2>
+						        <p>
+						        	Producto o Servicio<br/> <br/>
+						        	<table>
+						        		<tr>
+						        			<td class="nombrecampo">
+												Tipo de Venta
+											</td>
+											<td class="campo">
+												<label>
+													<select name="ddl_Alergico">
+														<option value="">--SELECCIONE--</option>
+														<option value="1">PRODUCTO</option>
+														<option value="0">SERVICIO</option>
+														<option value="0">PRODUCTO/SERVICIO</option>
+													</select>
+												</label>
+											</td>
+											<td class="nombrecampo">
+												Codigo
+											</td>
+											<td class="campo">
+												<input type="text" class="text-input required" enabled/>
+											</td>
+											<td>
+												<input type="submit" value="Buscar" name="Buscar_Data" class="btn-submit" />
+											</td>
+						        		</tr>
+						        		<tr>
+						        			<td class="nombrecampo">
+												Cantidad
+											</td>
+											<td class="campo">
+												<input type="text" class="text-input required" enabled/>
+											</td>
+											<td class="nombrecampo">
+												Imagen
+											</td>
+											<td class="campo">
+												<img src="css/ICONOS/19.png" height="50px", width="50px">
+											</td>
+											<td class="nombrecampo">
+												Descripción
+											</td>
+											<td class="campo">
+												<input type="text" class="text-input required" enabled/>
+											</td>
+
+										</tr>
+						        	</table>
+						        </p>
+						        <div class="cerrar">
+							       <a href="#" class="cerrarmodal">
+							       	<img src="style/images/cerrar.png" height="30px", width="30px">
+							       </a>
+						        </div>
+						        <form>
+						        	<input type="submit" value="Agregar" name="Agregar" class="btn-submit" />
+						        </form>
+						    </div>
+						 </div>
+					</div>
+    <!-- *********** MODAL *********** --> 
+
 </div>
 	<hr>
 </div>
