@@ -54,13 +54,12 @@ while ($Data_Menu_Record = mysqli_fetch_array($Data_Menu)) :
 
 				$Data_IDs_SubMenu = mquery($Query_IDs_SubMenu) or die ("Error al intentar Conectar: " . mysqli_error());
         		
+        			$Menu .= "</a><ul>";
         		while($Data_SubMenu_Record = mysqli_fetch_array($Data_IDs_SubMenu)) :
-        			$Menu .= "</a><ul>"
-        						. "<li><a href='" . $Data_SubMenu_Record["Ruta_Sub_Menu"] . "'>" . 
-        						utf8_encode($Data_SubMenu_Record["Nombre_Sub_Menu"]) . "</a></li>";
+        					  $Menu	.= "<li><a href='" . $Data_SubMenu_Record["Ruta_Sub_Menu"] . "'>" .utf8_encode($Data_SubMenu_Record["Nombre_Sub_Menu"]) . "</a></li>";
         		endwhile;
-        			$Menu .= "</ul></li>";
         	}
+        			$Menu .= "</ul></li>";
         	
 endwhile;
 
