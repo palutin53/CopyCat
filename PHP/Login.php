@@ -1,33 +1,64 @@
 <?php
+	session_start();
+
+	require("Funciones.php");
+
 	if(isset($_POST['submit'])){
 
 		$user = $_POST['name'];
 		$pass = $_POST['pass'];
+		$key = $_POST['key'];
 
-		if(($user == 'jmazariegos' && $pass == '123456') || ($user == 'lbarrondo' && $pass == '123456') || ($user == 'gmendez' && $pass == '123456') ){
-			session_start();
-			$_SESSION["User"] = $user;
+		$credenciales = "SELECT Empleado_ID_Empleado, Estado_Usuario 
+						 FROM usuario 
+						 WHERE User_Kiosco = '" .$user . "' AND 
+						       Pswd_Usuario = AES_ENCRYPT('" . $pass ."', '" . $key . "');";
+
+		$credenciales_result = mquery1rec($credenciales);
+
+		//echo "Registros: " . count($credenciales_result) . "</br>";
+
+		if($credenciales_result["Estado_Usuario"] == '1'){
+			//echo "Logueo Exitoso";
+
+			$Kiosco_Info = "SELECT 
+							    E.ID_Empleado,
+							    E.Kiosco_ID_Kiosco,
+							    U.Rol_ID_Rol,
+							    R.Descripcion_Rol,
+							    CONCAT(E.Nombre_Empleado,
+							            ' ',
+							            E.Apellido_Empleado) AS Nombre_Empleado,
+							    K.Descripcion_Kiosco,
+							    K.Horario_Ingreso_Kiosco,
+							    K.Horario_Max_Ingreso_Kiosco
+							FROM
+							    empleado E
+							INNER JOIN
+							    kiosco K ON E.Kiosco_ID_Kiosco = K.ID_Kiosco
+							INNER JOIN
+								usuario U ON E.ID_Empleado = U.Empleado_ID_Empleado
+							INNER JOIN
+								rol R ON U.Rol_ID_Rol = R.ID_Rol
+							WHERE ID_Empleado = " . $credenciales_result["Empleado_ID_Empleado"] .";";
+
+			$Kiosco_result = mquery1rec($Kiosco_Info);
+
+			$_SESSION["User"] = $Kiosco_result["Nombre_Empleado"];
+			$_SESSION["Kiosco"] = $Kiosco_result["Descripcion_Kiosco"];
+			$_SESSION["Horario_Ingreso"] = $Kiosco_result["Horario_Ingreso_Kiosco"];
+			$_SESSION["Horario_Max"] = $Kiosco_result["Horario_Max_Ingreso_Kiosco"];
+			$_SESSION["Empleado_Cod"] = $Kiosco_result["ID_Empleado"];
+			$_SESSION["Kiosco_Cod"] = $Kiosco_result["Kiosco_ID_Kiosco"];
+			$_SESSION["Rol_Cod"] = $Kiosco_result["Rol_ID_Rol"];
+			$_SESSION["Rol_Des"] = $Kiosco_result["Descripcion_Rol"];
+
 			header("Location: ../Portada.php");
+
 		}
 		else{
-			header("Location: ../index.php");
+			//echo "Logueo Fallido";
+			header("Location: ../index.php?error=1");
 		}
-
 	}
-
-/*$nombre= $_POST[name];
-$pass= $_POST[pass];
-/*La busqueda en la base de datos se realiza de este modo para evitar las inyecciones sql*/
-/*$query=("SELECT UsuarioLog,PassLog FROM Login "
-         . "WHERE UsuarioLog='".mysql_real_escape_string($nombre)."' and "
-         . "PassLog='".mysql_real_escape_string($pass)."'");
-$rs= mysql_query($query);
-$row=mysql_fetch_object($rs);
-$nr = mysql_num_rows($rs);
-if($nr == 1){
-echo 'No ingreso';
-}
-else if($nr == 0) {
-     header("Location:segundo.html");
-}*/
 ?>

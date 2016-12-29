@@ -338,3 +338,8 @@ FOOTER
 	position: relative;
 	bottom: -1px;
 }
+
+.login-form .error{
+	font-size: 10px;
+	color: red;
+}

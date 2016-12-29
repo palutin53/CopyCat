@@ -1,6 +1,3 @@
-<?php
-  session_start();  
-?>
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
@@ -20,9 +17,22 @@
 		</div>
 	
 		<div class="content">
+		<?php
+		  if(isset($_GET['error'])){
+		  	if($_GET['error'] == 1){
+		  		echo "<div class='error'>" . "Credenciales Incorrectas" . "</div>";
+		  	}
+		  	else if($_GET['error'] == 2){
+		  		echo "<div class='error'>" . "Debe de iniciar Sesión" . "</div>";	
+		  	}
+
+		  }
+		?>
 		<input name="name" type="text" class="input username" placeholder="USUARIO" />
 		<div class="user-icon"></div>
 		<input name="pass" type="password" class="input password" placeholder="CONTRASEÑA" />
+		<div class="pass-icon"></div>
+		<input name="key" type="password" class="input password" placeholder="LLAVE" />
 		<div class="pass-icon"></div>		
 		</div>
 

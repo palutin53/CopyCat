@@ -8,6 +8,23 @@ function mquery( $queryText ){
 		$error = mysqli_error($connect);
 		if ($error != "") echo "<b>" . $error . "</b><br>" . $queryText;
 		return $resultado;
+    mysqli_close();
+}
+
+function mquery1rec ( $queryText ){
+    $result = mquery($queryText);
+    return mysqli_fetch_array($result);
+}
+  
+function mquery1field ( $queryText){
+    $result = mquery($queryText);
+    $record = mysqli_fetch_array($result);
+    return $record[0];
+}
+  
+function mqueryid ( $queryText ){
+    mquery($queryText);
+    return mysql_insert_id();
 }
 
 function Cargar_Combo($queryText,$ID,$Name){
@@ -19,7 +36,7 @@ require("db_connect.php");
     	$ComboData="";
 
     	while ($Data_Record = mysqli_fetch_array($Data_Result)) :
-        	$ComboData .=" <option value='".$Data_Record[$ID]."'>".utf8_encode($Data_Record[$Name])."</option>"; //concatenamos el los options para luego ser insertado en el HTML
+        	$ComboData .=" <option value='".$Data_Record[$ID]."'>".utf8_encode($Data_Record[$Name])."</option>"; //concatenamos los options para luego ser insertado en el HTML
     	endwhile;
 
 echo $ComboData;
@@ -69,5 +86,7 @@ function Insertar_Data($Tabla,$Campos,$Valores)
 	echo $resultado;
 
 }
+
+
 
 ?>
