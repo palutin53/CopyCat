@@ -35,7 +35,7 @@ $Data_Menu = mquery($Query_Menu) or die ("Error al intentar Conectar: " . mysqli
 
 while ($Data_Menu_Record = mysqli_fetch_array($Data_Menu)) :
         	$Menu .="<li><a href='".$Data_Menu_Record["Ruta_Menu"]."'>".utf8_encode($Data_Menu_Record["Nombre_Menu"]);
-        	if($Data_Menu_Record["Nombre_Menu"] == '0'){ //Si no tiene SubMenu cierro la etiqueta <li>
+        	if($Data_Menu_Record["Tiene_Sub_Menu"] == '0'){ //Si no tiene SubMenu cierro la etiqueta <li>
         		$Menu .= "</a></li>";
         	}
         	else{ //Si tiene SubMenu concateno el submenu
@@ -58,9 +58,8 @@ while ($Data_Menu_Record = mysqli_fetch_array($Data_Menu)) :
         		while($Data_SubMenu_Record = mysqli_fetch_array($Data_IDs_SubMenu)) :
         					  $Menu	.= "<li><a href='" . $Data_SubMenu_Record["Ruta_Sub_Menu"] . "'>" .utf8_encode($Data_SubMenu_Record["Nombre_Sub_Menu"]) . "</a></li>";
         		endwhile;
-        	}
         			$Menu .= "</ul></li>";
-        	
+        	}
 endwhile;
 
 //echo $Menu;
