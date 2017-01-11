@@ -16,7 +16,7 @@
 		SPquery($StoreProcedure);
 	
 	}
-	else if(){
+	else if($estado == 'u'){
 
 		$ID_Kiosco = $_GET['ID_KC'];
 		$Descripcion_Kiosco = $_POST['txt_Nombre_Kiosco'];
