@@ -10,7 +10,7 @@ BEGIN
     DECLARE Cant_Existente INT DEFAULT 0;
     DECLARE Cant_Ins_Existencia INT DEFAULT 0;
     
-    SET ID_Encabezado_Existencia = (CALL Select_ID_Enc_Existencia(Kiosco_ID));
+    SET ID_Encabezado_Existencia = (SELECT Fn_Select_ID_Enc_Existencia(Kiosco_ID));
     SET Existe = (SELECT 
 						COUNT(ID_Detalle_Existencia) ID
 				  FROM
@@ -24,29 +24,13 @@ BEGIN
 		SET ID_Detalle_Existencia = 0;
 	END IF;
     
-    SET Cant_Anterior = (SELECT 
-							Cantidad_Anterior_Detalle_Existencia
-						FROM
-							detalle_existencia
-						WHERE
-							Encabezado_Existencia_ID_Encabezado_Existencia = ID_Encabezado_Existencia
-						AND
-							Producto_Servicio_Cod_Producto_Servicio = Cod_Producto
-						ORDER BY ID_Detalle_Existencia DESC LIMIT 1);
+    SET Cant_Anterior = (SELECT Fn_Select_Cant_Anterior(ID_Encabezado_Existencia,Cod_Producto));
                         
-	SET Cant_Existente = (SELECT
-							Cantidad_Existente_Detalle_Existencia
-						FROM
-							detalle_existencia
-						WHERE
-							Encabezado_Existencia_ID_Encabezado_Existencia = ID_Encabezado_Existencia
-						AND
-							Producto_Servicio_Cod_Producto_Servicio = Cod_Producto
-						ORDER BY ID_Detalle_Existencia DESC LIMIT 1);
+	SET Cant_Existente = (SELECT Fn_Select_Cant_Existente(ID_Encabezado_Existencia,Cod_Producto));
     
     IF Tipo_Movimiento = 'u' THEN
 		SET Cant_Ins_Existencia = Cant_Existente + Cantidad_Movimiento;
-    ELSE IF Tipo_Movimiento = 'd' THEN
+    ELSE
 		SET Cant_Ins_Existencia = Cant_Existente - Cantidad_Movimiento;
     END IF;
     
