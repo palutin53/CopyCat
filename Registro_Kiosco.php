@@ -19,7 +19,8 @@
 		$valoresHTML = "Readonly value='";
 
 		if(isset($_GET['ID_KC'])){
-			$QueryKiosco = "SELECT * FROM Kiosco WHERE ID_Kiosco = '" . $_GET['ID_KC'] . "'";
+			$ID_Kco = $_GET['ID_KC'];
+			$QueryKiosco = "SELECT * FROM Kiosco WHERE ID_Kiosco = '" . $_GET['ID_KC'] . "';";
 			$Kiosco_result = mquery($QueryKiosco);	
 			$Kiosco_Data = mysqli_fetch_array($Kiosco_result);
 
@@ -30,6 +31,7 @@
 			$Hora_Max_Ingreso = $Kiosco_Data["Horario_Max_Ingreso_Kiosco"];
 		}
 		else{
+			$ID_Kco = "0";
 			$QueryKiosco = "SELECT * FROM Kiosco";
 			$Kiosco_result = mquery($QueryKiosco);	
 
@@ -45,7 +47,8 @@
 		$valoresHTML = " value='";
 
 		if(isset($_GET['ID_KC'])){
-			$QueryKiosco = "SELECT * FROM Kiosco WHERE ID_Kiosco = '" . $_GET['ID_KC'] . "'";
+			$ID_Kco = $_GET['ID_KC'];
+			$QueryKiosco = "SELECT * FROM Kiosco WHERE ID_Kiosco = '" . $_GET['ID_KC'] . "';";
 			$Kiosco_result = mquery($QueryKiosco);	
 			$Kiosco_Data = mysqli_fetch_array($Kiosco_result);
 
@@ -56,6 +59,7 @@
 			$Hora_Max_Ingreso = $Kiosco_Data["Horario_Max_Ingreso_Kiosco"];
 		}
 		else{
+			$ID_Kco = "0";
 			$QueryKiosco = "SELECT * FROM Kiosco";
 			$Kiosco_result = mquery($QueryKiosco);	
 
@@ -67,7 +71,7 @@
 		}
 	}
 	else if($estado == 'i'){
-
+		$ID_Kco = "0";
 		$QueryKiosco = "SELECT * FROM Kiosco";
 		$Kiosco_result = mquery($QueryKiosco);
 		
@@ -80,11 +84,13 @@
 		$Hora_Max_Ingreso = "";
 	}
 	else if($estado == '0'){
+		$ID_Kco = "0";
 		$QueryKiosco = "SELECT * FROM Kiosco";
 		$Kiosco_result = mquery($QueryKiosco);
 	}
 	else{
 		$QueryKiosco = "";
+		$ID_Kco = "0";
 		
 		$valoresHTML = "Readonly value='";
 
@@ -96,6 +102,7 @@
 	}
 
 $Kiosco_count = mysqli_num_rows($Kiosco_result);
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US">
@@ -232,7 +239,7 @@ $Kiosco_count = mysqli_num_rows($Kiosco_result);
 <?php
 	if($estado != "0"){
 ?>
-	<form class="forms" action="Operar_Kiosco.php?estado= <?php echo $estado . "&ID_KC=" . $Kiosco_Data["ID_Kiosco"];?>" method="post">
+	<form class="forms" action="Operar_Kiosco.php?estado=<?php echo $estado . "&ID_KC=" . $ID_Kco;?>" method="post">
 		<fieldset>
 			<table>
 				<tr>
