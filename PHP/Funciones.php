@@ -11,6 +11,18 @@ function mquery( $queryText ){
     mysqli_close();
 }
 
+function SPquery( $NameSP ){
+
+  require("db_connect.php");
+        
+    $queryText = "CALL " . $NameSP;
+    $resultado = mysqli_query($connect, $queryText);
+    $error = mysqli_error($connect);
+    if ($error != "") echo "<b>" . $error . "</b><br>" . $queryText;
+    return $resultado;
+    mysqli_close();
+}
+
 function mquery1rec ( $queryText ){
     $result = mquery($queryText);
     return mysqli_fetch_array($result);
