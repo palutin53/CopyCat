@@ -94,12 +94,6 @@
 					<input type="submit" value="Cancelar" name="submit" class="btn-submit" />
 					<input type="submit" value="Ayuda" name="submit" class="btn-submit" />
 				</li>
-				<?php
-				//echo $_SESSION["User"];
-					/*$Campos = array("ID_Usuario","Perfil_ID_Perfil","Password","Fecha_Creacion_Usuario","Fecha_Expiracion_Usuario","Estado_Usuario");
-					$Valores = array("'JR111227'","1","'1211'","NOW()","DATE_ADD(NOW(), interval 12 month)","'1'");
-					echo Insertar_Data("Usuario", $Campos, $Valores);*/
-				?>
 				<hr>
 			</ol>
 		</fieldset>

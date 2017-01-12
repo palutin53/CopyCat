@@ -44,6 +44,8 @@
 
 			$Kiosco_result = mquery1rec($Kiosco_Info);
 
+			$hoy = date("Y/m/d");
+
 			$_SESSION["User"] = $Kiosco_result["Nombre_Empleado"];
 			$_SESSION["Kiosco"] = $Kiosco_result["Descripcion_Kiosco"];
 			$_SESSION["Horario_Ingreso"] = $Kiosco_result["Horario_Ingreso_Kiosco"];
@@ -52,6 +54,10 @@
 			$_SESSION["Kiosco_Cod"] = $Kiosco_result["Kiosco_ID_Kiosco"];
 			$_SESSION["Rol_Cod"] = $Kiosco_result["Rol_ID_Rol"];
 			$_SESSION["Rol_Des"] = $Kiosco_result["Descripcion_Rol"];
+
+			$StoreProcedure = "Inserta_Enc_Existencia('" . $_SESSION["Kiosco_Cod"] . "','" . $hoy . " 00:00:00');";
+
+			SPquery($StoreProcedure);
 
 			header("Location: ../Portada.php");
 
