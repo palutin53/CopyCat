@@ -31,7 +31,8 @@
 							            E.Apellido_Empleado) AS Nombre_Empleado,
 							    K.Descripcion_Kiosco,
 							    K.Horario_Ingreso_Kiosco,
-							    K.Horario_Max_Ingreso_Kiosco
+							    K.Horario_Max_Ingreso_Kiosco,
+							    K.Horario_Salida_Kiosco
 							FROM
 							    empleado E
 							INNER JOIN
@@ -50,6 +51,7 @@
 			$_SESSION["Kiosco"] = $Kiosco_result["Descripcion_Kiosco"];
 			$_SESSION["Horario_Ingreso"] = $Kiosco_result["Horario_Ingreso_Kiosco"];
 			$_SESSION["Horario_Max"] = $Kiosco_result["Horario_Max_Ingreso_Kiosco"];
+			$_SESSION["Horario_Salida"] = $Kiosco_result["Horario_Salida_Kiosco"];
 			$_SESSION["Empleado_Cod"] = $Kiosco_result["ID_Empleado"];
 			$_SESSION["Kiosco_Cod"] = $Kiosco_result["Kiosco_ID_Kiosco"];
 			$_SESSION["Rol_Cod"] = $Kiosco_result["Rol_ID_Rol"];
@@ -59,7 +61,18 @@
 
 			SPquery($StoreProcedure);
 
-			header("Location: ../Portada.php");
+			$hora_ingreso = date("H:i:s");
+			if($hora_ingreso < $_SESSION["Horario_Max"]){	
+				$SP_Actividad = "Inserta_Actividad_Empleado(1," . $_SESSION["Empleado_Cod"] . ",'N/A');";
+
+				SPquery($SP_Actividad);
+
+				header("Location: ../Portada.php");
+			}
+			else{
+				header("Location: ../Justificacion_Actividad.php?STD=i");
+			}
+
 
 		}
 		else{
