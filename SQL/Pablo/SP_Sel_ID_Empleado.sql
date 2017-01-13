@@ -1,0 +1,7 @@
+DROP PROCEDURE IF EXISTS Select_ID_Empleado;
+DELIMITER //
+CREATE PROCEDURE Select_ID_Empleado(Empleado_ID VARCHAR(15))
+BEGIN
+	SELECT * FROM empleado WHERE ID_Empleado = Empleado_ID;
+END//
+DELIMITER ;

@@ -1,0 +1,7 @@
+DROP PROCEDURE IF EXISTS Select_All_Empleado;
+DELIMITER //
+CREATE PROCEDURE Select_All_Empleado()
+BEGIN
+	SELECT * FROM empleado;
+END//
+DELIMITER ;
