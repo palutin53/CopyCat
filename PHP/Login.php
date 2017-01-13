@@ -57,22 +57,32 @@
 			$_SESSION["Rol_Cod"] = $Kiosco_result["Rol_ID_Rol"];
 			$_SESSION["Rol_Des"] = $Kiosco_result["Descripcion_Rol"];
 
-			$StoreProcedure = "Inserta_Enc_Existencia('" . $_SESSION["Kiosco_Cod"] . "','" . $hoy . " 00:00:00');";
+			if($Kiosco_result["Kiosco_ID_Kiosco"] != 'Pivo-1'){
 
-			SPquery($StoreProcedure);
+				$StoreProcedure = "Inserta_Enc_Existencia('" . $_SESSION["Kiosco_Cod"] . "','" . $hoy . " 00:00:00');";
 
-			$hora_ingreso = date("H:i:s");
-			if($hora_ingreso < $_SESSION["Horario_Max"]){	
-				$SP_Actividad = "Inserta_Actividad_Empleado(1," . $_SESSION["Empleado_Cod"] . ",'N/A');";
+				SPquery($StoreProcedure);
 
-				SPquery($SP_Actividad);
+				$SP_Atencion_Kiosco = "Inserta_Atencion_Kiosco('" . $_SESSION["Kiosco_Cod"] . "'," . $_SESSION["Empleado_Cod"] . ");";
 
-				header("Location: ../Portada.php");
+				SPquery($SP_Atencion_Kiosco);
+
+				$hora_ingreso = date("H:i:s");
+				if($hora_ingreso < $_SESSION["Horario_Max"]){	
+					$SP_Actividad = "Inserta_Actividad_Empleado(1," . $_SESSION["Empleado_Cod"] . ",'N/A');";
+
+					SPquery($SP_Actividad);
+
+					header("Location: ../Portada.php");
+				}
+				else{
+					header("Location: ../Justificacion_Actividad.php?STD=i");
+				}
+
 			}
 			else{
-				header("Location: ../Justificacion_Actividad.php?STD=i");
+				header("Location: ../Registro_Kiosco_Cobertura.php");
 			}
-
 
 		}
 		else{
