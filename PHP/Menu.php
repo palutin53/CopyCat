@@ -5,11 +5,14 @@ if(!isset($_SESSION["User"])){
 	header("Location: index.php?error=2");
 }
 else{
+	$hoy = date("Y/m/d");
 	$Table_Info = 	"<table>
 						<tr>
 							<th>Bienvenido: " . $_SESSION["User"] . "</th>
 							<th>Kiosco: " . $_SESSION["Kiosco"] . "</th>
 							<th>Rol: " . $_SESSION["Rol_Des"] . "</th>
+							<th>Fecha: " . $hoy . "</th>
+							
 						</tr>
 					 </table>";
 

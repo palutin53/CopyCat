@@ -41,9 +41,12 @@ function mqueryid ( $queryText ){
 
 function Cargar_Combo($queryText,$ID,$Name){
 
-require("db_connect.php");
+  require("db_connect.php");
 
-	//$Data_Result = mquery($queryText) or die ("Error al intentar Conectar: " . mysql_error());
+  $Union = "SELECT '0' AS " . $ID . ", '--SELECCIONE--' AS " . $Name . " UNION ";
+  $queryText = $Union . $queryText;
+
+	$Data_Result = mquery($queryText) or die ("Error al intentar Conectar: " . mysql_error());
 
     	$ComboData="";
 
