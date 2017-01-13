@@ -1,0 +1,7 @@
+DROP PROCEDURE IF EXISTS Select_ID_Cliente;
+DELIMITER //
+CREATE PROCEDURE Select_ID_Cliente(Cliente_ID int(11))
+BEGIN
+	SELECT * FROM cliente WHERE ID_Cliente = Cliente_ID;
+END//
+DELIMITER ;
