@@ -2,12 +2,7 @@
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
 
-	if(isset($_GET['STD'])){
-		echo "<script type='text/javascript'>alert('Producto ingresado con exito.')</script>";
-	}
-	else{
-		echo "<script type='text/javascript'>alert('Error al intentar guardar.')</script>";	
-	}
+	echo "<script type='text/javascript'>alert('Fuera de Horario')</script>";
 
 ?>
 <!DOCTYPE HTML>
@@ -41,7 +36,7 @@
 
 <!-- Begin Header -->
 <?php
-	require("PHP/Menu.php");
+	//require("PHP/Menu.php");
 ?>
 <!-- End Header -->
 
@@ -53,107 +48,34 @@
 <!-- Begin Container -->
 <div class="box">
 
-	<h1 class="title">Registro Productos Nuevos</h1>
+	<h1 class="title">Justificación Fuera de Horario</h1>
 	<hr>
 <div class="form-container">
-	<form enctype="multipart/form-data" class="forms" action="Operar_Registro_Producto.php" method="post">
+<?php
+if($_GET['STD'] == 'i'){
+	echo "<form enctype='multipart/form-data' class='forms' action='Operar_Justificacion.php?STD=i' method='post'>";
+}
+else if($_GET['STD'] == 's'){
+	echo "<form enctype='multipart/form-data' class='forms' action='Operar_Justificacion.php?STD=s' method='post'>";
+}
+?>
 		<fieldset>
 			<table>
 				<tr>
 					<td class="nombrecampo">
-						Descripción
+						Justificación
 					</td>
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<textarea name="txt_Descripcion_Producto" rows="10" cols="50" maxlength="75"></textarea>
+								<textarea name="txt_Justificacion" rows="10" cols="50" maxlength="75"></textarea>
 							</li>
 						</ol>
 					</td>
 				</tr>
-				<tr>
-					<td class="nombrecampo">
-						Tipo de Producto
-					</td>
-					<td class="campo">
-						<ol>
-						<label>
-							<select name="Ddl_Tipo_Producto">
-								<?php
-								 $SQL = "SELECT * FROM tipo_producto;";
-								 $ID = "ID_Tipo_Producto";
-								 $Data = "Descripcion_Tipo_Producto";
-								 Cargar_Combo($SQL,$ID,$Data);
-								?>
-							</select>
-						</label>
-						</ol>
-					</td>
-				</tr>
-				<tr>
-					<td class="nombrecampo">
-						Precio Unitario
-					</td>
-					<td class="campo">
-						<ol>
-							<li class="form-row text-input-row">
-								<input type="text" name="txt_Precio_Producto" value="" class="text-input required" title="" />
-							</li>
-						</ol>
-					</td>
-				</tr>
-				<tr>
-					<td class="nombrecampo">
-						Genera Comisión
-					</td>
-					<td class="campo">
-						<ol>
-							<label>
-								<select name="Ddl_Genera_Comision">
-									<option value="">--SELECCIONE--</option>
-									<option value="s">SI</option>
-									<option value="n">NO</option>
-								</select>
-							</label>
-						</ol>
-					</td>
-				</tr>
-				<tr>
-					<td class="nombrecampo">
-						¿Se presta a Domicilio?
-					</td>
-					<td class="campo">
-						<ol>
-							<label>
-								<select name="Ddl_Domicilio">
-									<option value="">--SELECCIONE--</option>
-									<option value="s">SI</option>
-									<option value="n">NO</option>
-								</select>
-							</label>
-						</ol>
-					</td>
-				</tr>
-				<tr>
-					<td class="nombrecampo">
-						Precio Unitario
-					</td>
-					<td class="campo">
-						<ol>
-							<li class="form-row text-input-row">
-								<input name="imgProducto" type="file" />
-							</li>
-						</ol>
-					</td>
-				</tr>
-
-				
-
 			</table>
 			<li class="button-row">
 				<input type="submit" value="Guardar" name="save" class="btn-submit" />
-				<input type="submit" value="Cancelar" name="submit" class="btn-submit" />
-				<input type="submit" value="Ayuda" name="submit" class="btn-submit" />
 			</li>
 		</fieldset>
 	</form>

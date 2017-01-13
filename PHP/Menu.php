@@ -6,12 +6,13 @@ if(!isset($_SESSION["User"])){
 }
 else{
 	$hoy = date("Y/m/d");
+	$hora_ingreso = date("H:i:s");
 	$Table_Info = 	"<table>
 						<tr>
 							<th>Bienvenido: " . $_SESSION["User"] . "</th>
 							<th>Kiosco: " . $_SESSION["Kiosco"] . "</th>
 							<th>Rol: " . $_SESSION["Rol_Des"] . "</th>
-							<th>Fecha: " . $hoy . "</th>
+							<th>Fecha: " . $hoy . " " . $hora_ingreso . "</th>
 							
 						</tr>
 					 </table>";
