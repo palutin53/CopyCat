@@ -1,9 +1,9 @@
-DROP PROCEDURE IF EXISTS Actualiza_Empleado;
+DROP PROCEDURE IF EXISTS Actualiza_Cliente;
 DELIMITER //
-CREATE PROCEDURE Actualiza_Empleado(ID_Empleado int(11), ID_Kiosco varchar(15), Nombre_Empleado varchar(50), Apellido_Empleado varchar(50), DPI_Empleado varchar(45), Telefono_Empleado varchar(50), Email_Empleado varchar(75), Salario_Base decimal(8,2))
+CREATE PROCEDURE Actualiza_Cliente(ID_Cliente int(11), Tipo_Cliente int(11), Nombre_Cliente varchar(50), Direccion_Cliente varchar(30), Nit_Cliente varchar(45), Telefono_Cliente varchar(15), Correo_Cliente varchar(75))
 BEGIN
 	UPDATE 
-		copycat.empleado
+		copycat.cliente
 	SET
 		Kiosco_ID_Kiosco = ID_Kiosco,
 		Nombre_Empleado = Nombre_Empleado,

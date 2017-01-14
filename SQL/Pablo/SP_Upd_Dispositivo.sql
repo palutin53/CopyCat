@@ -7,7 +7,7 @@ BEGIN
 	SET	
 		Kiosco_ID_Kiosco = ID_Kiosco,	
 		Descripcion_Dispositivo = Descripcion_Dispositivo,
-		Serie_Dispositivo = Serie_Dispositivo,
+		Serie_Dispositivo = Serie_Dispositivo
 	WHERE 
 		ID_Dispositivo = ID_Dispositivo;
 

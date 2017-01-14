@@ -6,7 +6,7 @@ BEGIN
 		copycat.actividad_empleado
 	SET		
 		Tipo_Actividad_ID_Tipo_Actividad = Tipo_Actividad,
-		Empleado_ID_Empleado = Empleado_ID,
+		Empleado_ID_Empleado = Empleado_ID
 	WHERE 
 		Fecha_Actividad = Fecha_Actividad;
 
