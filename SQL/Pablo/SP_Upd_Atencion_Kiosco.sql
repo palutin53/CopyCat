@@ -7,7 +7,7 @@ BEGIN
 		copycat.atencion_kiosco
 	SET		
 		Fecha_Atencion_Kiosco = Fecha_Atencion,
-		Kiosco_ID_Kiosco = Kiosco_ID,
+		Kiosco_ID_Kiosco = Kiosco_ID
 	WHERE 
 		Empleado_ID_Empleado = Empleado_ID;
 
