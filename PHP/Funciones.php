@@ -39,7 +39,7 @@ function mqueryid ( $queryText ){
     return mysql_insert_id();
 }
 
-function Cargar_Combo($queryText,$ID,$Name){
+function Cargar_Combo($queryText,$ID,$Name,$Default){
 
   require("db_connect.php");
 
@@ -51,7 +51,12 @@ function Cargar_Combo($queryText,$ID,$Name){
     	$ComboData="";
 
     	while ($Data_Record = mysqli_fetch_array($Data_Result)) :
-        	$ComboData .=" <option value='".$Data_Record[$ID]."'>".utf8_encode($Data_Record[$Name])."</option>"; //concatenamos los options para luego ser insertado en el HTML
+        	 if($Data_Record[$ID] == $Default){
+            $ComboData .=" <option selected value='".$Data_Record[$ID]."'>".$Data_Record[$Name]."</option>";
+          }
+          else{
+            $ComboData .=" <option value='".$Data_Record[$ID]."'>".$Data_Record[$Name]."</option>"; //concatenamos el los options para luego ser insertado en el HTML
+          }
     	endwhile;
 
 echo $ComboData;

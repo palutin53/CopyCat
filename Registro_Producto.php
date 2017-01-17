@@ -83,7 +83,7 @@
 								 $SQL = "SELECT * FROM tipo_producto;";
 								 $ID = "ID_Tipo_Producto";
 								 $Data = "Descripcion_Tipo_Producto";
-								 Cargar_Combo($SQL,$ID,$Data);
+								 Cargar_Combo($SQL,$ID,$Data,'0');
 								?>
 							</select>
 						</label>
