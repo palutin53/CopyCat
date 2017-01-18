@@ -17,9 +17,10 @@ BEGIN
 				Rol_ID_Rol,
 				Pswd_Usuario,
 				Fecha_Alta_Usuario,
-				Estado_Usuario)
+				Estado_Usuario,
+                PassStandar_Usuario)
 	VALUES
-			    (Empleado_ID, user, Rol, AES_ENCRYPT(pass,'11'), now(),'1');
+			    (Empleado_ID, user, Rol, AES_ENCRYPT(pass,'11'), now(),'1','1');
 
 	
 END//

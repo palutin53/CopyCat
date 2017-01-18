@@ -39,6 +39,6 @@
 		echo $StoreProcedure;
 	}
 
-	//header('Location: Registro_Personal.php?STD=v');
+	header('Location: Registro_Personal.php?STD=v');
 
 ?>

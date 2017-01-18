@@ -32,7 +32,8 @@
 							    K.Descripcion_Kiosco,
 							    K.Horario_Ingreso_Kiosco,
 							    K.Horario_Max_Ingreso_Kiosco,
-							    K.Horario_Salida_Kiosco
+							    K.Horario_Salida_Kiosco,
+							    U.PassStandar_Usuario
 							FROM
 							    empleado E
 							INNER JOIN
@@ -72,15 +73,23 @@
 					$SP_Actividad = "Inserta_Actividad_Empleado(1," . $_SESSION["Empleado_Cod"] . ",'N/A');";
 
 					SPquery($SP_Actividad);
-
-					header("Location: ../Portada.php");
+					
+					if($Kiosco_result["PassStandar_Usuario"] == '0'){
+						header("Location: ../Portada.php");
+					}
+					else{
+						header("Location: ../Reset_Credenciales.php?STD=u");
+					}
+					
 				}
 				else{
+					$_SESSION["default"] = $Kiosco_result["PassStandar_Usuario"];
 					header("Location: ../Justificacion_Actividad.php?STD=i");
 				}
 
 			}
 			else{
+				$_SESSION["default"] = $Kiosco_result["PassStandar_Usuario"];
 				header("Location: ../Registro_Kiosco_Cobertura.php");
 			}
 

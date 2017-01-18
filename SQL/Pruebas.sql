@@ -87,3 +87,5 @@ SELECT LOWER(SUBSTRING('Jearson Alexander',1,1));
 
 SELECT CONCAT(LOWER(SUBSTRING('Jearson Alexander',1,1)),LOWER(SUBSTRING(REPLACE('Mazariegos Santa Cruz',' ',''),1,10)));
 SELECT MAX(ID_Empleado) AS id FROM empleado;
+
+SELECT e.ID_Empleado, CONCAT(e.Nombre_Empleado, ' ', e.Apellido_Empleado) Nombre FROM empleado e;
