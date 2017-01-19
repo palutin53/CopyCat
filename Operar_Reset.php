@@ -1,18 +1,23 @@
 <?php
-require("Funciones.php");
+require("PHP/Funciones.php");
+
+$estado = $_GET['STD'];
 
 if($_GET['STD'] == 'a'){ //Si es administrador
 	
-	if($_POST['txt_Pass_Nuevo'] == $_POST['txt_Pass_Confirmacion']){//Si el nuevo pass se confirma
+	$PNew = $_POST['txt_Pass_Nuevo'];
+	$PConf = $_POST['txt_Pass_Confirmacion'];
+	$key = $_POST['txt_llave'];
+	if($PNew == $PConf){//Si el nuevo pass se confirma
 
 		$ID_Empleado = $_POST['Ddl_Empleado'];
-		$SPC = "Actualiza_PASS($ID_Empleado,$_POST['txt_Pass_Nuevo'],$_POST['txt_llave']);";
+		$SPC = "Actualiza_PASS($ID_Empleado,'$PNew','$key');";
 		SPquery($SPC);
 
-		header("Location: Portada.php?STD=cr");
+		header("Location: Reset_Credenciales.php?STD=$estado&error=0");
 	}
 	else{ //Si el nuevo pass no se confirma
-		header("Location: Reset_Credenciales.php?STD=$_GET['STD']&error=1");
+		header("Location: Reset_Credenciales.php?STD=$estado&error=1");
 	}
 }
 else if($_GET['STD'] == 'u'){ //Usuario normal
@@ -31,11 +36,14 @@ else if($_GET['STD'] == 'u'){ //Usuario normal
 
 	if($credenciales_result["Estado_Usuario"] == '1'){ //Concuerdan Credenciales
 
-		if($_POST['txt_Pass_Nuevo'] != $_POST['txt_Pass_Actual']){ //Si el nuevo pass es distinto del actual
+		$PNew = $_POST['txt_Pass_Nuevo'];
+		$PConf = $_POST['txt_Pass_Confirmacion'];
 
-			if($_POST['txt_Pass_Nuevo'] == $_POST['txt_Pass_Confirmacion']){//Si el nuevo pass se confirma
+		if($PNew != $pass){ //Si el nuevo pass es distinto del actual
 
-				$SPC = "Actualiza_PASS($ID_Empleado,$_POST['txt_Pass_Nuevo'],$_POST['txt_llave']);";
+			if($PNew == $PConf){//Si el nuevo pass se confirma
+
+				$SPC = "Actualiza_PASS($ID_Empleado,'$PNew','$key');";
 
 				SPquery($SPC);
 
@@ -43,16 +51,16 @@ else if($_GET['STD'] == 'u'){ //Usuario normal
 
 			}
 			else{ //Si el nuevo pass no se confirma
-				header("Location: Reset_Credenciales.php?STD=$_GET['STD']&ID_EM=$ID_Empleado");	
+				header("Location: Reset_Credenciales.php?STD=$estado&ID_EM=$ID_Empleado");	
 			}
 
 		}
 		else{ //Si el nuevo pass es igual del actual
-			header("Location: Reset_Credenciales.php?STD=$_GET['STD']&ID_EM=$ID_Empleado");
+			header("Location: Reset_Credenciales.php?STD=$estado&ID_EM=$ID_Empleado");
 		}
 	}
 	else{ //No Concuerdan Credenciales
-		header("Location: Reset_Credenciales.php?STD=$_GET['STD']&ID_EM=$ID_Empleado");
+		header("Location: Reset_Credenciales.php?STD=$estado&ID_EM=$ID_Empleado");
 	}
 }
 

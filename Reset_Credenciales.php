@@ -4,6 +4,15 @@
 
 	$Estado = $_GET['STD'];
 
+	if(isset($_GET['error'])){
+		if($_GET['error'] == '0'){
+			echo "<script type='text/javascript'>alert('Credenciales Actualizadas con Exito');</script>";
+		}
+		else{
+			echo "<script type='text/javascript'>alert('Error al actualizar Credenciales');</script>";	
+		}
+	}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US">
