@@ -4,7 +4,7 @@
 
 	if(isset($_GET['STD'])){
 		if($_GET['STD'] == 'cr'){
-			echo "<script type='text/javascript'>alert('Credenciales Actualizadas con Exito');</script>";
+			echo "<script type='text/javascript'>alert('Credenciales Actualizadas con Exito.');</script>";
 		}
 	}
 ?>
@@ -64,27 +64,6 @@
 
 </div>
 <!-- End Container -->
-
-<!-- Begin Sidebar 
-<div class="sidebar box">
-  <div class="sidebox widget">
-			<h3 class="widget-title">Where Are We?</h3>
-			<p>Lorem Ipsum Dolor Sit Moon Avenue No:11/21 Planet City, Earth</p>
-			<p>
-				<span class="lite1">Fax:</span> +555 797 534 01<br />
-				<span class="lite1">Tel:</span> +555 636 646 62<br />
-				<span class="lite1">E-mail:</span> name@domain.com
-			</p>
-			
-	</div>
-	
-	<div class="sidebox widget">
-		<h3 class="widget-title">Custom Text</h3>
-		<p>Suspendisse eu odio quis elit ultrice commodo tempor eget arcu. Sedur aliquet posuere lectus aliquam iaculi. Curabitur a risus metus. In ut lorem nisl, et adipiscing sapien. Donec sed risus tristiq scelerisque. </p>
-	</div>
-	
-</div>
-End Sidebar -->
 <div class="clear"></div>
 
 </div>
