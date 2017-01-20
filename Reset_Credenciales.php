@@ -2,11 +2,15 @@
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
 
-	if(isset($_GET['STD'])){
-		echo "<script type='text/javascript'>alert('Producto ingresado con exito.')</script>";
-	}
-	else{
-		echo "<script type='text/javascript'>alert('Error al intentar guardar.')</script>";	
+	$Estado = $_GET['STD'];
+
+	if(isset($_GET['error'])){
+		if($_GET['error'] == '0'){
+			echo "<script type='text/javascript'>alert('Credenciales Actualizadas con Exito');</script>";
+		}
+		else{
+			echo "<script type='text/javascript'>alert('Error al actualizar Credenciales');</script>";	
+		}
 	}
 
 ?>
@@ -47,42 +51,34 @@
 
 <!-- Begin Wrapper -->
 <div class="wrapper"><!-- Begin Intro -->
-<div class="intro">CopyCat</div>
+<div class="intro">COPYCAT</div>
 <!-- End Intro --> 
 
 <!-- Begin Container -->
 <div class="box">
 
-	<h1 class="title">Registro Productos Nuevos</h1>
-	<hr>
+	<h1 class="title">Establecer Contraseña</h1>
+		<div class="clear1"></div>
+		<div class="linea"></div>
 <div class="form-container">
-	<form enctype="multipart/form-data" class="forms" action="Operar_Registro_Producto.php" method="post">
+<?php
+	if($Estado == 'a'){
+?>
+	<form class="forms" action="Operar_Reset.php?STD=<?php echo $Estado;?>" method="post">
 		<fieldset>
 			<table>
 				<tr>
 					<td class="nombrecampo">
-						Descripción
-					</td>
-					<td class="campo">
-						<ol>
-							<li class="form-row text-input-row">
-								<textarea name="txt_Descripcion_Producto" rows="10" cols="50" maxlength="75"></textarea>
-							</li>
-						</ol>
-					</td>
-				</tr>
-				<tr>
-					<td class="nombrecampo">
-						Tipo de Producto
+						Empleado
 					</td>
 					<td class="campo">
 						<ol>
 						<label>
-							<select name="Ddl_Tipo_Producto">
+							<select name="Ddl_Empleado">
 								<?php
-								 $SQL = "SELECT * FROM tipo_producto;";
-								 $ID = "ID_Tipo_Producto";
-								 $Data = "Descripcion_Tipo_Producto";
+								 $SQL = "SELECT e.ID_Empleado, CONCAT(e.Nombre_Empleado, ' ', e.Apellido_Empleado) Nombre FROM empleado e;";
+								 $ID = "ID_Empleado";
+								 $Data = "Nombre";
 								 Cargar_Combo($SQL,$ID,$Data,'0');
 								?>
 							</select>
@@ -90,68 +86,91 @@
 						</ol>
 					</td>
 				</tr>
+<?php
+	}
+	else{
+?>
+	<form class="forms" action="Operar_Reset.php?ID_EM=<?php echo $_SESSION["Empleado_Cod"] . "&STD=" . $Estado;?>" method="post">
+		<fieldset>
+			<table>
 				<tr>
 					<td class="nombrecampo">
-						Precio Unitario
+						Nombre Empleado
 					</td>
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" name="txt_Precio_Producto" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Nombre_Personal" class="text-input required" value="<?php echo $_SESSION['User'];?>" readonly/>
 							</li>
 						</ol>
 					</td>
 				</tr>
 				<tr>
 					<td class="nombrecampo">
-						Genera Comisión
-					</td>
-					<td class="campo">
-						<ol>
-							<label>
-								<select name="Ddl_Genera_Comision">
-									<option value="">--SELECCIONE--</option>
-									<option value="s">SI</option>
-									<option value="n">NO</option>
-								</select>
-							</label>
-						</ol>
-					</td>
-				</tr>
-				<tr>
-					<td class="nombrecampo">
-						¿Se presta a Domicilio?
-					</td>
-					<td class="campo">
-						<ol>
-							<label>
-								<select name="Ddl_Domicilio">
-									<option value="">--SELECCIONE--</option>
-									<option value="s">SI</option>
-									<option value="n">NO</option>
-								</select>
-							</label>
-						</ol>
-					</td>
-				</tr>
-				<tr>
-					<td class="nombrecampo">
-						Precio Unitario
+						Contraseña Actual
 					</td>
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input name="imgProducto" type="file" />
+								<input type="password" name="txt_Pass_Actual" class="text-input required" value=""/>
 							</li>
 						</ol>
 					</td>
 				</tr>
-
-				
-
+				<tr>
+					<td class="nombrecampo">
+						Llave Actual
+					</td>
+					<td class="campo">
+						<ol>
+							<li class="form-row text-input-row">
+								<input type="password" name="txt_Llave_Actual" class="text-input required" value=""/>
+							</li>
+						</ol>
+					</td>
+				</tr>
+<?php
+	}
+?>
+				<tr>
+					<td class="nombrecampo">
+						Contraseña Nueva
+					</td>
+					<td class="campo">
+						<ol>
+							<li class="form-row text-input-row">
+								<input type="password" name="txt_Pass_Nuevo" class="text-input required" value="">
+							</li>
+						</ol>
+					</td>
+				</tr>
+				<tr>
+					<td class="nombrecampo">
+						Confirmar Contraseña
+					</td>
+					<td class="campo">
+						<ol>
+							<li class="form-row text-input-row">
+								<input type="password" name="txt_Pass_Confirmacion" class="text-input required" value="">
+							</li>
+						</ol>
+					</td>
+				</tr>
+				<tr>
+					<td class="nombrecampo">
+						Llave
+					</td>
+					<td class="campo">
+						<ol>
+							<li class="form-row text-input-row">
+								<input type="password" name="txt_llave" class="text-input required" value="">
+							</li>
+						</ol>
+					</td>
+				</tr>
 			</table>
 			<li class="button-row">
-				<input type="submit" value="Guardar" name="save" class="btn-submit" />
+				<input type="submit" value="Guardar" name="submit" class="btn-submit" />
 				<input type="submit" value="Cancelar" name="submit" class="btn-submit" />
 				<input type="submit" value="Ayuda" name="submit" class="btn-submit" />
 			</li>

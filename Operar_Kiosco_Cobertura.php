@@ -52,7 +52,14 @@
 
 					SPquery($SP_Actividad);
 
-					header("Location: Portada.php");
+					if($_SESSION["default"] == '0'){
+						header("Location: Portada.php");
+						$_SESSION[''];
+					}
+					else{
+						header("Location: Reset_Credenciales.php?STD=u");
+						$_SESSION[''];
+					}
 				}
 				else{
 					header("Location: Justificacion_Actividad.php?STD=i");

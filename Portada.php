@@ -1,6 +1,12 @@
 <?php
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
+
+	if(isset($_GET['STD'])){
+		if($_GET['STD'] == 'cr'){
+			echo "<script type='text/javascript'>alert('Credenciales Actualizadas con Exito');</script>";
+		}
+	}
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US">

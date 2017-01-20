@@ -71,3 +71,21 @@ SELECT * FROM Actividad_Empleado;
 
 CALL Inserta_Atencion_Kiosco();
 SELECT * FROM atencion_kiosco;
+
+SELECT e.*, k.Descripcion_Kiosco FROM empleado e INNER JOIN kiosco k ON e.Kiosco_ID_Kiosco = k.ID_Kiosco;
+SELECT 
+    e.*, k.Descripcion_Kiosco, u.Rol_ID_Rol, u.Estado_Usuario
+FROM
+    empleado e
+        INNER JOIN
+    kiosco k ON e.Kiosco_ID_Kiosco = k.ID_Kiosco
+        INNER JOIN
+    usuario u ON e.ID_Empleado = u.Empleado_ID_Empleado;
+
+SELECT SUBSTRING(REPLACE('barrondo',' ',''),1,10);
+SELECT LOWER(SUBSTRING('Jearson Alexander',1,1));
+
+SELECT CONCAT(LOWER(SUBSTRING('Jearson Alexander',1,1)),LOWER(SUBSTRING(REPLACE('Mazariegos Santa Cruz',' ',''),1,10)));
+SELECT MAX(ID_Empleado) AS id FROM empleado;
+
+SELECT e.ID_Empleado, CONCAT(e.Nombre_Empleado, ' ', e.Apellido_Empleado) Nombre FROM empleado e;
