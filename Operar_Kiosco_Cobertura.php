@@ -3,6 +3,8 @@
 
 	session_start();
 
+	$hoy = date("Y-m-d");
+
 	$Kiosco_Info = "SELECT 
 						E.ID_Empleado,
 						K.ID_Kiosco,
@@ -36,10 +38,11 @@
 			$_SESSION["Rol_Des"] = $Kiosco_result["Descripcion_Rol"];
 
 				$StoreProcedure = "Inserta_Enc_Existencia('" . $_SESSION["Kiosco_Cod"] . "','" . $hoy . " 00:00:00');";
+				//echo $StoreProcedure;
 
 				SPquery($StoreProcedure);
 
-				$SP_Atencion_Kiosco = "Inserta_Atencion_Kiosco('" . $_SESSION["Kiosco_Cod"] . "'," . $_SESSION["Empleado_Cod"] . ");";
+				$SP_Atencion_Kiosco = "Inserta_Atencion_Kiosco('" . $hoy . " 00:00:00','" . $_SESSION["Kiosco_Cod"] . "'," . $_SESSION["Empleado_Cod"] . ");";
 
 				SPquery($SP_Atencion_Kiosco);
 
@@ -49,10 +52,10 @@
 
 					SPquery($SP_Actividad);
 
-					header("Location: ../Portada.php");
+					header("Location: Portada.php");
 				}
 				else{
-					header("Location: ../Justificacion_Actividad.php?STD=i");
+					header("Location: Justificacion_Actividad.php?STD=i");
 				}
 
 ?>

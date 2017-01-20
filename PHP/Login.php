@@ -63,7 +63,7 @@
 
 				SPquery($StoreProcedure);
 
-				$SP_Atencion_Kiosco = "Inserta_Atencion_Kiosco('" . $_SESSION["Kiosco_Cod"] . "'," . $_SESSION["Empleado_Cod"] . ");";
+				$SP_Atencion_Kiosco = "Inserta_Atencion_Kiosco('" . $hoy . " 00:00:00','" . $_SESSION["Kiosco_Cod"] . "'," . $_SESSION["Empleado_Cod"] . ");";
 
 				SPquery($SP_Atencion_Kiosco);
 

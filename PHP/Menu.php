@@ -10,7 +10,7 @@ else{
 	$Table_Info = 	"<table>
 						<tr>
 							<th>Bienvenido: " . $_SESSION["User"] . "</th>
-							<th>Kiosco: " . $_SESSION["Kiosco"] . "</th>
+							<th>Kiosco: " . $_SESSION["Kiosco"] . "-" . $_SESSION["Kiosco_Cod"] . "</th>
 							<th>Rol: " . $_SESSION["Rol_Des"] . "</th>
 							<th>Fecha: " . $hoy . " " . $hora_ingreso . "</th>
 							
