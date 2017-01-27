@@ -1,6 +1,11 @@
 <?php
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
+
+	if(isset($_GET['IDC'])){
+		echo "<script type='text/javascript'>alert('Cliente Ingresado Correctamente.');</script>";	
+	}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US">
@@ -39,7 +44,7 @@
 
 <!-- Begin Wrapper -->
 <div class="wrapper"><!-- Begin Intro -->
-<div class="intro">CopyCat</div>
+<div class="intro">COPYCAT</div>
 <!-- End Intro --> 
 
 <!-- Begin Container -->
@@ -47,10 +52,31 @@
 
 	<h1 class="title">Ingreso de Clientes</h1>
 	<hr>
+	<div class="linea"></div>
+	<div class="clear1"></div>
 <div class="form-container">
-	<form class="forms" action="" method="post">
+	<form class="forms" action="Operar_Cliente.php" method="post">
 		<fieldset>
 			<table>
+				<tr>
+					<td class="nombrecampo">
+						Tipo de Cliente
+					</td>
+					<td class="campo">
+						<ol>
+							<label>
+								<select name="Ddl_Tipo_Cliente">
+									<?php
+									 $SQL = "SELECT ID_Tipo_Cliente, Descripcion_Tipo_Cliente FROM tipo_cliente";
+									 $ID = "ID_Tipo_Cliente";
+									 $Data = "Descripcion_Tipo_Cliente";
+									 Cargar_Combo($SQL,$ID,$Data,'0');
+									?>
+								</select>
+							</label>
+						</ol>
+					</td>
+				</tr>
 				<tr>
 					<td class="nombrecampo">
 						NIT
@@ -58,7 +84,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" name="txt_Alergico_A_Empleado" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Nit_Cliente" value="" class="text-input required" title="" />
 							</li>
 						</ol>
 					</td>
@@ -70,7 +96,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" name="txt_Alergico_A_Empleado" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Nombre_Cliente" value="" class="text-input required" title="" />
 							</li>
 						</ol>
 					</td>
@@ -82,7 +108,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" name="txt_Alergico_A_Empleado" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Direccion_Cliente" value="" class="text-input required" title="" />
 							</li>
 						</ol>
 					</td>
@@ -94,7 +120,19 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" name="txt_Alergico_A_Empleado" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Telefono_Cliente" value="" class="text-input required" title="" />
+							</li>
+						</ol>
+					</td>
+				</tr>
+				<tr>
+					<td class="nombrecampo">
+						Email
+					</td>
+					<td class="campo">
+						<ol>
+							<li class="form-row text-input-row">
+								<input type="text" name="txt_Email_Cliente" value="" class="text-input required" title="" />
 							</li>
 						</ol>
 					</td>
@@ -107,29 +145,7 @@
 					</td>
 				</tr>					
 			</table>
-
-				<!--
-				<li>
-					<label>
-						<select>
-							<?php
-							 $SQL = "SELECT * FROM departamento";
-							 $ID = "ID_Depto";
-							 $Data = "Descripcion_Depto";
-							 Cargar_Combo($SQL,$ID,$Data);
-							?>
-						</select>
-					</label>
-				</li> -->
-
-				
-				<?php
-				//echo $_SESSION["User"];
-					/*$Campos = array("ID_Usuario","Perfil_ID_Perfil","Password","Fecha_Creacion_Usuario","Fecha_Expiracion_Usuario","Estado_Usuario");
-					$Valores = array("'JR111227'","1","'1211'","NOW()","DATE_ADD(NOW(), interval 12 month)","'1'");
-					echo Insertar_Data("Usuario", $Campos, $Valores);*/
-				?>
-				<hr>
+			<hr>
 		</fieldset>
 	</form>
 	<br>

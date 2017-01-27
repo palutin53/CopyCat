@@ -48,7 +48,7 @@
 	<h1 class="title">Registro Salidas y Horarios</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="" method="post">
+	<form class="forms" action="Operar_Almuerzo.php" method="post">
 		<fieldset>
 			<table>
 				<tr>
@@ -82,7 +82,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<textarea rows="10" cols="50"></textarea>
+								<textarea rows="10" cols="50" name="txt_observaciones_Salida"></textarea>
 							</li>
 						</ol>
 					</td>

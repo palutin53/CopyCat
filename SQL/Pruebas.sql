@@ -1,3 +1,4 @@
+SET GLOBAL log_bin_trust_function_creators = 1;
 select * from Kiosco;
 
 SELECT SUBSTRING('Oakland', 1, 4);
@@ -63,7 +64,7 @@ SELECT * FROM detalle_existencia;
 
 SELECT '0' AS ID_Tipo_Producto, '--SELECCIONE--' AS Descripcion_Tipo_Producto UNION SELECT * FROM tipo_producto;
 
-CALL Inserta_Tipo_Actividad('Almuerzo');
+CALL Inserta_Tipo_Actividad('Almuerzo Regreso');
 SELECT * FROM Tipo_Actividad;
 
 CALL Inserta_Actividad_Empleado(1,1,'N/A');
@@ -89,3 +90,13 @@ SELECT CONCAT(LOWER(SUBSTRING('Jearson Alexander',1,1)),LOWER(SUBSTRING(REPLACE(
 SELECT MAX(ID_Empleado) AS id FROM empleado;
 
 SELECT e.ID_Empleado, CONCAT(e.Nombre_Empleado, ' ', e.Apellido_Empleado) Nombre FROM empleado e;
+
+SELECT * FROM tipo_cliente;
+CALL Inserta_Cliente(1,'Luis Salazar','Ciudad','9085608-9','1111-1111','beto.gordo@gmail.com', @ID);
+SELECT @ID;
+SELECT Fn_Select_ID_Cliente(1,'Elder Sacrab','Ciudad','4025638-9','1111-1111','beto.gordo@gmail.com') ID_Cliente;
+SELECT * FROM cliente;
+
+SELECT * FROM tipo_pago;
+
+CALL Select_Info_Cliente('7051408-9');

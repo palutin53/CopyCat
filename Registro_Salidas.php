@@ -48,7 +48,7 @@
 	<h1 class="title">Registro Salidas y Horarios</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="" method="post">
+	<form class="forms" action="Operar_Salidas.php" method="post">
 		<fieldset>
 			<table>
 				<tr>
@@ -70,12 +70,13 @@
 					<td class="campo">
 						<ol>
 							<label>
-								<select>
-									<option value="">--SELECCIONE--</option>
-									<option value="1">GESTIÓN BANCARIA</option>
-									<option value="0">RECESO</option>
-									<option value="0">SANITARIO</option>
-									<option value="0">PERMISOS</option>
+								<select name="Ddl_Tipo_Actividad">
+									<?php
+									 $SQL = "SELECT ID_Tipo_Actividad, Descripcion_Tipo_Actividad FROM Tipo_Actividad WHERE ID_Tipo_Actividad >= 4;";
+									 $ID = "ID_Tipo_Actividad";
+									 $Data = "Descripcion_Tipo_Actividad";
+									 Cargar_Combo($SQL,$ID,$Data,'0');
+									?>
 								</select>
 							</label>
 						</ol>
@@ -88,7 +89,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<textarea rows="10" cols="50"></textarea>
+								<textarea rows="10" cols="50" name="txt_observaciones_Salida"></textarea>
 							</li>
 						</ol>
 					</td>

@@ -6,6 +6,12 @@
 		if($_GET['STD'] == 'cr'){
 			echo "<script type='text/javascript'>alert('Credenciales Actualizadas con Exito.');</script>";
 		}
+		else if($_GET['STD'] == 'al'){
+			echo "<script type='text/javascript'>alert('Salida a almuerzo Registrada.');</script>";	
+		}
+		else if($_GET['STD'] == 'sal'){
+			echo "<script type='text/javascript'>alert('Salida Registrada Correctamente.');</script>";	
+		}
 	}
 ?>
 <!DOCTYPE HTML>

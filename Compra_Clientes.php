@@ -1,10 +1,12 @@
 <?php
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
+	require("ajax.php");
 ?>
-<!DOCTYPE HTML>
-<html lang="en-US">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>CopyCat</title>
@@ -27,8 +29,15 @@
 <script type="text/javascript" src="style/js/jquery.dcflickr.1.0.js"></script>
 <script type="text/javascript" src="style/js/twitter.min.js"></script>
 
-<script type="text/javascript" src="style/js/jquery.js"></script>
-<script type="text/javascript" src="style/js/modal.js"></script>
+<script type="text/javascript">
+	
+	function GetDataCliente(){		
+		var obj = document.getElementById('txt_Nit_Cliente');
+		loadXMLDoc('GetCliente.php?NiC=' + obj);
+		alert (obj);
+	}
+
+</script>
 
 </head>
 <body>
@@ -42,7 +51,7 @@
 
 <!-- Begin Wrapper -->
 <div class="wrapper"><!-- Begin Intro -->
-<div class="intro">CopyCat</div>
+<div class="intro">COPYCAT</div>
 <!-- End Intro --> 
 
 <!-- Begin Container -->
@@ -53,6 +62,22 @@
 <div class="form-container">
 	<form class="forms" action="" method="post">
 		<fieldset>
+		<table>
+			<tr>
+				<td calss="nombrecampo">
+					N.Factura
+				</td>
+				<td class="campo">
+					<input type="text" name="txt_Num_Factura" value="" class="text-input required=" title="" />
+				</td>
+				<td class="nombreclase">
+					Fecha
+				</td>
+				<td class="campo">
+					<input type="text" name="txt_Fecha_Factura" value="<?php $time = time(); echo date("d-m-Y (H:i:s)", $time);?>" class="text-input required" title="" disabled/>
+				</td>
+			</tr>
+		</table>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			<div class="linea"></div>
 			<div style="padding: 10px;">
@@ -64,7 +89,7 @@
 								NIT:
 							</td>
 							<td class="campo">
-								<input type="text" name="" value="" class="text-input required" title="" />
+								<input onblur="GetDataCliente();" type="text" name="txt_Nit_Cliente" value="" class="text-input required" title="" />
 							</td>
 						</tr>
 						<tr>
@@ -72,15 +97,15 @@
 								Nombre:
 							</td>
 							<td class="campo">
-								<input type="text" name="" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Nombre_Cliente" value="" class="text-input required" title="" />
 							</td>
 						</tr>
 						<tr>
 							<td class="nombrecampo">
 								Dirección:
 							</td>
-							<td  class="campo" colspan="4">
-								<input type="text" name="" value="" class="text-input required=" title="" />
+							<td  class="campo" >
+								<input type="text" name="txt_Direccion_Cliente" value="" class="text-input required=" title="" />
 							</td>
 						</tr>
 					</table>
@@ -90,21 +115,22 @@
 				<div style="float: right; width: 50%; height:100%;">
 					<table name="FacturaCompra">
 						<tr>
-							<td calss="nombrecampo">
-								N.Factura
+							<td class="nombreclase">
+								Telefono
 							</td>
-							<td class="campo">
-								<input type="text" name="" value="" class="text-input required=" title="" />						
+							<td class="campo" colspan="4">
+								<input type="text" name="txt_Telefono_Cliente" value="" class="text-input required=" title="" />
 							</td>
 						</tr>
 						<tr>
 							<td class="nombreclase">
-								Fecha
+								Email
 							</td>
-							<td class="campo">
-								<input type="date" name="" value="" class="text-input required=" title="" />
+							<td class="campo" colspan="4">
+								<input type="text" name="txt_Email_Cliente" value="" class="text-input required=" title="" />
 							</td>
 						</tr>
+						
 					</table>
 				</div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final sub-div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
