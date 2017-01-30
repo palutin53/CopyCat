@@ -1,7 +1,6 @@
 <?php
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
-	require("ajax.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -28,14 +27,48 @@
 <script type="text/javascript" src="style/js/jquery.backstretch.min.js"></script>
 <script type="text/javascript" src="style/js/jquery.dcflickr.1.0.js"></script>
 <script type="text/javascript" src="style/js/twitter.min.js"></script>
+<script type="text/javascript" src="style/js/jquery-1.9.1.min.js"></script>
 
-<script type="text/javascript">
+<script>
 	
-	function GetDataCliente(){		
+	/*function GetDataCliente(){		
 		var obj = document.getElementById('txt_Nit_Cliente');
 		loadXMLDoc('GetCliente.php?NiC=' + obj);
 		alert(obj);
-	}
+	}*/
+
+	$(document).ready(function() {
+    $("#resultadoBusqueda").html('');
+    		$("input#txt_ID_Cliente").val('0');
+     		$("input#txt_Nombre_Cliente").val('--');
+	        $("input#txt_Direccion_Cliente").val('--');
+	        $("input#txt_Telefono_Cliente").val('--');
+	        $("input#txt_Email_Cliente").val('--');
+	});
+
+	function buscar() {
+	    var textoBusqueda = $("input#txt_Nit_Cliente").val();
+	 
+	     if (textoBusqueda != "") {
+	        $.post("PHP/Busqueda_Cliente.php", {valorBusqueda: textoBusqueda}, function(mensaje) {
+	            //$("#resultadoBusqueda").html(mensaje);
+	            var res = mensaje.split(";");
+	            $("input#txt_ID_Cliente").val(res[0]);
+    			$("input#txt_Nombre_Cliente").val(res[1]);
+    			$("input#txt_Direccion_Cliente").val(res[2]);
+    			$("input#txt_Telefono_Cliente").val(res[4]);
+    			$("input#txt_Email_Cliente").val(res[5]);
+	         }); 
+	     }
+	     else{ 
+	        $("#resultadoBusqueda").html('<p>NIT VACIO</p>');
+	        $("input#txt_ID_Cliente").val('0');
+	        $("input#txt_Nombre_Cliente").val('--');
+	        $("input#txt_Direccion_Cliente").val('--');
+	        $("input#txt_Telefono_Cliente").val('--');
+	        $("input#txt_Email_Cliente").val('--');
+	     };
+	};
 
 </script>
 
@@ -60,7 +93,7 @@
 	<h1 class="title">Ventas y/o Servicios</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="" method="post">
+	<form class="forms" action="" accept-charset="utf-8" method="POST">
 		<fieldset>
 		<table>
 			<tr>
@@ -82,14 +115,15 @@
 			<div class="linea"></div>
 			<div style="padding: 10px;">
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio sub-div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+			<div id="resultadoBusqueda"></div>
 					<div style="width: 50%; float: left;">
-					<table name="DatosProveedor">
+					<table name="DatosProveedor">						
 						<tr>
 							<td class="nombrecampo">
 								NIT:
 							</td>
 							<td class="campo">
-								<input onblur="GetDataCliente();" type="text" name="txt_Nit_Cliente" value="" class="text-input required" title="" />
+								<input type="text" id="txt_Nit_Cliente" name="txt_Nit_Cliente" value="" class="text-input required" title="" onKeyUp="buscar();" />
 							</td>
 						</tr>
 						<tr>
@@ -97,7 +131,7 @@
 								Nombre:
 							</td>
 							<td class="campo">
-								<input type="text" name="txt_Nombre_Cliente" value="" class="text-input required" title="" />
+								<input type="text" id="txt_Nombre_Cliente" name="txt_Nombre_Cliente" value="" class="text-input required" title="" />
 							</td>
 						</tr>
 						<tr>
@@ -105,11 +139,12 @@
 								Dirección:
 							</td>
 							<td  class="campo" >
-								<input type="text" name="txt_Direccion_Cliente" value="" class="text-input required=" title="" />
+								<input type="text" id="txt_Direccion_Cliente" name="txt_Direccion_Cliente" value="" class="text-input required=" title="" />
 							</td>
 						</tr>
 					</table>
 				</div>
+
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final sub-div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio sub-div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 				<div style="float: right; width: 50%; height:100%;">
@@ -119,7 +154,7 @@
 								Telefono
 							</td>
 							<td class="campo" colspan="4">
-								<input type="text" name="txt_Telefono_Cliente" value="" class="text-input required=" title="" />
+								<input type="text" id="txt_Telefono_Cliente" name="txt_Telefono_Cliente" value="" class="text-input required=" title="" />
 							</td>
 						</tr>
 						<tr>
@@ -127,7 +162,8 @@
 								Email
 							</td>
 							<td class="campo" colspan="4">
-								<input type="text" name="txt_Email_Cliente" value="" class="text-input required=" title="" />
+								<input type="text" id="txt_Email_Cliente" name="txt_Email_Cliente" value="" class="text-input required=" title="" />
+								<input type="hidden" name="txt_ID_Cliente" id="txt_ID_Cliente">
 							</td>
 						</tr>
 						
@@ -268,7 +304,7 @@
 												Imagen
 											</td>
 											<td class="campo">
-												<img src="css/ICONOS/19.png" height="50px", width="50px">
+												<img src="" height="50px", width="50px">
 											</td>
 											<td class="nombrecampo">
 												Descripción
@@ -309,7 +345,7 @@
 	</div>
 </div>
 <div class="site-generator-wrapper">
-	<div class="site-generator">Telefonica 2016</div>
+	<div class="site-generator">COPYCAT 2016</div>
 </div>
 <!-- End Footer --> 
 <script type="text/javascript" src="style/js/scripts.js"></script>
