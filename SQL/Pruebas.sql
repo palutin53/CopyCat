@@ -100,3 +100,6 @@ SELECT * FROM cliente;
 SELECT * FROM tipo_pago;
 
 CALL Select_Info_Cliente('7051408-9');
+
+CALL Inserta_Enc_Factura('J11-1',1,1,1,'J11-123');
+SELECT * FROM encabezado_factura;

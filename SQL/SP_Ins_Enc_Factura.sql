@@ -5,6 +5,7 @@ BEGIN
 
 DECLARE Encabezado_ID VARCHAR(30) DEFAULT '';
 DECLARE ID_Nuevo INT DEFAULT 0;
+DECLARE Fecha_Fact DATETIME DEFAULT NOW();
 
     SET ID_Nuevo = (SELECT 
 						count(Num_Encabezado_Factura) Registros 
@@ -32,9 +33,17 @@ DECLARE ID_Nuevo INT DEFAULT 0;
                  ID_Empleado,
                  Tipo_Pago,
                  ID_Cliente,
-                 NOW(),
+                 Fecha_Fact,
                  Num_Factura);
 
+	SELECT 
+		Num_Encabezado_Factura 
+    FROM 
+		encabezado_factura 
+    WHERE 
+		Kiosco_ID_Kiosco = Kiosco_ID_Kioscos 
+    AND 
+		Fecha_Encabezado_Factura = Fecha_Fact;
 
 END//
 DELIMITER ;

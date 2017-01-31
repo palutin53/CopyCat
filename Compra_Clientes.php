@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html;" charset="iso-8859-1" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>CopyCat</title>
@@ -93,7 +92,7 @@
 	<h1 class="title">Ventas y/o Servicios</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="" accept-charset="utf-8" method="POST">
+	<form class="forms" action="Operar_Venta.php" accept-charset="utf-8" method="POST">
 		<fieldset>
 		<table>
 			<tr>
@@ -243,6 +242,44 @@
 						</td>
 						<td class="campo">
 							<input type="text" class="text-input required" />
+						</td>
+					</tr>
+					<tr>
+						<td class="nombrecampo">
+							Tipo de Pago
+						</td>
+						<td class="campo">
+							<ol>
+								<label>
+									<select name="Ddl_Tipo_Pago">
+										<?php
+										 $SQL = "SELECT ID_Tipo_Pago, Descripcion_Tipo_Pago FROM tipo_pago";
+										 $ID = "ID_Tipo_Pago";
+										 $Data = "Descripcion_Tipo_Pago";
+										 Cargar_Combo($SQL,$ID,$Data,'0');
+										?>
+									</select>
+								</label>
+							</ol>
+						</td>
+					</tr>
+					<tr>
+						<td class="nombrecampo">
+							¿Como se Entero?
+						</td>
+						<td class="campo">
+							<ol>
+								<label>
+									<select name="Ddl_Estudio_Mercado">
+										<?php
+										 $SQL = "SELECT ID_Estudio_Mercado, Detalle_Estudio_Mercado FROM estudio_mercado";
+										 $ID = "ID_Estudio_Mercado";
+										 $Data = "Detalle_Estudio_Mercado";
+										 Cargar_Combo($SQL,$ID,$Data,'0');
+										?>
+									</select>
+								</label>
+							</ol>
 						</td>
 					</tr>
 					<tr>
