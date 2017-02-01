@@ -26,15 +26,11 @@
 <script type="text/javascript" src="style/js/jquery.backstretch.min.js"></script>
 <script type="text/javascript" src="style/js/jquery.dcflickr.1.0.js"></script>
 <script type="text/javascript" src="style/js/twitter.min.js"></script>
+<script type="text/javascript" src="style/js/modal.js"></script>
+
 <script type="text/javascript" src="style/js/jquery-1.9.1.min.js"></script>
 
 <script>
-	
-	/*function GetDataCliente(){		
-		var obj = document.getElementById('txt_Nit_Cliente');
-		loadXMLDoc('GetCliente.php?NiC=' + obj);
-		alert(obj);
-	}*/
 
 	$(document).ready(function() {
     $("#resultadoBusqueda").html('');
@@ -70,6 +66,43 @@
 	};
 
 </script>
+
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  <script>
+  /*$(function() {
+  	var tipo = $("select#Ddl_Tipo_Producto").val();
+    $("#des_prod" ).autocomplete({
+      source: 'PHP/Busqueda_Productos.php?tipo='+tipo,
+      minLength: 2
+    });
+  });*/
+
+  $(document).ready(function(){
+  	var tipo = $("select#Ddl_Tipo_Producto").val();
+    $("#des_prod").autocomplete({
+      source: "PHP/Busqueda_Productos.php?tipo="+tipo,
+      minLength: 2
+    });
+ 
+    $("#des_prod").focusout(function(){
+      $.ajax({
+          url:'PHP/Busqueda_Detalle_Productos.php',
+          type:'POST',
+          dataType:'json',
+          data:{ des_prod:$('#des_prod').val()}
+      }).done(function(respuesta){
+          $("input#txt_Precio_Unitario").val(respuesta.Precio);
+          $("#img_prod").attr("src",respuesta.Img);
+          $("input#txt_Existencia").val(respuesta.Existencia);
+      });
+    });
+});
+
+  </script>
 
 </head>
 <body>
@@ -299,71 +332,81 @@
 	<br>
 
 	<!-- *********** MODAL *********** -->
-					<div class="cajaexterna">
-						<div class="cajainterna animated">
-						    <div class="cajacentrada">
-						        <h2>Seleccionar Producto</h2>
-						        <p>
-						        	Producto o Servicio<br/> <br/>
-						        	<table>
-						        		<tr>
-						        			<td class="nombrecampo">
-												Tipo de Venta
-											</td>
-											<td class="campo">
-												<label>
-													<select name="ddl_Alergico">
-														<option value="">--SELECCIONE--</option>
-														<option value="1">PRODUCTO</option>
-														<option value="0">SERVICIO</option>
-														<option value="0">PRODUCTO/SERVICIO</option>
-													</select>
-												</label>
-											</td>
-											<td class="nombrecampo">
-												Codigo
-											</td>
-											<td class="campo">
-												<input type="text" class="text-input required" enabled/>
-											</td>
-											<td>
-												<input type="submit" value="Buscar" name="Buscar_Data" class="btn-submit" />
-											</td>
-						        		</tr>
-						        		<tr>
-						        			<td class="nombrecampo">
-												Cantidad
-											</td>
-											<td class="campo">
-												<input type="text" class="text-input required" enabled/>
-											</td>
-											<td class="nombrecampo">
-												Imagen
-											</td>
-											<td class="campo">
-												<img src="" height="50px", width="50px">
-											</td>
-											<td class="nombrecampo">
-												Descripción
-											</td>
-											<td class="campo">
-												<input type="text" class="text-input required" enabled/>
-											</td>
-
-										</tr>
-						        	</table>
-						        </p>
-						        <div class="cerrar">
-							       <a href="#" class="cerrarmodal">
-							       	<img src="style/images/cerrar.png" height="30px", width="30px">
-							       </a>
-						        </div>
-						        <form>
-						        	<input type="submit" value="Agregar" name="Agregar" class="btn-submit" />
-						        </form>
-						    </div>
-						 </div>
-					</div>
+		<div class="cajaexterna">
+			<div class="cajainterna animated">
+			    <div class="cajacentrada">
+		        <h2>Seleccionar Producto</h2>
+		        <p>
+		        	Producto o Servicio<br/> <br/>
+	        		<form class="forms" action="Operar_Venta.php" accept-charset="utf-8" method="POST">
+					<fieldset>
+				    	<table style="width: 100%;"">
+				       		<tr>
+				       			<td class="nombrecampo">
+									Tipo de Venta
+								</td>
+								<td class="campo">
+									<label>
+										<select name="Ddl_Tipo_Productos">
+											<option value="0">--SELECCIONE--</option>
+											<option value="1">PRODUCTO</option>
+											<option value="2">SERVICIO</option>
+											<option value="3">PRODUCTO/SERVICIO</option>
+										</select>
+									</label>
+								</td>
+								<td class="nombrecampo">
+									Codigo
+								</td>
+								<td class="campo">
+									<input id="des_prod" name="des_prod" type="text" class="text-input required" enabled/>
+								</td>
+							</tr>
+							<tr>
+								<td class="nombrecampo">
+									Imagen
+								</td>
+								<td class="campo">
+									<img src="" id="img_prod" name="img_prod" height="100px", width="100px">
+								</td>
+								<td class="nombrecampo">
+									Precio Unitario
+								</td>
+								<td class="campo">
+									<input id="txt_Precio_Unitario" name="txt_Precio_Unitario" type="text" class="text-input required" disabled="" />
+								</td>
+							</tr>
+							<tr>
+								<td class="nombrecampo">
+									Existencia en Kiosco
+								</td>
+								<td class="campo">
+									<input type="text" id="txt_Existencia" name="txt_Existencia" class="text-input required" disabled="" />
+								</td>
+								<td class="nombrecampo">
+									Cantidad
+								</td>
+								<td class="campo">
+									<input type="text" class="text-input required" enabled/>
+								</td>
+							</tr>
+				     	</table>
+			       	</fieldset>
+					</form>
+			    </p>
+			    <div class="cerrar">
+			        <a href="#" class="cerrarmodal">
+			       	<img src="style/images/cerrar.png" height="30px", width="30px">
+			        </a>
+			    </div>
+			    <form class="forms">
+			      <fieldset>
+			      	<input type="submit" value="Agregar" name="Agregar" class="btn-submit" />
+			      </fieldset>
+			    </form>
+				</div>
+		</div>
+	</div>
     <!-- *********** MODAL *********** --> 
 
 </div>

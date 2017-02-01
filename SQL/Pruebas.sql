@@ -57,7 +57,7 @@ SET GLOBAL log_bin_trust_function_creators = 1;
 
 SELECT Fn_Select_ID_Enc_Existencia('J11-1');
 SELECT Fn_Select_Cant_Anterior('J11-1-E4',1);
-SELECT Fn_Select_Cant_Existente('J11-1-E4',1);
+SELECT Fn_Select_Cant_Existente('J11-1-E4',2) Existencia;
 
 CALL Inserta_Det_Existencia('J11-1',2,0,'u');
 SELECT * FROM detalle_existencia;
@@ -103,3 +103,8 @@ CALL Select_Info_Cliente('7051408-9');
 
 CALL Inserta_Enc_Factura('J11-1',1,1,1,'J11-123');
 SELECT * FROM encabezado_factura;
+
+CALL Inserta_Estudio_Mercado('Visual');
+SELECT * FROM estudio_mercado;
+
+CALL Select_ProdServ_Descripcion('Llavin tipo B');
