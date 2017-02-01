@@ -1,3 +1,4 @@
+SET GLOBAL log_bin_trust_function_creators = 1;
 select * from Kiosco;
 
 SELECT SUBSTRING('Oakland', 1, 4);
@@ -56,14 +57,14 @@ SET GLOBAL log_bin_trust_function_creators = 1;
 
 SELECT Fn_Select_ID_Enc_Existencia('J11-1');
 SELECT Fn_Select_Cant_Anterior('J11-1-E4',1);
-SELECT Fn_Select_Cant_Existente('J11-1-E4',1);
+SELECT Fn_Select_Cant_Existente('J11-1-E4',2) Existencia;
 
 CALL Inserta_Det_Existencia('J11-1',2,0,'u');
 SELECT * FROM detalle_existencia;
 
 SELECT '0' AS ID_Tipo_Producto, '--SELECCIONE--' AS Descripcion_Tipo_Producto UNION SELECT * FROM tipo_producto;
 
-CALL Inserta_Tipo_Actividad('Almuerzo');
+CALL Inserta_Tipo_Actividad('Almuerzo Regreso');
 SELECT * FROM Tipo_Actividad;
 
 CALL Inserta_Actividad_Empleado(1,1,'N/A');
@@ -89,3 +90,21 @@ SELECT CONCAT(LOWER(SUBSTRING('Jearson Alexander',1,1)),LOWER(SUBSTRING(REPLACE(
 SELECT MAX(ID_Empleado) AS id FROM empleado;
 
 SELECT e.ID_Empleado, CONCAT(e.Nombre_Empleado, ' ', e.Apellido_Empleado) Nombre FROM empleado e;
+
+SELECT * FROM tipo_cliente;
+CALL Inserta_Cliente(1,'Luis Salazar','Ciudad','9085608-9','1111-1111','beto.gordo@gmail.com', @ID);
+SELECT @ID;
+SELECT Fn_Select_ID_Cliente(1,'Elder Sacrab','Ciudad','4025638-9','1111-1111','beto.gordo@gmail.com') ID_Cliente;
+SELECT * FROM cliente;
+
+SELECT * FROM tipo_pago;
+
+CALL Select_Info_Cliente('7051408-9');
+
+CALL Inserta_Enc_Factura('J11-1',1,1,1,'J11-123');
+SELECT * FROM encabezado_factura;
+
+CALL Inserta_Estudio_Mercado('Visual');
+SELECT * FROM estudio_mercado;
+
+CALL Select_ProdServ_Descripcion('Llavin tipo B');

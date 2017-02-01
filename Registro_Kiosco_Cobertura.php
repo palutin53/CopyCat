@@ -63,7 +63,7 @@
 								 $SQL = "SELECT ID_Kiosco, Descripcion_Kiosco FROM kiosco;";
 								 $ID = "ID_Kiosco";
 								 $Data = "Descripcion_Kiosco";
-								 Cargar_Combo($SQL,$ID,$Data);
+								 Cargar_Combo($SQL,$ID,$Data,'0');
 								?>
 							</select>
 						</label>

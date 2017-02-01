@@ -13,6 +13,7 @@ else{
 							<th>Kiosco: " . $_SESSION["Kiosco"] . "-" . $_SESSION["Kiosco_Cod"] . "</th>
 							<th>Rol: " . $_SESSION["Rol_Des"] . "</th>
 							<th>Fecha: " . $hoy . " " . $hora_ingreso . "</th>
+							<th>EncEx: " . $_SESSION["ID_Encabezado_Existencia"] . "</th>
 							
 						</tr>
 					 </table>";

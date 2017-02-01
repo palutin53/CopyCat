@@ -2,8 +2,8 @@
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
 ?>
-<!DOCTYPE HTML>
-<html lang="en-US">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -26,9 +26,83 @@
 <script type="text/javascript" src="style/js/jquery.backstretch.min.js"></script>
 <script type="text/javascript" src="style/js/jquery.dcflickr.1.0.js"></script>
 <script type="text/javascript" src="style/js/twitter.min.js"></script>
-
-<script type="text/javascript" src="style/js/jquery.js"></script>
 <script type="text/javascript" src="style/js/modal.js"></script>
+
+<script type="text/javascript" src="style/js/jquery-1.9.1.min.js"></script>
+
+<script>
+
+	$(document).ready(function() {
+    $("#resultadoBusqueda").html('');
+    		$("input#txt_ID_Cliente").val('0');
+     		$("input#txt_Nombre_Cliente").val('--');
+	        $("input#txt_Direccion_Cliente").val('--');
+	        $("input#txt_Telefono_Cliente").val('--');
+	        $("input#txt_Email_Cliente").val('--');
+	});
+
+	function buscar() {
+	    var textoBusqueda = $("input#txt_Nit_Cliente").val();
+	 
+	     if (textoBusqueda != "") {
+	        $.post("PHP/Busqueda_Cliente.php", {valorBusqueda: textoBusqueda}, function(mensaje) {
+	            //$("#resultadoBusqueda").html(mensaje);
+	            var res = mensaje.split(";");
+	            $("input#txt_ID_Cliente").val(res[0]);
+    			$("input#txt_Nombre_Cliente").val(res[1]);
+    			$("input#txt_Direccion_Cliente").val(res[2]);
+    			$("input#txt_Telefono_Cliente").val(res[4]);
+    			$("input#txt_Email_Cliente").val(res[5]);
+	         }); 
+	     }
+	     else{ 
+	        $("#resultadoBusqueda").html('<p>NIT VACIO</p>');
+	        $("input#txt_ID_Cliente").val('0');
+	        $("input#txt_Nombre_Cliente").val('--');
+	        $("input#txt_Direccion_Cliente").val('--');
+	        $("input#txt_Telefono_Cliente").val('--');
+	        $("input#txt_Email_Cliente").val('--');
+	     };
+	};
+
+</script>
+
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+  <script>
+  /*$(function() {
+  	var tipo = $("select#Ddl_Tipo_Producto").val();
+    $("#des_prod" ).autocomplete({
+      source: 'PHP/Busqueda_Productos.php?tipo='+tipo,
+      minLength: 2
+    });
+  });*/
+
+  $(document).ready(function(){
+  	var tipo = $("select#Ddl_Tipo_Producto").val();
+    $("#des_prod").autocomplete({
+      source: "PHP/Busqueda_Productos.php?tipo="+tipo,
+      minLength: 2
+    });
+ 
+    $("#des_prod").focusout(function(){
+      $.ajax({
+          url:'PHP/Busqueda_Detalle_Productos.php',
+          type:'POST',
+          dataType:'json',
+          data:{ des_prod:$('#des_prod').val()}
+      }).done(function(respuesta){
+          $("input#txt_Precio_Unitario").val(respuesta.Precio);
+          $("#img_prod").attr("src",respuesta.Img);
+          $("input#txt_Existencia").val(respuesta.Existencia);
+      });
+    });
+});
+
+  </script>
 
 </head>
 <body>
@@ -42,7 +116,7 @@
 
 <!-- Begin Wrapper -->
 <div class="wrapper"><!-- Begin Intro -->
-<div class="intro">CopyCat</div>
+<div class="intro">COPYCAT</div>
 <!-- End Intro --> 
 
 <!-- Begin Container -->
@@ -51,20 +125,37 @@
 	<h1 class="title">Ventas y/o Servicios</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="" method="post">
+	<form class="forms" action="Operar_Venta.php" accept-charset="utf-8" method="POST">
 		<fieldset>
+		<table>
+			<tr>
+				<td calss="nombrecampo">
+					N.Factura
+				</td>
+				<td class="campo">
+					<input type="text" name="txt_Num_Factura" value="" class="text-input required=" title="" />
+				</td>
+				<td class="nombreclase">
+					Fecha
+				</td>
+				<td class="campo">
+					<input type="text" name="txt_Fecha_Factura" value="<?php $time = time(); echo date("d-m-Y (H:i:s)", $time);?>" class="text-input required" title="" disabled/>
+				</td>
+			</tr>
+		</table>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			<div class="linea"></div>
 			<div style="padding: 10px;">
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio sub-div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+			<div id="resultadoBusqueda"></div>
 					<div style="width: 50%; float: left;">
-					<table name="DatosProveedor">
+					<table name="DatosProveedor">						
 						<tr>
 							<td class="nombrecampo">
 								NIT:
 							</td>
 							<td class="campo">
-								<input type="text" name="" value="" class="text-input required" title="" />
+								<input type="text" id="txt_Nit_Cliente" name="txt_Nit_Cliente" value="" class="text-input required" title="" onKeyUp="buscar();" />
 							</td>
 						</tr>
 						<tr>
@@ -72,39 +163,42 @@
 								Nombre:
 							</td>
 							<td class="campo">
-								<input type="text" name="" value="" class="text-input required" title="" />
+								<input type="text" id="txt_Nombre_Cliente" name="txt_Nombre_Cliente" value="" class="text-input required" title="" />
 							</td>
 						</tr>
 						<tr>
 							<td class="nombrecampo">
 								Dirección:
 							</td>
-							<td  class="campo" colspan="4">
-								<input type="text" name="" value="" class="text-input required=" title="" />
+							<td  class="campo" >
+								<input type="text" id="txt_Direccion_Cliente" name="txt_Direccion_Cliente" value="" class="text-input required=" title="" />
 							</td>
 						</tr>
 					</table>
 				</div>
+
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final sub-div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio sub-div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 				<div style="float: right; width: 50%; height:100%;">
 					<table name="FacturaCompra">
 						<tr>
-							<td calss="nombrecampo">
-								N.Factura
+							<td class="nombreclase">
+								Telefono
 							</td>
-							<td class="campo">
-								<input type="text" name="" value="" class="text-input required=" title="" />						
+							<td class="campo" colspan="4">
+								<input type="text" id="txt_Telefono_Cliente" name="txt_Telefono_Cliente" value="" class="text-input required=" title="" />
 							</td>
 						</tr>
 						<tr>
 							<td class="nombreclase">
-								Fecha
+								Email
 							</td>
-							<td class="campo">
-								<input type="date" name="" value="" class="text-input required=" title="" />
+							<td class="campo" colspan="4">
+								<input type="text" id="txt_Email_Cliente" name="txt_Email_Cliente" value="" class="text-input required=" title="" />
+								<input type="hidden" name="txt_ID_Cliente" id="txt_ID_Cliente">
 							</td>
 						</tr>
+						
 					</table>
 				</div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final sub-div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -184,6 +278,44 @@
 						</td>
 					</tr>
 					<tr>
+						<td class="nombrecampo">
+							Tipo de Pago
+						</td>
+						<td class="campo">
+							<ol>
+								<label>
+									<select name="Ddl_Tipo_Pago">
+										<?php
+										 $SQL = "SELECT ID_Tipo_Pago, Descripcion_Tipo_Pago FROM tipo_pago";
+										 $ID = "ID_Tipo_Pago";
+										 $Data = "Descripcion_Tipo_Pago";
+										 Cargar_Combo($SQL,$ID,$Data,'0');
+										?>
+									</select>
+								</label>
+							</ol>
+						</td>
+					</tr>
+					<tr>
+						<td class="nombrecampo">
+							¿Como se Entero?
+						</td>
+						<td class="campo">
+							<ol>
+								<label>
+									<select name="Ddl_Estudio_Mercado">
+										<?php
+										 $SQL = "SELECT ID_Estudio_Mercado, Detalle_Estudio_Mercado FROM estudio_mercado";
+										 $ID = "ID_Estudio_Mercado";
+										 $Data = "Detalle_Estudio_Mercado";
+										 Cargar_Combo($SQL,$ID,$Data,'0');
+										?>
+									</select>
+								</label>
+							</ol>
+						</td>
+					</tr>
+					<tr>
 						<td>
 							<input type="submit" value="Cancelar Venta" name="Buscar_Data" class="btn-submit" />
 						</td>
@@ -200,71 +332,81 @@
 	<br>
 
 	<!-- *********** MODAL *********** -->
-					<div class="cajaexterna">
-						<div class="cajainterna animated">
-						    <div class="cajacentrada">
-						        <h2>Seleccionar Producto</h2>
-						        <p>
-						        	Producto o Servicio<br/> <br/>
-						        	<table>
-						        		<tr>
-						        			<td class="nombrecampo">
-												Tipo de Venta
-											</td>
-											<td class="campo">
-												<label>
-													<select name="ddl_Alergico">
-														<option value="">--SELECCIONE--</option>
-														<option value="1">PRODUCTO</option>
-														<option value="0">SERVICIO</option>
-														<option value="0">PRODUCTO/SERVICIO</option>
-													</select>
-												</label>
-											</td>
-											<td class="nombrecampo">
-												Codigo
-											</td>
-											<td class="campo">
-												<input type="text" class="text-input required" enabled/>
-											</td>
-											<td>
-												<input type="submit" value="Buscar" name="Buscar_Data" class="btn-submit" />
-											</td>
-						        		</tr>
-						        		<tr>
-						        			<td class="nombrecampo">
-												Cantidad
-											</td>
-											<td class="campo">
-												<input type="text" class="text-input required" enabled/>
-											</td>
-											<td class="nombrecampo">
-												Imagen
-											</td>
-											<td class="campo">
-												<img src="css/ICONOS/19.png" height="50px", width="50px">
-											</td>
-											<td class="nombrecampo">
-												Descripción
-											</td>
-											<td class="campo">
-												<input type="text" class="text-input required" enabled/>
-											</td>
-
-										</tr>
-						        	</table>
-						        </p>
-						        <div class="cerrar">
-							       <a href="#" class="cerrarmodal">
-							       	<img src="style/images/cerrar.png" height="30px", width="30px">
-							       </a>
-						        </div>
-						        <form>
-						        	<input type="submit" value="Agregar" name="Agregar" class="btn-submit" />
-						        </form>
-						    </div>
-						 </div>
-					</div>
+		<div class="cajaexterna">
+			<div class="cajainterna animated">
+			    <div class="cajacentrada">
+		        <h2>Seleccionar Producto</h2>
+		        <p>
+		        	Producto o Servicio<br/> <br/>
+	        		<form class="forms" action="Operar_Venta.php" accept-charset="utf-8" method="POST">
+					<fieldset>
+				    	<table style="width: 100%;"">
+				       		<tr>
+				       			<td class="nombrecampo">
+									Tipo de Venta
+								</td>
+								<td class="campo">
+									<label>
+										<select name="Ddl_Tipo_Productos">
+											<option value="0">--SELECCIONE--</option>
+											<option value="1">PRODUCTO</option>
+											<option value="2">SERVICIO</option>
+											<option value="3">PRODUCTO/SERVICIO</option>
+										</select>
+									</label>
+								</td>
+								<td class="nombrecampo">
+									Codigo
+								</td>
+								<td class="campo">
+									<input id="des_prod" name="des_prod" type="text" class="text-input required" enabled/>
+								</td>
+							</tr>
+							<tr>
+								<td class="nombrecampo">
+									Imagen
+								</td>
+								<td class="campo">
+									<img src="" id="img_prod" name="img_prod" height="100px", width="100px">
+								</td>
+								<td class="nombrecampo">
+									Precio Unitario
+								</td>
+								<td class="campo">
+									<input id="txt_Precio_Unitario" name="txt_Precio_Unitario" type="text" class="text-input required" disabled="" />
+								</td>
+							</tr>
+							<tr>
+								<td class="nombrecampo">
+									Existencia en Kiosco
+								</td>
+								<td class="campo">
+									<input type="text" id="txt_Existencia" name="txt_Existencia" class="text-input required" disabled="" />
+								</td>
+								<td class="nombrecampo">
+									Cantidad
+								</td>
+								<td class="campo">
+									<input type="text" class="text-input required" enabled/>
+								</td>
+							</tr>
+				     	</table>
+			       	</fieldset>
+					</form>
+			    </p>
+			    <div class="cerrar">
+			        <a href="#" class="cerrarmodal">
+			       	<img src="style/images/cerrar.png" height="30px", width="30px">
+			        </a>
+			    </div>
+			    <form class="forms">
+			      <fieldset>
+			      	<input type="submit" value="Agregar" name="Agregar" class="btn-submit" />
+			      </fieldset>
+			    </form>
+				</div>
+		</div>
+	</div>
     <!-- *********** MODAL *********** --> 
 
 </div>
@@ -283,7 +425,7 @@
 	</div>
 </div>
 <div class="site-generator-wrapper">
-	<div class="site-generator">Telefonica 2016</div>
+	<div class="site-generator">COPYCAT 2016</div>
 </div>
 <!-- End Footer --> 
 <script type="text/javascript" src="style/js/scripts.js"></script>

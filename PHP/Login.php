@@ -64,6 +64,13 @@
 
 				SPquery($StoreProcedure);
 
+				$SP_Encabezado_Exist = "Select_ID_Enc_Existencia('" . $_SESSION["Kiosco_Cod"] . "')";
+
+				$DataEnc_Result = SPquery($SP_Encabezado_Exist);
+				$Info_Enc = mysqli_fetch_array($DataEnc_Result);
+
+				$_SESSION['ID_Encabezado_Existencia'] = $Info_Enc["ID_Encabezado_Existencia"];
+
 				$SP_Atencion_Kiosco = "Inserta_Atencion_Kiosco('" . $hoy . " 00:00:00','" . $_SESSION["Kiosco_Cod"] . "'," . $_SESSION["Empleado_Cod"] . ");";
 
 				SPquery($SP_Atencion_Kiosco);
