@@ -30,6 +30,8 @@
 
 <script type="text/javascript" src="style/js/jquery-1.9.1.min.js"></script>
 
+<script type="text/javascript" src="style/js/Tabla_Detalle.js"></script>
+
 <script>
 
 	$(document).ready(function() {
@@ -82,7 +84,8 @@
   });*/
 
   $(document).ready(function(){
-  	var tipo = $("select#Ddl_Tipo_Producto").val();
+  	//var tipo = $("select#Ddl_Tipo_Producto").val();
+  	var tipo = document.getElementById("Ddl_Tipo_Productos").value;
     $("#des_prod").autocomplete({
       source: "PHP/Busqueda_Productos.php?tipo="+tipo,
       minLength: 2
@@ -223,28 +226,17 @@
 		<div class="linea"></div>
 		<div class="clear1"></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-			<table class="tableData">
-				<tr class="TableHeader">
-					<td><span class="ColumnHeader"><STRONG>Cantidad</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>Cod Producto</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>Descripción</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>Precio Q.</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>Total</STRONG></span></td>
-				</tr>
-				<tr class="TableDetail1">
-					<td><span class="ColumnHeader"><STRONG>1</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>TEI 1 D</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>Llavin de Casa</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>20.00</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>20.00</STRONG></span></td>
-				</tr>
-				<tr class="TableDetail2">
-					<td><span class="ColumnHeader"><STRONG>2</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>CHI5</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>Llavin de Casa</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>21.50</STRONG></span></td>
-					<td><span class="ColumnHeader"><STRONG>43.00</STRONG></span></td>
-				</tr>
+			<table class="tableData" id="myTable">
+				<tbody>
+					<tr class="TableHeader">
+						<td><span class="ColumnHeader"><STRONG>Cantidad</STRONG></span></td>
+						<td><span class="ColumnHeader"><STRONG>Cod Producto</STRONG></span></td>
+						<td><span class="ColumnHeader"><STRONG>Descripción</STRONG></span></td>
+						<td><span class="ColumnHeader"><STRONG>Precio Q.</STRONG></span></td>
+						<td><span class="ColumnHeader"><STRONG>Total</STRONG></span></td>
+						<td><span class="ColumnHeader"><STRONG>Accion</STRONG></span></td>
+					</tr>
+				</tbody>
 			</table>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<div class="clear1"></div>
@@ -258,7 +250,7 @@
 							Importe
 						</td>
 						<td class="campo">
-							<input type="text" class="text-input required" />
+							<input type="text" id="total_importe" name="total_importe" class="text-input required" />
 						</td>
 					</tr>
 					<tr>
@@ -338,7 +330,7 @@
 		        <h2>Seleccionar Producto</h2>
 		        <p>
 		        	Producto o Servicio<br/> <br/>
-	        		<form class="forms" action="Operar_Venta.php" accept-charset="utf-8" method="POST">
+	        		<form class="forms" action="#" accept-charset="utf-8" method="POST">
 					<fieldset>
 				    	<table style="width: 100%;"">
 				       		<tr>
@@ -347,7 +339,7 @@
 								</td>
 								<td class="campo">
 									<label>
-										<select name="Ddl_Tipo_Productos">
+										<select name="Ddl_Tipo_Productos" id="Ddl_Tipo_Productos">
 											<option value="0">--SELECCIONE--</option>
 											<option value="1">PRODUCTO</option>
 											<option value="2">SERVICIO</option>
@@ -387,7 +379,7 @@
 									Cantidad
 								</td>
 								<td class="campo">
-									<input type="text" class="text-input required" enabled/>
+									<input type="text" name="txt_Cantidad" id="txt_Cantidad" class="text-input required" enabled/>
 								</td>
 							</tr>
 				     	</table>
@@ -401,7 +393,10 @@
 			    </div>
 			    <form class="forms">
 			      <fieldset>
-			      	<input type="submit" value="Agregar" name="Agregar" class="btn-submit" />
+			      	<a href="#" class="cerrarmodal">
+			       	<img src="style/images/cerrar.png" height="30px", width="30px">
+			        </a>
+			        <button type="button" onclick="displayResult()" class="btn-submit">Agregar</button>
 			      </fieldset>
 			    </form>
 				</div>
