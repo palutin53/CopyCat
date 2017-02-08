@@ -122,7 +122,8 @@ CALL Select_Info_Enc_Factura('J11-1');
 
 SELECT COUNT(ID_Detalle_Encabezado_Factura) Registros FROM detalle_encabezado_factura WHERE Num_Encabezado_Factura = 'J11-1-FA18';
 
-CALL Inserta_Det_Factura('J11-1-FA18','J11-1',1,'CJA-B',2,260.00,130.00);
+CALL Inserta_Det_Factura('J11-1-FA17','J11-1',1,'CJA-A',1,125.00,125.00);
+SELECT * FROM encabezado_factura;
 SELECT * FROM detalle_encabezado_factura;
 SELECT * FROM linea_detalle_encabezado_factura;
 /*LL-A 40.00 n --- CJA-A 125.00 s*/
