@@ -52,3 +52,11 @@ INSERT INTO `copycat`.`rol_menu` (`ID_Rol_Menu`, `Rol_ID_Rol`, `Sub_Menu_Menu_ID
 INSERT INTO `copycat`.`rol_menu` (`ID_Rol_Menu`, `Rol_ID_Rol`, `Sub_Menu_Menu_ID_Menu`, `Sub_Menu_ID_Sub_Menu`) VALUES ('18', '1', '6', '5');
 INSERT INTO `copycat`.`rol_menu` (`ID_Rol_Menu`, `Rol_ID_Rol`, `Sub_Menu_Menu_ID_Menu`, `Sub_Menu_ID_Sub_Menu`) VALUES ('19', '1', '1', '0');
 INSERT INTO `copycat`.`rol_menu` (`ID_Rol_Menu`, `Rol_ID_Rol`, `Sub_Menu_Menu_ID_Menu`, `Sub_Menu_ID_Sub_Menu`) VALUES ('20', '1', '7', '0');
+
+
+
+
+UPDATE `copycat`.`menu` SET `Nombre_Menu`='Administración' WHERE `ID_Menu`='5';
+UPDATE `copycat`.`menu` SET `Nombre_Menu`='Cerrar Sesión' WHERE `ID_Menu`='7';
+UPDATE `copycat`.`sub_menu` SET `Nombre_Sub_Menu`='Devolución' WHERE `Menu_ID_Menu`='2' and`ID_Sub_Menu`='2';
+UPDATE `copycat`.`sub_menu` SET `Nombre_Sub_Menu`='Reiniciar Contraseña' WHERE `Menu_ID_Menu`='5' and`ID_Sub_Menu`='6';

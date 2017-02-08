@@ -1,6 +1,6 @@
 DROP PROCEDURE IF EXISTS Inserta_Det_Existencia;
 DELIMITER //
-CREATE PROCEDURE Inserta_Det_Existencia(Kiosco_ID VARCHAR(15), Cod_Producto INT, Cantidad_Movimiento INT, Tipo_Movimiento CHAR(1))
+CREATE PROCEDURE Inserta_Det_Existencia(Kiosco_ID VARCHAR(15), Cod_Producto VARCHAR(25), Cantidad_Movimiento INT, Tipo_Movimiento CHAR(1))
 BEGIN
 	
     DECLARE ID_Encabezado_Existencia VARCHAR(15);

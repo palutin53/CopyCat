@@ -1,4 +1,5 @@
 SET GLOBAL log_bin_trust_function_creators = 1;
+CALL Actualiza_PASS(1,'jmazariegos11','11');
 select * from Kiosco;
 
 SELECT SUBSTRING('Oakland', 1, 4);
@@ -37,7 +38,7 @@ WHERE
     
 CALL Inserta_Tipo_Producto_Servicio('Llavin');
 SELECT * FROM tipo_producto;
-CALL Inserta_Producto_Servicio(1,'Llavin tipo B', 42.00,'0','/LlB.png','0');
+CALL Inserta_Producto_Servicio('',1,'Llavin tipo B', 42.00,'0','/LlB.png','0');
 SELECT * FROM producto_servicio;
 
 SELECT * FROM detalle_existencia;
@@ -56,10 +57,11 @@ ORDER BY ID_Detalle_Existencia DESC LIMIT 1;
 SET GLOBAL log_bin_trust_function_creators = 1;
 
 SELECT Fn_Select_ID_Enc_Existencia('J11-1');
-SELECT Fn_Select_Cant_Anterior('J11-1-E4',1);
-SELECT Fn_Select_Cant_Existente('J11-1-E4',2) Existencia;
+SELECT Fn_Select_Cant_Anterior('J11-1-E18','CJA-A');
+SELECT Fn_Select_Cant_Existente('J11-1-E18','CJA-A') Existencia;
 
-CALL Inserta_Det_Existencia('J11-1',2,0,'u');
+CALL Inserta_Det_Existencia('J11-1','CJA-A',5,'u');
+SELECT Fn_Select_ID_Enc_Existencia('J11-1');
 SELECT * FROM detalle_existencia;
 
 SELECT '0' AS ID_Tipo_Producto, '--SELECCIONE--' AS Descripcion_Tipo_Producto UNION SELECT * FROM tipo_producto;
@@ -101,10 +103,27 @@ SELECT * FROM tipo_pago;
 
 CALL Select_Info_Cliente('7051408-9');
 
-CALL Inserta_Enc_Factura('J11-1',1,1,1,'J11-123');
+CALL Inserta_Enc_Factura('J11-1',1,1,1,'J11-123',1,0.00,100.00);
 SELECT * FROM encabezado_factura;
 
 CALL Inserta_Estudio_Mercado('Visual');
 SELECT * FROM estudio_mercado;
 
 CALL Select_ProdServ_Descripcion('Llavin tipo B');
+CALL Select_ProdServ_ID('CJA-A');
+
+SELECT 
+    Fecha_Encabezado_Factura, Num_Encabezado_Factura, Kiosco_ID_Kiosco, Empleado_ID_Empleado
+FROM
+    encabezado_factura
+ORDER BY Fecha_Encabezado_Factura DESC
+LIMIT 1;
+CALL Select_Info_Enc_Factura('J11-1');
+
+SELECT COUNT(ID_Detalle_Encabezado_Factura) Registros FROM detalle_encabezado_factura WHERE Num_Encabezado_Factura = 'J11-1-FA18';
+
+CALL Inserta_Det_Factura('J11-1-FA18','J11-1',1,'CJA-B',2,260.00,130.00);
+SELECT * FROM detalle_encabezado_factura;
+SELECT * FROM linea_detalle_encabezado_factura;
+/*LL-A 40.00 n --- CJA-A 125.00 s*/
+SELECT Fn_Calcular_Comision('CJA-A') Comision;

@@ -30,7 +30,7 @@
 
 <script type="text/javascript" src="style/js/jquery-1.9.1.min.js"></script>
 
-<script type="text/javascript" src="style/js/Tabla_Detalle.js"></script>
+<script type="text/javascript" src="Tabla_Detalle.js"></script>
 
 <script>
 
@@ -98,6 +98,8 @@
           dataType:'json',
           data:{ des_prod:$('#des_prod').val()}
       }).done(function(respuesta){
+      	  $("input#txt_Codigo_Producto").val(respuesta.Codigo);
+      	  $("textarea#txt_Descripcion_Producto").val(respuesta.Descripcion_Detalle);
           $("input#txt_Precio_Unitario").val(respuesta.Precio);
           $("#img_prod").attr("src",respuesta.Img);
           $("input#txt_Existencia").val(respuesta.Existencia);
@@ -128,7 +130,7 @@
 	<h1 class="title">Ventas y/o Servicios</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="Operar_Venta.php" accept-charset="utf-8" method="POST">
+	<form class="forms" action="" accept-charset="utf-8" method="POST">
 		<fieldset>
 		<table>
 			<tr>
@@ -136,13 +138,13 @@
 					N.Factura
 				</td>
 				<td class="campo">
-					<input type="text" name="txt_Num_Factura" value="" class="text-input required=" title="" />
+					<input type="text" name="txt_Num_Factura" id="txt_Num_Factura" value="" class="text-input required=" title="" />
 				</td>
 				<td class="nombreclase">
 					Fecha
 				</td>
 				<td class="campo">
-					<input type="text" name="txt_Fecha_Factura" value="<?php $time = time(); echo date("d-m-Y (H:i:s)", $time);?>" class="text-input required" title="" disabled/>
+					<input type="text" name="txt_Fecha_Factura" id="txt_Fecha_Factura" value="<?php $time = time(); echo date("d-m-Y (H:i:s)", $time);?>" class="text-input required" title="" disabled/>
 				</td>
 			</tr>
 		</table>
@@ -258,7 +260,7 @@
 							Descuento
 						</td>
 						<td class="campo">
-							<input type="text" class="text-input required" />
+							<input type="text" value="0.00" id="txt_Descuento" name="txt_Descuento" class="text-input required" />
 						</td>
 					</tr>
 					<tr>
@@ -266,7 +268,7 @@
 							Total
 						</td>
 						<td class="campo">
-							<input type="text" class="text-input required" />
+							<input type="text" id="txt_Total_Venta" name="txt_Total_Venta" class="text-input required" disabled />
 						</td>
 					</tr>
 					<tr>
@@ -276,7 +278,7 @@
 						<td class="campo">
 							<ol>
 								<label>
-									<select name="Ddl_Tipo_Pago">
+									<select name="Ddl_Tipo_Pago" id="Ddl_Tipo_Pago">
 										<?php
 										 $SQL = "SELECT ID_Tipo_Pago, Descripcion_Tipo_Pago FROM tipo_pago";
 										 $ID = "ID_Tipo_Pago";
@@ -295,7 +297,7 @@
 						<td class="campo">
 							<ol>
 								<label>
-									<select name="Ddl_Estudio_Mercado">
+									<select name="Ddl_Estudio_Mercado" id="Ddl_Estudio_Mercado">
 										<?php
 										 $SQL = "SELECT ID_Estudio_Mercado, Detalle_Estudio_Mercado FROM estudio_mercado";
 										 $ID = "ID_Estudio_Mercado";
@@ -312,7 +314,7 @@
 							<input type="submit" value="Cancelar Venta" name="Buscar_Data" class="btn-submit" />
 						</td>
 						<td class="campo">
-							<input type="submit" value="Procesar Venta" name="Buscar_Data" class="btn-submit" />
+							<input type="submit" value="Procesar Venta" name="Buscar_Data" id="btnRecorrer" class="btn-submit" />
 						</td>
 					</tr>
 				</table>
@@ -348,10 +350,29 @@
 									</label>
 								</td>
 								<td class="nombrecampo">
-									Codigo
+									Busqueda Producto
 								</td>
 								<td class="campo">
 									<input id="des_prod" name="des_prod" type="text" class="text-input required" enabled/>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									<div class="linea"></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="nombrecampo">
+									Codigo Producto
+								</td>
+								<td class="campo">
+									<input type="text" id="txt_Codigo_Producto" name="txt_Codigo_Producto" class="text-input required" disabled />
+								</td>
+								<td class="nombrecampo">
+									Descripción Producto
+								</td>
+								<td class="campo">
+									<textarea name="txt_Descripcion_Producto" id="txt_Descripcion_Producto" rows="10" cols="50" maxlength="75" disabled></textarea>
 								</td>
 							</tr>
 							<tr>
@@ -379,7 +400,7 @@
 									Cantidad
 								</td>
 								<td class="campo">
-									<input type="text" name="txt_Cantidad" id="txt_Cantidad" class="text-input required" enabled/>
+									<input type="text" value="1" name="txt_Cantidad" id="txt_Cantidad" class="text-input required" enabled/>
 								</td>
 							</tr>
 				     	</table>
