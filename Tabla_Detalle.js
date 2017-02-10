@@ -1,43 +1,51 @@
 
 	function displayResult()
         {
-            var Cantidad = document.getElementById("txt_Cantidad").value;
-            var Cod_Prod = document.getElementById("txt_Codigo_Producto").value;
-            var Descripcion = document.getElementById("txt_Descripcion_Producto").value;
-            var Precio_Unitario = document.getElementById("txt_Precio_Unitario").value;
-            var Total_Producto = parseFloat(0);
-            Total_Producto = (parseFloat(Cantidad) * parseFloat(Precio_Unitario)) * 1;
+            var existencia = document.getElementById("txt_Existencia").value;
 
-            document.getElementById("myTable").insertRow(-1).innerHTML = 
-            '<td><span class="ColumnHeader"><STRONG>' + Cantidad + '</td><td><span class="ColumnHeader"><STRONG>' + Cod_Prod + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Descripcion + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Precio_Unitario + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Total_Producto + '</td><td><span class="ColumnHeader"><STRONG><input type="button" value="Quitar" onclick="Eliminar(this.parentNode.parentNode.rowIndex)"/></STRONG></span></td>';
-           
-                        var total = parseFloat(0);
-                        var descuento = parseFloat(document.getElementById("txt_Descuento").value) * 1;
-                        var total_venta = parseFloat(0);
+            if(existencia != '0'){
+                
+                var Cantidad = document.getElementById("txt_Cantidad").value;
+                var Cod_Prod = document.getElementById("txt_Codigo_Producto").value;
+                var Descripcion = document.getElementById("txt_Descripcion_Producto").value;
+                var Precio_Unitario = document.getElementById("txt_Precio_Unitario").value;
+                var Total_Producto = parseFloat(0);
+                Total_Producto = (parseFloat(Cantidad) * parseFloat(Precio_Unitario)) * 1;
 
-                $("#myTable tbody tr").each(function (index) 
-                    {
-                        var campo1;
-                        $(this).children("td").each(function (index2) 
+                document.getElementById("myTable").insertRow(-1).innerHTML = 
+                '<td><span class="ColumnHeader"><STRONG>' + Cantidad + '</td><td><span class="ColumnHeader"><STRONG>' + Cod_Prod + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Descripcion + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Precio_Unitario + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Total_Producto + '</td><td><span class="ColumnHeader"><STRONG><input type="button" value="Quitar" onclick="Eliminar(this.parentNode.parentNode.rowIndex)"/></STRONG></span></td>';
+               
+                            var total = parseFloat(0);
+                            var descuento = parseFloat(document.getElementById("txt_Descuento").value) * 1;
+                            var total_venta = parseFloat(0);
+
+                    $("#myTable tbody tr").each(function (index) 
                         {
-                            switch (index2) 
+                            var campo1;
+                            $(this).children("td").each(function (index2) 
                             {
-                                case 4: campo1 = $(this).text();
-                                        break;                                
+                                switch (index2) 
+                                {
+                                    case 4: campo1 = $(this).text();
+                                            break;                                
+                                }
+                                //$(this).addClass("TableDetail1");
+                            })
+                            if(campo1 != 'Total'){
+                                //alert(parseFloat(campo1));
+                                $(this).addClass("TableDetail1");
+                                total = (parseFloat(total) + parseFloat(campo1)) * 1;
+                                total_venta = (parseFloat(total) - parseFloat(descuento)) * 1;
+
+                                $("input#total_importe").val(parseFloat(total).toFixed(2));
+                                $("input#txt_Total_Venta").val(parseFloat(total_venta).toFixed(2));
                             }
-                            //$(this).addClass("TableDetail1");
-                        })
-                        if(campo1 != 'Total'){
-                            //alert(parseFloat(campo1));
-                            $(this).addClass("TableDetail1");
-                            total = (parseFloat(total) + parseFloat(campo1)) * 1;
-                            total_venta = (parseFloat(total) - parseFloat(descuento)) * 1;
+                        })    
 
-                            $("input#total_importe").val(parseFloat(total).toFixed(2));
-                            $("input#txt_Total_Venta").val(parseFloat(total_venta).toFixed(2));
-                        }
-                    })    
-
+            }
+            else{
+                alert('Producto sin Existencias en Kisco.');
+            }
         };
 
     $(function () {

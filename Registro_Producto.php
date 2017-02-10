@@ -150,7 +150,23 @@
 				</tr>
 				<tr>
 					<td class="nombrecampo">
-						Precio Unitario
+						¿Utiliza Corte en Maquina?
+					</td>
+					<td class="campo">
+						<ol>
+							<label>
+								<select name="Ddl_Corte">
+									<option value="">--SELECCIONE--</option>
+									<option value="s">SI</option>
+									<option value="n">NO</option>
+								</select>
+							</label>
+						</ol>
+					</td>
+				</tr>
+				<tr>
+					<td class="nombrecampo">
+						Imagen Producto
 					</td>
 					<td class="campo">
 						<ol>

@@ -23,4 +23,15 @@
 													"'," . $Cantidad_Producto . "," . $Total_Linea . 
 													"," . $Precio_Unitario . ");";
 	$Detalle_Fact_Result = SPquery($SP_Detalle_Factura);
+
+	$SP_Existencia = "Inserta_Det_Existencia('" . $ID_KC . "','" . $Cod_Producto . "', " . $Cantidad_Producto . ",'d');";
+
+	SPquery($SP_Existencia);
+
+	$SP_Cortes = "Inserta_Cortes('" . $Cod_Producto . "','" . $Encabezado_Fact . "','" . $ID_KC . "'," . $ID_EMP . ");";
+
+	SPquery($SP_Cortes);
+
+	
+
 ?>
