@@ -192,3 +192,4 @@ SELECT * FROM linea_detalle_encabezado_factura;
 SELECT Fn_Calcular_Comision('CJA-A') Comision;
 
 SELECT * FROM tipo_transaccion_monetaria;
+SELECT * FROM concepto_transaccion_monetaria;
