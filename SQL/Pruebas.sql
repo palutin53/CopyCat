@@ -1,5 +1,7 @@
 SET GLOBAL log_bin_trust_function_creators = 1;
-CALL Actualiza_PASS(1,'jmazariegos11','11');
+SELECT * FROM empleado;
+SELECT * FROM usuario;
+CALL Actualiza_PASS(7,'drodas','11');
 select * from Kiosco;
 
 SELECT SUBSTRING('Oakland', 1, 4);
@@ -36,7 +38,7 @@ FROM
 WHERE
     Encabezado_Existencia_id_Encabezado_Existencia = 'J11-1-E4';
     
-CALL Inserta_Tipo_Producto_Servicio('Llavin');
+CALL Inserta_Tipo_Producto_Servicio('Cerrajeria');
 SELECT * FROM tipo_producto;
 CALL Inserta_Producto_Servicio('',1,'Llavin tipo B', 42.00,'0','/LlB.png','0','n');
 SELECT * FROM producto_servicio;
@@ -89,9 +91,9 @@ SELECT
 FROM
     detalle_existencia
 WHERE
-    Encabezado_Existencia_id_Encabezado_Existencia = 'J11-1-E20' AND Producto_Servicio_Cod_Producto_Servicio = 'CJA-A'; /* J11-1-E18 -- J11-1-E20 */
+    Encabezado_Existencia_id_Encabezado_Existencia = 'Okla-1-E5' AND Producto_Servicio_Cod_Producto_Servicio = 'CJA-A'; /* J11-1-E18 -- J11-1-E20 */
 
-CALL Inserta_Det_Existencia('J11-1','CM-A',15,'u');
+CALL Inserta_Det_Existencia('Okla-1','CJC-A',15,'n');
 SELECT * FROM detalle_existencia; /* u->agregar -- d->quitar n->nuevo*/
 
 SELECT NOW();
@@ -102,7 +104,7 @@ FROM
     detalle_existencia
 WHERE
     Producto_Servicio_Cod_Producto_Servicio = 'CJA-B'
-        AND Encabezado_Existencia_Kiosco_ID_Kiosco = 'J11-1'
+        AND Encabezado_Existencia_Kiosco_ID_Kiosco = 'Okla-1'
 ORDER BY Fecha_Movimiento_Detalle_Existencia DESC LIMIT 1;
 
 SELECT 
@@ -119,7 +121,7 @@ SELECT
 FROM
     detalle_existencia
 WHERE
-    Encabezado_Existencia_Kiosco_ID_Kiosco = 'J11-1'
+    Encabezado_Existencia_Kiosco_ID_Kiosco = 'Okla-1'
         AND Producto_Servicio_Cod_Producto_Servicio = 'LL-A'
 ORDER BY Fecha_Movimiento_Detalle_Existencia DESC
 LIMIT 1;
@@ -190,6 +192,10 @@ SELECT * FROM detalle_encabezado_factura;
 SELECT * FROM linea_detalle_encabezado_factura;
 /*LL-A 40.00 n --- CJA-A 125.00 s*/
 SELECT Fn_Calcular_Comision('CJA-A') Comision;
+SELECT Fn_Tipo_Producto('CJA-A') Tipo_Producto;
 
 SELECT * FROM tipo_transaccion_monetaria;
 SELECT * FROM concepto_transaccion_monetaria;
+
+CALL Inserta_Transaccion_Monetaria('J11-1',1,1,'Factura No. TS-20','N/A',255.00);
+SELECT * FROM transaccion_monetaria;

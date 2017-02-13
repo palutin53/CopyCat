@@ -67,7 +67,7 @@ BEGIN
 													Producto_Servicio_Cod_Producto_Servicio = Cod_Producto
 														AND Encabezado_Existencia_Kiosco_ID_Kiosco = Kiosco_ID
 												ORDER BY Fecha_Movimiento_Detalle_Existencia DESC LIMIT 1);
-                            
+
 		SET Cant_Anterior = (SELECT Fn_Select_Cant_Anterior(Ultimo_ID_Encabezado_Existencia,Cod_Producto));
                         
 		SET Cant_Existente = (SELECT Fn_Select_Cant_Existente(Ultimo_ID_Encabezado_Existencia,Cod_Producto));

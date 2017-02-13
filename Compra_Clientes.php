@@ -85,9 +85,9 @@
 
   $(document).ready(function(){
   	//var tipo = $("select#Ddl_Tipo_Producto").val();
-  	var tipo = document.getElementById("Ddl_Tipo_Productos").value;
+  	var tipo = $('select#Ddl_Tipo_Producto').val();
     $("#des_prod").autocomplete({
-      source: "PHP/Busqueda_Productos.php?tipo="+tipo,
+      source: "PHP/Busqueda_Productos.php?tipo=" + $('select#Ddl_Tipo_Producto').val(),
       minLength: 2
     });
  
@@ -334,18 +334,20 @@
 		        	Producto o Servicio<br/> <br/>
 	        		<form class="forms" action="#" accept-charset="utf-8" method="POST">
 					<fieldset>
-				    	<table style="width: 100%;"">
+				    	<table style="width: 100%;">
 				       		<tr>
 				       			<td class="nombrecampo">
 									Tipo de Venta
 								</td>
 								<td class="campo">
 									<label>
-										<select name="Ddl_Tipo_Productos" id="Ddl_Tipo_Productos">
-											<option value="0">--SELECCIONE--</option>
-											<option value="1">PRODUCTO</option>
-											<option value="2">SERVICIO</option>
-											<option value="3">PRODUCTO/SERVICIO</option>
+										<select name="Ddl_Tipo_Producto" id="Ddl_Tipo_Producto">
+											<?php
+											 $SQL = "SELECT ID_Tipo_Producto, Descripcion_Tipo_Producto FROM tipo_producto;";
+											 $ID = "ID_Tipo_Producto";
+											 $Data = "Descripcion_Tipo_Producto";
+											 Cargar_Combo($SQL,$ID,$Data,'0');
+											?>
 										</select>
 									</label>
 								</td>

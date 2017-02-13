@@ -143,11 +143,13 @@
                         }
                         if(campo1 != 'Cantidad'){
                             alert(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
+                            var tipop = $('select#Ddl_Tipo_Pago').val();
                             jQuery.post("Operar_Detalle_Factura.php", {
                                     codProducto:campo2,
                                     cantProducto:campo1,
                                     totProducto:campo5,
-                                    precProducto:campo4
+                                    precProducto:campo4,
+                                    tipopago:tipop
                                     }, function(data, textStatus){
                                     if(data != ''){
                                         alert('Encabezado Factura Ingresado ' + data);

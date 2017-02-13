@@ -17,6 +17,7 @@
 	$Cantidad_Producto = $_POST['cantProducto'];
 	$Total_Linea = $_POST['totProducto'];
 	$Precio_Unitario = $_POST['precProducto'];
+	$Tipo_Pago = $_POST['tipopago'];
 
 	$SP_Detalle_Factura = "Inserta_Det_Factura('" . $Encabezado_Fact . "','" . $ID_KC . 
 													"'," . $ID_EMP . ",'" . $Cod_Producto . 
@@ -33,5 +34,47 @@
 	SPquery($SP_Cortes);
 
 	
+	$SP_Tipo_Prod = "SELECT Fn_Tipo_Producto('" . $Cod_Producto . "') Tipo_Producto";
+
+	$SP_Tipo_Prod_result = mquery($SP_Tipo_Prod);
+	$SP_Tipo_Prod_Data = mysqli_fetch_array($SP_Tipo_Prod_result);
+
+	$Tipo_Prod = $SP_Tipo_Prod_Data["Tipo_Producto"];
+
+	if($Tipo_Prod == 2){
+
+		if($Tipo_Pago == 1){//Venta de Servicios en Efectivo
+
+			$SP_Transaccion = "Inserta_Transaccion_Monetaria('" . $ID_KC . "',1,2,'Factura No. " . $Encabezado_Fact . "','N/A'," . $Total_Linea . ");";
+
+			SPquery($SP_Transaccion);
+
+		}
+		else if($Tipo_Pago == 2 || $Tipo_Pago == 3){//Venta de Servicios con tarjeta o cheque
+
+			$SP_Transaccion = "Inserta_Transaccion_Monetaria('" . $ID_KC . "',2,4,'Factura No. " . $Encabezado_Fact . "','N/A'," . $Total_Linea . ");";
+
+			SPquery($SP_Transaccion);
+
+		}
+	}
+	else{
+
+		if($Tipo_Pago == 1){ //Venta de Mercaderia en Efectivo
+			
+			$SP_Transaccion = "Inserta_Transaccion_Monetaria('" . $ID_KC . "',1,1,'Factura No. " . $Encabezado_Fact . "','N/A'," . $Total_Linea . ");";
+
+			SPquery($SP_Transaccion);
+
+		}
+		else if($Tipo_Pago == 2 || $Tipo_Pago == 3){//Venta de Mercaderia con tarjeta o cheque
+
+			$SP_Transaccion = "Inserta_Transaccion_Monetaria('" . $ID_KC . "',2,3,'Factura No. " . $Encabezado_Fact . "','N/A'," . $Total_Linea . ");";
+
+			SPquery($SP_Transaccion);
+
+		}
+
+	}
 
 ?>
