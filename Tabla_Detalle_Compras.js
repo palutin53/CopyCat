@@ -13,10 +13,10 @@
                 Total_Producto = (parseFloat(Cantidad) * parseFloat(Precio_Unitario)) * 1;
 
                 document.getElementById("myTable").insertRow(-1).innerHTML = 
-                '<td><span class="ColumnHeader"><STRONG>' + Cantidad + '</td><td><span class="ColumnHeader"><STRONG>' + Cod_Prod + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Descripcion + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Precio_Unitario + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Total_Producto + '</td><td><span class="ColumnHeader"><STRONG><input type="button" value="Quitar" onclick="Eliminar(this.parentNode.parentNode.rowIndex)"/></STRONG></span></td>';
+                '<td><span class="ColumnHeader"><STRONG>' + Cantidad + '</td><td><span class="ColumnHeader"><STRONG>' + Cod_Prod + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Descripcion + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Precio_Unitario + '</STRONG></span></td><td><span class="ColumnHeader"><STRONG>' + Total_Producto.toFixed(2) + '</td><td><span class="ColumnHeader"><STRONG><input type="button" value="Quitar" onclick="Eliminar(this.parentNode.parentNode.rowIndex)"/></STRONG></span></td>';
                
                             var total = parseFloat(0);
-                            var descuento = parseFloat(document.getElementById("txt_Descuento").value) * 1;
+                            //var descuento = parseFloat(document.getElementById("txt_Descuento").value) * 1;
                             var total_venta = parseFloat(0);
 
                     $("#myTable tbody tr").each(function (index) 
@@ -35,7 +35,8 @@
                                 //alert(parseFloat(campo1));
                                 $(this).addClass("TableDetail1");
                                 total = (parseFloat(total) + parseFloat(campo1)) * 1;
-                                total_venta = (parseFloat(total) - parseFloat(descuento)) * 1;
+                                //total_venta = (parseFloat(total) - parseFloat(descuento)) * 1;
+                                total_venta = parseFloat(total) * 1;
 
                                 $("input#total_importe").val(parseFloat(total).toFixed(2));
                                 $("input#txt_Total_Venta").val(parseFloat(total_venta).toFixed(2));
@@ -48,6 +49,7 @@
                     $('input#txt_Existencia').val('');
                     $('input#des_prod').val('');
                     $('input#des_prod').focus();
+                    $("#img_prod").attr("src","img_prod/no-image.png");
             }
             else{
                 alert('Producto sin Existencias en Kisco.');
@@ -80,40 +82,38 @@
                         })
                         if(index == 1){
                             
-                            alert('Inserta Factura');
+                            alert('Inserta Nota de Ingreso');
 
-                            var ID_Cliente = document.getElementById("txt_ID_Cliente").value;
+                            var ID_Proveedor = document.getElementById("txt_ID_Proveedor").value;
 
-                            if(ID_Cliente == 0){
-                                //alert('ID_Cliente Nuevo: ' + ID_Cliente);
-                                var nitc = $('input#txt_Nit_Cliente').val();
-                                var namec = $('input#txt_Nombre_Cliente').val();
-                                var dir = $('input#txt_Direccion_Cliente').val();
-                                var tel = $('input#txt_Telefono_Cliente').val();
-                                var mail = $('input#txt_Email_Cliente').val();
+                            if(ID_Proveedor == 0){
+                                //alert('ID_Proveedor Nuevo: ' + ID_Proveedor);
+                                var nitc = $('input#txt_Nit_Proveedor').val();
+                                var namec = $('input#txt_Nombre_Proveedor').val();
+                                var cont = $('input#txt_Contacto_Proveedor').val();
+                                var tel = $('input#txt_Telefono_Proveedor').val();
+                                var mail = $('input#txt_Email_Proveedor').val();
                                 var tipop = $('select#Ddl_Tipo_Pago').val();
                                 var numfac = $('input#txt_Num_Factura').val();
-                                var estudio = $('select#Ddl_Estudio_Mercado').val();
                                 var totalfac = $('input#txt_Total_Venta').val();
-                                var descuentofac = $('input#txt_Descuento').val();
+                                var uso = $('textarea#txt_Justificacion_Compra').val();
                                 //alert('----------');
                                 //alert('nombre: ' + namec);
 
-                                jQuery.post("Operar_Venta.php", {
+                                jQuery.post("Operar_Compra.php", {
                                     nit:nitc,
                                     nombre:namec,
-                                    direccion:dir,
+                                    contacto:cont,
                                     telefono:tel,
                                     email:mail,
-                                    idcliente:ID_Cliente,
+                                    idProveedor:ID_Proveedor,
                                     tipopago:tipop,
                                     numfactura:numfac,
-                                    estudiomerc:estudio,
                                     total_factura:totalfac,
-                                    descuento_factura:descuentofac
+                                    usoc:uso
                                     }, function(data, textStatus){
                                     if(data != ''){
-                                        alert('Encabezado Factura Ingresado ' + data);
+                                        alert('Encabezado NI Ingresado ' + data);
                                         enc_fact = data;
                                     }
                                     else{
@@ -127,19 +127,19 @@
                                 var numfac = $('input#txt_Num_Factura').val();
                                 var estudio = $('select#Ddl_Estudio_Mercado').val();
                                 var totalfac = $('input#txt_Total_Venta').val();
-                                var descuentofac = $('input#txt_Descuento').val();
-                                //alert('ID_Cliente Existente: ' + ID_Cliente);
+                                var uso = $('textarea#txt_Justificacion_Compra').val();
+                                //alert('ID_Proveedor Existente: ' + ID_Proveedor);
                                 //alert('Tipo Pago: ' + tipop);
-                                jQuery.post("Operar_Venta.php", {
-                                    idcliente:ID_Cliente,
+                                jQuery.post("Operar_Compra.php", {
+                                    idProveedor:ID_Proveedor,
                                     tipopago:tipop,
                                     numfactura:numfac,
                                     estudiomerc:estudio,
                                     total_factura:totalfac,
-                                    descuento_factura:descuentofac
+                                    usoc:uso
                                     }, function(data, textStatus){
                                     if(data != ''){
-                                        alert('Encabezado Factura Ingresado ' + data);
+                                        alert('Encabezado NI Ingresado ' + data);
                                         enc_fact = data;
                                     }
                                     else{
@@ -151,7 +151,7 @@
                         if(campo1 != 'Cantidad'){
                             alert(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
                             var tipop = $('select#Ddl_Tipo_Pago').val();
-                            jQuery.post("Operar_Detalle_Factura.php", {
+                            jQuery.post("Operar_Detalle_Compra.php", {
                                     codProducto:campo2,
                                     cantProducto:campo1,
                                     totProducto:campo5,
@@ -159,11 +159,11 @@
                                     tipopago:tipop
                                     }, function(data, textStatus){
                                     if(data != ''){
-                                        alert('Encabezado Factura Ingresado ' + data);
+                                        alert('Detalle NI Ingresado ' + data);
                                         enc_fact = data;
                                     }
                                     else{
-                                        alert('Error en Encabezado Factura');
+                                        alert('Error en Detalle NI');
                                     }
                             });
                         }
@@ -177,7 +177,8 @@
                 document.getElementById("myTable").deleteRow(i);
                 
                 var total = parseFloat(0);
-                var descuento = parseFloat(document.getElementById("txt_Descuento").value) * 1;
+                //var descuento = parseFloat(document.getElementById("txt_Descuento").value) * 1;
+                var descuento = parseFloat(0);
                 var total_venta = parseFloat(0);
 
                 $("#myTable tbody tr").each(function (index) 

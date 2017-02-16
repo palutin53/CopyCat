@@ -15,7 +15,8 @@ $(document).ready(function(e) {
     }
     function mostrar(e) {
         $(".cajaexterna").show();
-        darEfecto("bounceIn");      
+        darEfecto("bounceIn");
+        $('input#des_prod').focus();      
     }
     function ocultar() {
         $(".cajaexterna").fadeOut("fast", function() {

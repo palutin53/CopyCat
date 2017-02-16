@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>CopyCat</title>
+<title>COPYCAT</title>
 <link rel="stylesheet" type="text/css" media="all" href="style.css" />
 <link rel="stylesheet" type="text/css" href="style/css/media-queries.css" />
 <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300,700,700italic|Open+Sans+Condensed:300,700' rel="stylesheet" type='text/css'>-->
@@ -42,7 +42,7 @@
 
 <!-- Begin Wrapper -->
 <div class="wrapper"><!-- Begin Intro -->
-<div class="intro">CopyCat</div>
+<div class="intro">COPYCAT</div>
 <!-- End Intro --> 
 
 <!-- Begin Container -->
@@ -68,7 +68,7 @@ else if($_GET['STD'] == 's'){
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<textarea name="txt_Justificacion" rows="10" cols="50" maxlength="75"></textarea>
+								<textarea title="Ingresa una Justificación" name="txt_Justificacion" rows="10" cols="50" maxlength="75" required></textarea>
 							</li>
 						</ol>
 					</td>

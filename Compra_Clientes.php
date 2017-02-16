@@ -336,25 +336,10 @@
 					<fieldset>
 				    	<table style="width: 100%;">
 				       		<tr>
-				       			<td class="nombrecampo">
-									Tipo de Venta
-								</td>
-								<td class="campo">
-									<label>
-										<select name="Ddl_Tipo_Producto" id="Ddl_Tipo_Producto">
-											<?php
-											 $SQL = "SELECT ID_Tipo_Producto, Descripcion_Tipo_Producto FROM tipo_producto;";
-											 $ID = "ID_Tipo_Producto";
-											 $Data = "Descripcion_Tipo_Producto";
-											 Cargar_Combo($SQL,$ID,$Data,'0');
-											?>
-										</select>
-									</label>
-								</td>
 								<td class="nombrecampo">
 									Busqueda Producto
 								</td>
-								<td class="campo">
+								<td class="campo" colspan="4">
 									<input id="des_prod" name="des_prod" type="text" class="text-input required" enabled/>
 								</td>
 							</tr>

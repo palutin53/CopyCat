@@ -1,6 +1,13 @@
 <?php
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
+
+	if(isset($_GET['IDP'])){
+		if($_GET['IDP'] != 0){
+			echo "<script type='text/javascript'>alert('Proveedor Ingresado Correctamente.');</script>";
+		}
+	}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US">
@@ -48,7 +55,7 @@
 	<h1 class="title">Ingreso de Proveedores</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="" method="post">
+	<form class="forms" action="Operar_Proveedor.php" method="post">
 		<fieldset>
 			<table>
 				<tr>
@@ -58,7 +65,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" name="txt_Alergico_A_Empleado" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Nit_Proveedor" value="" class="text-input required" title="" />
 							</li>
 						</ol>
 					</td>
@@ -70,19 +77,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" name="txt_Alergico_A_Empleado" value="" class="text-input required" title="" />
-							</li>
-						</ol>
-					</td>
-				</tr>
-				<tr>
-					<td class="nombrecampo">
-						Dirección
-					</td>
-					<td class="campo">
-						<ol>
-							<li class="form-row text-input-row">
-								<input type="text" name="txt_Alergico_A_Empleado" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Descripcion_Proveedor" value="" class="text-input required" title="" />
 							</li>
 						</ol>
 					</td>
@@ -94,7 +89,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" name="txt_Alergico_A_Empleado" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Telefono_Proveedor" value="" class="text-input required" title="" />
 							</li>
 						</ol>
 					</td>
@@ -106,7 +101,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" name="txt_Alergico_A_Empleado" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Nombre_Contacto" value="" class="text-input required" title="" />
 							</li>
 						</ol>
 					</td>
@@ -118,7 +113,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" name="txt_Alergico_A_Empleado" value="" class="text-input required" title="" />
+								<input type="text" name="txt_Mail_Proveedor" value="" class="text-input required" title="" />
 							</li>
 						</ol>
 					</td>
@@ -131,28 +126,6 @@
 					</td>
 				</tr>							
 			</table>
-
-				<!--
-				<li>
-					<label>
-						<select>
-							<?php
-							 $SQL = "SELECT * FROM departamento";
-							 $ID = "ID_Depto";
-							 $Data = "Descripcion_Depto";
-							 Cargar_Combo($SQL,$ID,$Data);
-							?>
-						</select>
-					</label>
-				</li> -->
-
-				
-				<?php
-				//echo $_SESSION["User"];
-					/*$Campos = array("ID_Usuario","Perfil_ID_Perfil","Password","Fecha_Creacion_Usuario","Fecha_Expiracion_Usuario","Estado_Usuario");
-					$Valores = array("'JR111227'","1","'1211'","NOW()","DATE_ADD(NOW(), interval 12 month)","'1'");
-					echo Insertar_Data("Usuario", $Campos, $Valores);*/
-				?>
 				<hr>
 		</fieldset>
 	</form>

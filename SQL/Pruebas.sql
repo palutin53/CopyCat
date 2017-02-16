@@ -1,7 +1,7 @@
 SET GLOBAL log_bin_trust_function_creators = 1;
 SELECT * FROM empleado;
 SELECT * FROM usuario;
-CALL Actualiza_PASS(7,'drodas','11');
+CALL Actualiza_PASS(1,'jmazariegos11','11');
 select * from Kiosco;
 
 SELECT SUBSTRING('Oakland', 1, 4);
@@ -199,3 +199,15 @@ SELECT * FROM concepto_transaccion_monetaria;
 
 CALL Inserta_Transaccion_Monetaria('J11-1',1,1,'Factura No. TS-20','N/A',255.00);
 SELECT * FROM transaccion_monetaria;
+
+CALL Inserta_Proveedor('Proveedor Llavines 2', '1234567-9', '5555-4444','proveedor@hotmail.com','', @ID_C);
+SELECT * FROM proveedor;
+SELECT Fn_Select_ID_Proveedor('Proveedor Llavines 3', '1234567-10', '2222-1111','proveedor3@hotmail.com','Proveedor') ID_Proveedor;
+CALL Select_Info_Proveedor('1234567-10');
+
+CALL Inserta_Enc_NotaIngreso('J11-1',1,1,'E-123456',100.00,'Uso');
+SELECT * FROM encabezado_nota_ingreso;
+CALL Select_Info_Enc_NI('J11-1');
+CALL Inserta_Det_NI('J11-1-NI5','J11-1','CM-A',2,250.00,125.00);
+SELECT * FROM detalle_encabezado_ni;
+SELECT * FROM linea_detalle_encabezado_ni;
