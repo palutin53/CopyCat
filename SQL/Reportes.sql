@@ -26,7 +26,7 @@ GROUP BY Factura_Encabezado_Factura_Num_Encabezado_Factura;
 
 /*Ventas por Kiosco*/
 SELECT 
-    k.Descripcion_Kiosco, SUM(ef.Total_Venta_Encabezado_Factura)
+    k.Descripcion_Kiosco, SUM(ef.Total_Venta_Encabezado_Factura) Total
 FROM
     encabezado_factura ef
         INNER JOIN
@@ -179,3 +179,54 @@ FROM
         INNER JOIN
     concepto_transaccion_monetaria ctm ON tm.ID_Concepto_Transaccion_Monetaria = ctm.ID_Concepto_Transaccion_Monetaria 
 WHERE tm.Kiosco_ID_Kiosco = 'J11-1' and tm.ID_Tipo_Transaccion_Monetaria IN (4,5,6,7);
+
+/*Comisiones por Empleado Mensual*/
+SELECT
+    lf.Factura_Encabezado_Factura_Empleado_ID_Empleado,
+    CONCAT(e.Nombre_Empleado,
+            ' ',
+            e.Apellido_Empleado) NOMBRE,
+    SUM(lf.Comision_Linea_Detalle_Encabezado_Factura) TOTAL_COMISION
+FROM
+    linea_detalle_encabezado_factura lf
+        INNER JOIN
+    empleado e ON lf.Factura_Encabezado_Factura_Empleado_ID_Empleado = e.ID_Empleado
+        INNER JOIN
+    encabezado_factura ef ON lf.Factura_Encabezado_Factura_Num_Encabezado_Factura = ef.Num_Encabezado_Factura
+WHERE
+    ef.Fecha_Encabezado_Factura LIKE '%-02-%'
+GROUP BY lf.Factura_Encabezado_Factura_Empleado_ID_Empleado;
+
+/*Comisiones por Empleado Diario*/
+SELECT
+    lf.Factura_Encabezado_Factura_Empleado_ID_Empleado,
+    CONCAT(e.Nombre_Empleado,
+            ' ',
+            e.Apellido_Empleado) NOMBRE,
+    SUM(lf.Comision_Linea_Detalle_Encabezado_Factura) TOTAL_COMISION
+FROM
+    linea_detalle_encabezado_factura lf
+        INNER JOIN
+    empleado e ON lf.Factura_Encabezado_Factura_Empleado_ID_Empleado = e.ID_Empleado
+        INNER JOIN
+    encabezado_factura ef ON lf.Factura_Encabezado_Factura_Num_Encabezado_Factura = ef.Num_Encabezado_Factura
+WHERE
+    ef.Fecha_Encabezado_Factura LIKE '%-11 %'
+GROUP BY lf.Factura_Encabezado_Factura_Empleado_ID_Empleado;
+
+/*Comisiones por Empleado Anual*/
+SELECT
+    lf.Factura_Encabezado_Factura_Empleado_ID_Empleado,
+    CONCAT(e.Nombre_Empleado,
+            ' ',
+            e.Apellido_Empleado) NOMBRE,
+    SUM(lf.Comision_Linea_Detalle_Encabezado_Factura) TOTAL_COMISION
+FROM
+    linea_detalle_encabezado_factura lf
+        INNER JOIN
+    empleado e ON lf.Factura_Encabezado_Factura_Empleado_ID_Empleado = e.ID_Empleado
+        INNER JOIN
+    encabezado_factura ef ON lf.Factura_Encabezado_Factura_Num_Encabezado_Factura = ef.Num_Encabezado_Factura
+WHERE
+    ef.Fecha_Encabezado_Factura LIKE '%2017-%'
+GROUP BY lf.Factura_Encabezado_Factura_Empleado_ID_Empleado;

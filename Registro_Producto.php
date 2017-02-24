@@ -176,9 +176,6 @@
 						</ol>
 					</td>
 				</tr>
-
-				
-
 			</table>
 			<li class="button-row">
 				<input type="submit" value="Guardar" name="save" class="btn-submit" />
