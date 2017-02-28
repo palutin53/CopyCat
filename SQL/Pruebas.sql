@@ -211,3 +211,40 @@ CALL Select_Info_Enc_NI('J11-1');
 CALL Inserta_Det_NI('J11-1-NI5','J11-1','CM-A',2,250.00,125.00);
 SELECT * FROM detalle_encabezado_ni;
 SELECT * FROM linea_detalle_encabezado_ni;
+
+SELECT 
+    IFNULL(SUM(ef.Total_Venta_Encabezado_Factura), 0) Total
+FROM
+    encabezado_factura ef
+WHERE
+    ef.Fecha_Encabezado_Factura LIKE '2017-02-27%' AND Kiosco_ID_Kiosco = 'J11-1';
+    
+SELECT 
+    SUM(tm.Monto_Transaccion_Monetaria) TOTAL_DIA
+FROM
+    transaccion_monetaria tm
+        INNER JOIN
+    kiosco k ON tm.Kiosco_ID_Kiosco = k.ID_Kiosco
+        INNER JOIN
+    tipo_transaccion_monetaria ttm ON tm.ID_Tipo_Transaccion_Monetaria = ttm.ID_Tipo_Transaccion_Monetaria
+        INNER JOIN
+    concepto_transaccion_monetaria ctm ON tm.ID_Concepto_Transaccion_Monetaria = ctm.ID_Concepto_Transaccion_Monetaria
+WHERE
+    tm.Kiosco_ID_Kiosco = 'J11-1'
+        AND tm.ID_Tipo_Transaccion_Monetaria = 1;
+
+SELECT 
+    SUM(tm.Monto_Transaccion_Monetaria) TOTAL_RERITOS_CAJA
+FROM
+    transaccion_monetaria tm
+        INNER JOIN
+    kiosco k ON tm.Kiosco_ID_Kiosco = k.ID_Kiosco
+        INNER JOIN
+    tipo_transaccion_monetaria ttm ON tm.ID_Tipo_Transaccion_Monetaria = ttm.ID_Tipo_Transaccion_Monetaria
+        INNER JOIN
+    concepto_transaccion_monetaria ctm ON tm.ID_Concepto_Transaccion_Monetaria = ctm.ID_Concepto_Transaccion_Monetaria
+WHERE
+    tm.Kiosco_ID_Kiosco = 'J11-1'
+        AND tm.ID_Tipo_Transaccion_Monetaria IN (4 , 5, 6, 7);
+
+SELECT Fn_Efectivo_Caja('J11-1') Total;

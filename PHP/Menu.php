@@ -7,13 +7,17 @@ if(!isset($_SESSION["User"])){
 else{
 	$hoy = date("Y/m/d");
 	$hora_ingreso = date("H:i:s");
-	$Table_Info = 	"<table>
+	//<th>Ingreso: " . $hoy . " " . $hora_ingreso . "</th>
+	$Table_Info = 	"<table style='width: 100%;'>
 						<tr>
 							<th>Bienvenido: " . $_SESSION["User"] . "</th>
-							<th>Kiosco: " . $_SESSION["Kiosco"] . "-" . $_SESSION["Kiosco_Cod"] . "</th>
+							<th>Kiosco: " . $_SESSION["Kiosco"] . "</th>
 							<th>Rol: " . $_SESSION["Rol_Des"] . "</th>
-							<th>Fecha: " . $hoy . " " . $hora_ingreso . "</th>
-							<th>EncEx: " . $_SESSION["ID_Encabezado_Existencia"] . "</th>
+							<th>
+								<button type='button' onclick='CajaKiosco()'' class='button save'>Caja</button>
+								<button type='button' onclick='VentasKiosco()'' class='button edit'>Ventas</button>
+								<button type='button' onclick='CortesKiosco()'' class='button spark'>Cortes</button>
+							</th>
 							
 						</tr>
 					 </table>";
@@ -69,7 +73,9 @@ endwhile;
 
 //echo $Menu;
 
-$Encabezado_Menu = "<div class='header-wrapper opacity'>
+$Encabezado_Menu = "<script type='text/javascript' src='InfoKiosco.js'></script>
+					<link rel='stylesheet' type='text/css' media='all' href='style/Botones.css' />
+	<div class='header-wrapper opacity'>
 	<div class='header'>
 		<!-- Begin Logo -->
 		<div class='logo'>
