@@ -1,6 +1,6 @@
 DROP FUNCTION IF EXISTS Fn_Select_Cant_Anterior;
 DELIMITER //
-CREATE FUNCTION Fn_Select_Cant_Anterior(ID_Encabezado_Existencia VARCHAR(15), Cod_Producto INT) RETURNS INT
+CREATE FUNCTION Fn_Select_Cant_Anterior(ID_Encabezado_Existencia VARCHAR(15), Cod_Producto VARCHAR(25)) RETURNS INT
 BEGIN
 	DECLARE Cant_Anterior INT;
     

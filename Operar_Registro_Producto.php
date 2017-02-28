@@ -3,6 +3,7 @@
 require("PHP/Funciones.php");
 
 	if(isset($_POST['save'])){
+		$Codigo_Producto = $_POST['txt_Codigo_Producto'];
 		$Tipo_Producto = $_POST['Ddl_Tipo_Producto'];
 		$Descripcion_Producto = $_POST['txt_Descripcion_Producto'];
 		$Precio_Producto = $_POST['txt_Precio_Producto'];
@@ -14,7 +15,7 @@ require("PHP/Funciones.php");
 
 		if($_FILES['imgProducto']['name'] != ''){
 			$target_path = "img_prod/";
-			$Name_Foto = $Inicio_Foto . ".png";
+			$Name_Foto = $Codigo_Producto . ".png";
 			$target_path = $target_path . basename($Name_Foto); 
 			if(move_uploaded_file($_FILES['imgProducto']['tmp_name'], $target_path)){
 				echo "El archivo ". basename( $_FILES['imgProducto']['name']). " ha sido subido";
@@ -27,7 +28,7 @@ require("PHP/Funciones.php");
 			$Name_Foto = "no-image.png";
 		}
 
-		$StoreProcedure = "Inserta_Producto_Servicio(" . $Tipo_Producto . ",'" . $Descripcion_Producto . 
+		$StoreProcedure = "Inserta_Producto_Servicio('" . $Codigo_Producto . "'," . $Tipo_Producto . ",'" . $Descripcion_Producto . 
 													 "'," . $Precio_Producto . ",'" . $Genera_Comision . 
 													 "','" . $Name_Foto . "','" . $Domicilio_Producto . "');";
 

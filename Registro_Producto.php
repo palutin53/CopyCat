@@ -3,7 +3,9 @@
 	require("PHP/Funciones.php");
 
 	if(isset($_GET['STD'])){
-		echo "<script type='text/javascript'>alert('Producto ingresado con exito.')</script>";
+		if($_GET['STD'] == 'v'){
+			echo "<script type='text/javascript'>alert('Producto ingresado con exito.')</script>";
+		}
 	}
 	else{
 		echo "<script type='text/javascript'>alert('Error al intentar guardar.')</script>";	
@@ -59,6 +61,18 @@
 	<form enctype="multipart/form-data" class="forms" action="Operar_Registro_Producto.php" method="post">
 		<fieldset>
 			<table>
+				<tr>
+					<td class="nombrecampo">
+						Codigo Producto
+					</td>
+					<td class="campo">
+						<ol>
+							<li class="form-row text-input-row">
+								<input type="text" name="txt_Codigo_Producto" value="" class="text-input required" title="" />
+							</li>
+						</ol>
+					</td>
+				</tr>
 				<tr>
 					<td class="nombrecampo">
 						Descripción

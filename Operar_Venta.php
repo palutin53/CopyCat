@@ -4,17 +4,17 @@
 
 	session_start();
 
-	$ID_Cliente = $_POST['txt_ID_Cliente'];
+	$ID_Cliente = $_POST['idcliente'];
 
 	if($ID_Cliente != 0){
 		$ID_Cliente = $ID_Cliente;
 	}
 	else{
-		$NITC = $_POST['txt_Nit_Cliente'];
-		$NombreC = $_POST['txt_Nombre_Cliente'];
-		$DireccionC = $_POST['txt_Direccion_Cliente'];
-		$TelefonoC = $_POST['txt_Telefono_Cliente'];
-		$MailC = $_POST['txt_Email_Cliente'];
+		$NITC = $_POST['nit'];
+		$NombreC = $_POST['nombre'];
+		$DireccionC = $_POST['direccion'];
+		$TelefonoC = $_POST['telefono'];
+		$MailC = $_POST['email'];
 
 		$FN_Insert_Cliente = "SELECT Fn_Select_ID_Cliente(1,'" . 
 														 $NombreC . "','" . 
@@ -31,15 +31,20 @@
 
 	$ID_KC = $_SESSION["Kiosco_Cod"];
 	$ID_EMP = $_SESSION["Empleado_Cod"];
-	$Tipo_Pago = $_POST['Ddl_Tipo_Pago'];
-	$Numero_Fac = $_POST['txt_Num_Factura'];
+	$Tipo_Pago = $_POST['tipopago'];
+	$Numero_Fac = $_POST['numfactura'];
+	$EstudioM = $_POST['estudiomerc'];
+	$Total = $_POST['total_factura'];
+	$Descuento = $_POST['descuento_factura'];
+
 	$SP_Encabezado_Factura = "Inserta_Enc_Factura('" . $ID_KC . "'," . $ID_EMP . "," . 
-													   $Tipo_Pago . "," . $ID_Cliente . ",'" . $Numero_Fac . "')";
+													   $Tipo_Pago . "," . $ID_Cliente . ",'" . $Numero_Fac . "'," . 
+													   $EstudioM . "," . $Descuento . "," . $Total . ")";
 
 	$Encabezado_Fact_result = SPquery($SP_Encabezado_Factura);	
 	$Encabezado_Fact_Data = mysqli_fetch_array($Encabezado_Fact_result);
 
 	$Encabezado_Fact = $Encabezado_Fact_Data["Num_Encabezado_Factura"];
-	echo $Encabezado_Fact;											   
+	echo $Encabezado_Fact;										   
 
 ?>

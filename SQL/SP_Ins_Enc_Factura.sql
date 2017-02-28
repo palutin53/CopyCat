@@ -1,6 +1,6 @@
 DROP PROCEDURE IF EXISTS Inserta_Enc_Factura;
 DELIMITER //
-CREATE PROCEDURE Inserta_Enc_Factura(Kiosco_ID_Kioscos VARCHAR(15), ID_Empleado INT, Tipo_Pago INT, ID_Cliente INT, Num_Factura VARCHAR(30))
+CREATE PROCEDURE Inserta_Enc_Factura(Kiosco_ID_Kioscos VARCHAR(15), ID_Empleado INT, Tipo_Pago INT, ID_Cliente INT, Num_Factura VARCHAR(30), Estudio INT, Descuento DECIMAL(8,2), Total DECIMAL(8,2))
 BEGIN
 
 DECLARE Encabezado_ID VARCHAR(30) DEFAULT '';
@@ -26,7 +26,10 @@ DECLARE Fecha_Fact DATETIME DEFAULT NOW();
 				Tipo_Pago_ID_Tipo_Pago,
 				Cliente_ID_Cliente,
 				Fecha_Encabezado_Factura,
-				Num_Factura_Encabezado_Factura)
+				Num_Factura_Encabezado_Factura,
+                Estudio_Mercado_ID_Estudio_Mercado,
+                Descuento_Encabezado_Factura,
+                Total_Venta_Encabezado_Factura)
 	VALUES
 				(Encabezado_ID,
                  Kiosco_ID_Kioscos,
@@ -34,7 +37,10 @@ DECLARE Fecha_Fact DATETIME DEFAULT NOW();
                  Tipo_Pago,
                  ID_Cliente,
                  Fecha_Fact,
-                 Num_Factura);
+                 Num_Factura,
+                 Estudio,
+                 Descuento,
+                 Total);
 
 	SELECT 
 		Num_Encabezado_Factura 
