@@ -34,7 +34,7 @@ INSERT INTO copycat.sub_menu (Menu_ID_Menu, ID_Sub_Menu, Nombre_Sub_Menu, Ruta_S
 
 INSERT INTO copycat.sub_menu (Menu_ID_Menu, ID_Sub_Menu, Nombre_Sub_Menu, Ruta_Sub_Menu, Estado_Sub_Menu) VALUES ('1', '0', 'Portada', '#', '1');
 INSERT INTO copycat.sub_menu (Menu_ID_Menu, ID_Sub_Menu, Nombre_Sub_Menu, Ruta_Sub_Menu, Estado_Sub_Menu) VALUES ('7', '0', 'Salida', '#', '1');
-
+INSERT INTO `copycat`.`sub_menu` (`Menu_ID_Menu`, `ID_Sub_Menu`, `Nombre_Sub_Menu`, `Ruta_Sub_Menu`, `Estado_Sub_Menu`) VALUES ('2', '7', 'Retiro Efectivo', 'Operar_Retiros.php', '1');
 
 /*-----------Rol-Menu-----------*/
 INSERT INTO copycat.rol_menu (ID_Rol_Menu, Rol_ID_Rol, Sub_Menu_Menu_ID_Menu, Sub_Menu_ID_Sub_Menu) VALUES ('6', '1', '3', '1');
