@@ -9,6 +9,7 @@ require("PHP/Funciones.php");
 		$Precio_Producto = $_POST['txt_Precio_Producto'];
 		$Genera_Comision = $_POST['Ddl_Genera_Comision'];
 		$Domicilio_Producto = $_POST['Ddl_Domicilio'];
+		$Corte = $_POST['Ddl_Corte'];
 		
 		$Inicio_Foto_Clean = str_replace(' ', '', $Descripcion_Producto);
 		$Inicio_Foto = substr($Inicio_Foto_Clean, 0, 11);
@@ -30,7 +31,8 @@ require("PHP/Funciones.php");
 
 		$StoreProcedure = "Inserta_Producto_Servicio('" . $Codigo_Producto . "'," . $Tipo_Producto . ",'" . $Descripcion_Producto . 
 													 "'," . $Precio_Producto . ",'" . $Genera_Comision . 
-													 "','" . $Name_Foto . "','" . $Domicilio_Producto . "');";
+													 "','" . $Name_Foto . "','" . $Domicilio_Producto . 
+													 "','" . $Corte . "');";
 
 		SPquery($StoreProcedure);
 

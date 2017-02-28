@@ -1,4 +1,26 @@
 
+    function AgregarProducto()
+        {
+            var codp = $('input#txt_Codigo_Productop').val();
+            var descp = $('textarea#txt_Descripcion_Productop').val();
+            var precp = $('input#txt_Precio_Productop').val();
+                                
+                                jQuery.post("Operar_Registro_Producto_VIP.php", {
+                                    codigop:codp,
+                                    descripcionp:descp,
+                                    preciop:precp
+                                    }, function(data, textStatus){
+                                    if(data != ''){
+                                        //alert('Encabezado Factura Ingresado ' + data);
+                                        //enc_fact = data;
+                                    }
+                                    else{
+                                        //alert('Error en Encabezado Factura');
+                                    }
+                                });
+
+        };
+
 	function displayResult()
         {
             var existencia = document.getElementById("txt_Existencia").value;
@@ -91,24 +113,20 @@
                                 var dir = $('input#txt_Direccion_Cliente').val();
                                 var tel = $('input#txt_Telefono_Cliente').val();
                                 var mail = $('input#txt_Email_Cliente').val();
-                                var tipop = $('select#Ddl_Tipo_Pago').val();
-                                var numfac = $('input#txt_Num_Factura').val();
-                                var estudio = $('select#Ddl_Estudio_Mercado').val();
+                                var numfac = $('input#txt_Num_Factura').val();                                
                                 var totalfac = $('input#txt_Total_Venta').val();
                                 var descuentofac = $('input#txt_Descuento').val();
                                 //alert('----------');
                                 //alert('nombre: ' + namec);
 
-                                jQuery.post("Operar_Venta.php", {
+                                jQuery.post("Operar_Venta_VIP.php", {
                                     nit:nitc,
                                     nombre:namec,
                                     direccion:dir,
                                     telefono:tel,
                                     email:mail,
-                                    idcliente:ID_Cliente,
-                                    tipopago:tipop,
+                                    idcliente:ID_Cliente,                                
                                     numfactura:numfac,
-                                    estudiomerc:estudio,
                                     total_factura:totalfac,
                                     descuento_factura:descuentofac
                                     }, function(data, textStatus){
@@ -123,18 +141,14 @@
 
                             }
                             else{
-                                var tipop = $('select#Ddl_Tipo_Pago').val();
                                 var numfac = $('input#txt_Num_Factura').val();
-                                var estudio = $('select#Ddl_Estudio_Mercado').val();
                                 var totalfac = $('input#txt_Total_Venta').val();
                                 var descuentofac = $('input#txt_Descuento').val();
                                 //alert('ID_Cliente Existente: ' + ID_Cliente);
                                 //alert('Tipo Pago: ' + tipop);
-                                jQuery.post("Operar_Venta.php", {
+                                jQuery.post("Operar_Venta_VIP.php", {
                                     idcliente:ID_Cliente,
-                                    tipopago:tipop,
                                     numfactura:numfac,
-                                    estudiomerc:estudio,
                                     total_factura:totalfac,
                                     descuento_factura:descuentofac
                                     }, function(data, textStatus){
@@ -151,7 +165,7 @@
                         if(campo1 != 'Cantidad'){
                             alert(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
                             var tipop = $('select#Ddl_Tipo_Pago').val();
-                            jQuery.post("Operar_Detalle_Factura.php", {
+                            jQuery.post("Operar_Detalle_Factura_VIP.php", {
                                     codProducto:campo2,
                                     cantProducto:campo1,
                                     totProducto:campo5,

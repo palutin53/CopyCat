@@ -1,6 +1,6 @@
-DROP PROCEDURE IF EXISTS Inserta_Enc_Factura;
+DROP PROCEDURE IF EXISTS Inserta_Enc_Factura_VIP;
 DELIMITER //
-CREATE PROCEDURE Inserta_Enc_Factura(Kiosco_ID_Kioscos VARCHAR(15), ID_Empleado INT, Tipo_Pago INT, ID_Cliente INT, Num_Factura VARCHAR(30), Estudio INT, Descuento DECIMAL(8,2), Total DECIMAL(8,2))
+CREATE PROCEDURE Inserta_Enc_Factura_VIP(Kiosco_ID_Kioscos VARCHAR(15), ID_Empleado INT, Tipo_Pago INT, ID_Cliente INT, Num_Factura VARCHAR(30), Estudio INT, Descuento DECIMAL(8,2), Total DECIMAL(8,2))
 BEGIN
 
 DECLARE Encabezado_ID VARCHAR(30) DEFAULT '';
@@ -42,7 +42,7 @@ DECLARE Fecha_Fact DATETIME DEFAULT NOW();
                  Estudio,
                  Descuento,
                  Total,
-                 'n');
+                 's');
 
 	SELECT 
 		Num_Encabezado_Factura 

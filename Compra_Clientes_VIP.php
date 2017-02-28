@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>CopyCat</title>
+<title>COPYCAT</title>
 <link rel="stylesheet" type="text/css" media="all" href="style.css" />
 <link rel="stylesheet" type="text/css" href="style/css/media-queries.css" />
 <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300,700,700italic|Open+Sans+Condensed:300,700' rel="stylesheet" type='text/css'>-->
@@ -30,40 +30,40 @@
 
 <script type="text/javascript" src="style/js/jquery-1.9.1.min.js"></script>
 
-<script type="text/javascript" src="Tabla_Detalle_Compras.js"></script>
+<script type="text/javascript" src="Tabla_Detalle_VIP.js"></script>
 
 <script>
 
 	$(document).ready(function() {
     $("#resultadoBusqueda").html('');
-    		$("input#txt_ID_Proveedor").val('0');
-     		$("input#txt_Nombre_Proveedor").val('--');
-	        $("input#txt_Contacto_Proveedor").val('--');
-	        $("input#txt_Telefono_Proveedor").val('--');
-	        $("input#txt_Email_Proveedor").val('--');
+    		$("input#txt_ID_Cliente").val('0');
+     		$("input#txt_Nombre_Cliente").val('--');
+	        $("input#txt_Direccion_Cliente").val('--');
+	        $("input#txt_Telefono_Cliente").val('--');
+	        $("input#txt_Email_Cliente").val('--');
 	});
 
 	function buscar() {
-	    var textoBusqueda = $("input#txt_Nit_Proveedor").val();
+	    var textoBusqueda = $("input#txt_Nit_Cliente").val();
 	 
 	     if (textoBusqueda != "") {
-	        $.post("PHP/Busqueda_Proveedor.php", {valorBusqueda: textoBusqueda}, function(mensaje) {
+	        $.post("PHP/Busqueda_Cliente.php", {valorBusqueda: textoBusqueda}, function(mensaje) {
 	            //$("#resultadoBusqueda").html(mensaje);
 	            var res = mensaje.split(";");
-	            $("input#txt_ID_Proveedor").val(res[0]);
-    			$("input#txt_Nombre_Proveedor").val(res[1]);
-    			$("input#txt_Contacto_Proveedor").val(res[2]);
-    			$("input#txt_Telefono_Proveedor").val(res[4]);
-    			$("input#txt_Email_Proveedor").val(res[5]);
+	            $("input#txt_ID_Cliente").val(res[0]);
+    			$("input#txt_Nombre_Cliente").val(res[1]);
+    			$("input#txt_Direccion_Cliente").val(res[2]);
+    			$("input#txt_Telefono_Cliente").val(res[4]);
+    			$("input#txt_Email_Cliente").val(res[5]);
 	         }); 
 	     }
 	     else{ 
 	        $("#resultadoBusqueda").html('<p>NIT VACIO</p>');
-	        $("input#txt_ID_Proveedor").val('0');
-	        $("input#txt_Nombre_Proveedor").val('--');
-	        $("input#txt_Contacto_Proveedor").val('--');
-	        $("input#txt_Telefono_Proveedor").val('--');
-	        $("input#txt_Email_Proveedor").val('--');
+	        $("input#txt_ID_Cliente").val('0');
+	        $("input#txt_Nombre_Cliente").val('--');
+	        $("input#txt_Direccion_Cliente").val('--');
+	        $("input#txt_Telefono_Cliente").val('--');
+	        $("input#txt_Email_Cliente").val('--');
 	     };
 	};
 
@@ -87,7 +87,7 @@
   	//var tipo = $("select#Ddl_Tipo_Producto").val();
   	var tipo = $('select#Ddl_Tipo_Producto').val();
     $("#des_prod").autocomplete({
-      source: "PHP/Busqueda_Productos.php",
+      source: "PHP/Busqueda_Productos.php?tipo=" + $('select#Ddl_Tipo_Producto').val(),
       minLength: 2
     });
  
@@ -127,7 +127,7 @@
 <!-- Begin Container -->
 <div class="box">
 
-	<h1 class="title">Compra de Mercaderia</h1>
+	<h1 class="title">Ventas y/o Servicios VIP</h1>
 	<hr>
 <div class="form-container">
 	<form class="forms" action="" accept-charset="utf-8" method="POST">
@@ -138,7 +138,7 @@
 					N.Factura
 				</td>
 				<td class="campo">
-					<input type="text" name="txt_Num_Factura" id="txt_Num_Factura" value="" class="text-input required=" title="" required/>
+					<input type="text" name="txt_Num_Factura" id="txt_Num_Factura" value="" class="text-input required=" title="" />
 				</td>
 				<td class="nombreclase">
 					Fecha
@@ -160,7 +160,7 @@
 								NIT:
 							</td>
 							<td class="campo">
-								<input type="text" id="txt_Nit_Proveedor" name="txt_Nit_Proveedor" value="" class="text-input required" title="" onKeyUp="buscar();" required/>
+								<input type="text" id="txt_Nit_Cliente" name="txt_Nit_Cliente" value="" class="text-input required" title="" onKeyUp="buscar();" />
 							</td>
 						</tr>
 						<tr>
@@ -168,15 +168,15 @@
 								Nombre:
 							</td>
 							<td class="campo">
-								<input type="text" id="txt_Nombre_Proveedor" name="txt_Nombre_Proveedor" value="" class="text-input required" title="" />
+								<input type="text" id="txt_Nombre_Cliente" name="txt_Nombre_Cliente" value="" class="text-input required" title="" />
 							</td>
 						</tr>
 						<tr>
 							<td class="nombrecampo">
-								Contacto:
+								Dirección:
 							</td>
 							<td  class="campo" >
-								<input type="text" id="txt_Contacto_Proveedor" name="txt_Contacto_Proveedor" value="" class="text-input required=" title="" />
+								<input type="text" id="txt_Direccion_Cliente" name="txt_Direccion_Cliente" value="" class="text-input required=" title="" />
 							</td>
 						</tr>
 					</table>
@@ -191,7 +191,7 @@
 								Telefono
 							</td>
 							<td class="campo" colspan="4">
-								<input type="text" id="txt_Telefono_Proveedor" name="txt_Telefono_Proveedor" value="" class="text-input required=" title="" />
+								<input type="text" id="txt_Telefono_Cliente" name="txt_Telefono_Cliente" value="" class="text-input required=" title="" />
 							</td>
 						</tr>
 						<tr>
@@ -199,8 +199,8 @@
 								Email
 							</td>
 							<td class="campo" colspan="4">
-								<input type="text" id="txt_Email_Proveedor" name="txt_Email_Proveedor" value="" class="text-input required=" title="" />
-								<input type="hidden" name="txt_ID_Proveedor" id="txt_ID_Proveedor">
+								<input type="text" id="txt_Email_Cliente" name="txt_Email_Cliente" value="" class="text-input required=" title="" />
+								<input type="hidden" name="txt_ID_Cliente" id="txt_ID_Cliente">
 							</td>
 						</tr>
 						
@@ -219,6 +219,13 @@
 							<div class="contenido">
 								<a href="#" class="mostrarmodal">
 									<img src="style/images/boton.png">
+								</a>
+							</div>
+						</td>
+						<td class="campo">
+							<div class="contenido">
+								<a href="#" class="mostrarmodal2">
+									<img src="style/images/nuevop.png" width="325px" height="80px">
 								</a>
 							</div>
 						</td>
@@ -257,39 +264,21 @@
 					</tr>
 					<tr>
 						<td class="nombrecampo">
+							Descuento
+						</td>
+						<td class="campo">
+							<input type="text" value="0.00" id="txt_Descuento" name="txt_Descuento" class="text-input required" />
+						</td>
+					</tr>
+					<tr>
+						<td class="nombrecampo">
 							Total
 						</td>
 						<td class="campo">
 							<input type="text" id="txt_Total_Venta" name="txt_Total_Venta" class="text-input required" disabled />
 						</td>
 					</tr>
-					<tr>
-						<td class="nombrecampo">
-							Tipo de Pago
-						</td>
-						<td class="campo">
-							<ol>
-								<label>
-									<select name="Ddl_Tipo_Pago" id="Ddl_Tipo_Pago">
-										<?php
-										 $SQL = "SELECT ID_Tipo_Pago, Descripcion_Tipo_Pago FROM tipo_pago";
-										 $ID = "ID_Tipo_Pago";
-										 $Data = "Descripcion_Tipo_Pago";
-										 Cargar_Combo($SQL,$ID,$Data,'0');
-										?>
-									</select>
-								</label>
-							</ol>
-						</td>
-					</tr>
-					<tr>
-						<td class="nombrecampo">
-							Justificación Compra
-						</td>
-						<td class="campo">
-							<textarea title="Indique el Motivo de Compra" name="txt_Justificacion_Compra" id="txt_Justificacion_Compra" rows="10" cols="50" maxlength="75" required></textarea>
-						</td>
-					</tr>
+					
 					<tr>
 						<td>
 							<input type="submit" value="Cancelar Venta" name="Buscar_Data" class="btn-submit" />
@@ -334,13 +323,13 @@
 									Codigo Producto
 								</td>
 								<td class="campo">
-									<input type="text" id="txt_Codigo_Producto" name="txt_Codigo_Producto" class="text-input required" />
+									<input type="text" id="txt_Codigo_Producto" name="txt_Codigo_Producto" class="text-input required" disabled />
 								</td>
 								<td class="nombrecampo">
 									Descripción Producto
 								</td>
 								<td class="campo">
-									<textarea name="txt_Descripcion_Producto" id="txt_Descripcion_Producto" rows="10" cols="50" maxlength="75"></textarea>
+									<textarea name="txt_Descripcion_Producto" id="txt_Descripcion_Producto" rows="10" cols="50" maxlength="75" disabled></textarea>
 								</td>
 							</tr>
 							<tr>
@@ -354,7 +343,7 @@
 									Precio Unitario
 								</td>
 								<td class="campo">
-									<input id="txt_Precio_Unitario" name="txt_Precio_Unitario" type="text" class="text-input required" />
+									<input id="txt_Precio_Unitario" name="txt_Precio_Unitario" type="text" class="text-input required" disabled="" />
 								</td>
 							</tr>
 							<tr>
@@ -365,7 +354,7 @@
 									<input type="text" id="txt_Existencia" name="txt_Existencia" class="text-input required" disabled="" />
 								</td>
 								<td class="nombrecampo">
-									Cantidad Ingresada
+									Cantidad
 								</td>
 								<td class="campo">
 									<input type="text" value="1" name="txt_Cantidad" id="txt_Cantidad" class="text-input required" enabled/>
@@ -392,6 +381,74 @@
 		</div>
 	</div>
     <!-- *********** MODAL *********** --> 
+
+    <!-- *********** MODAL 2 *********** -->
+		<div class="cajaexterna2">
+			<div class="cajainterna2 animated">
+			    <div class="cajacentrada2">
+		        <h2>Seleccionar Producto</h2>
+		        <p>
+		        	Producto o Servicio<br/> <br/>
+	        		<form class="forms" action="#" accept-charset="utf-8" method="POST">
+					<fieldset>
+				    	<table style="width: 100%;">
+				       		<tr>
+								<td class="nombrecampo">
+									Codigo Producto
+								</td>
+								<td class="campo">
+									<ol>
+										<li class="form-row text-input-row">
+											<input type="text" name="txt_Codigo_Productop" id="txt_Codigo_Productop" value="" class="text-input required" title="" />
+										</li>
+									</ol>
+								</td>
+							</tr>
+							<tr>
+								<td class="nombrecampo">
+									Descripción
+								</td>
+								<td class="campo">
+									<ol>
+										<li class="form-row text-input-row">
+											<textarea name="txt_Descripcion_Productop" id="txt_Descripcion_Productop" rows="10" cols="50" maxlength="75"></textarea>
+										</li>
+									</ol>
+								</td>
+							</tr>
+							<tr>
+								<td class="nombrecampo">
+									Precio Unitario
+								</td>
+								<td class="campo">
+									<ol>
+										<li class="form-row text-input-row">
+											<input type="text" name="txt_Precio_Producto" id="txt_Precio_Productop" value="" class="text-input required" title="" />
+										</li>
+									</ol>
+								</td>
+							</tr>
+				     	</table>
+			       	</fieldset>
+					</form>
+			    </p>
+			    <div class="cerrar">
+			        <a href="#" class="cerrarmodal2">
+			       	<img src="style/images/cerrar.png" height="30px", width="30px">
+			        </a>
+			    </div>
+			    <form class="forms">
+			      <fieldset>
+			      	<a href="#" class="cerrarmodal2">
+			       	<img src="style/images/cerrar.png" height="30px", width="30px">
+			        </a>
+			        <button type="button" onclick="AgregarProducto()" class="btn-submit">Guardar</button>
+			      </fieldset>
+			    </form>
+				</div>
+		</div>
+	</div>
+    <!-- *********** MODAL 2 *********** --> 
 
 </div>
 	<hr>
