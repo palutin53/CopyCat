@@ -1,6 +1,14 @@
 <?php
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
+
+	if(isset($_GET['STD'])){
+		$Estado = 1;
+	}
+	else{
+		$Estado = 0;
+	}
+
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US">
@@ -45,10 +53,10 @@
 <!-- Begin Container -->
 <div class="box">
 
-	<h1 class="title">Registro Salidas y Horarios</h1>
+	<h1 class="title">Retiro Efectivo de Caja</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="Operar_Salidas.php" method="post">
+	<form class="forms" action="Operar_Retiros.php?STD=<?php echo $Estado?>" method="post">
 		<fieldset>
 			<table>
 				<tr>
@@ -70,11 +78,11 @@
 					<td class="campo">
 						<ol>
 							<label>
-								<select name="Ddl_Tipo_Actividad">
+								<select name="Ddl_Tipo_Transaccion">
 									<?php
-									 $SQL = "SELECT ID_Tipo_Actividad, Descripcion_Tipo_Actividad FROM Tipo_Actividad WHERE ID_Tipo_Actividad >= 4;";
-									 $ID = "ID_Tipo_Actividad";
-									 $Data = "Descripcion_Tipo_Actividad";
+									 $SQL = "SELECT ID_Tipo_Transaccion_Monetaria, Descripcion_Tipo_Transaccion_Monetaria FROM tipo_transaccion_monetaria WHERE ID_Tipo_Transaccion_Monetaria >= 5 AND ID_Tipo_Transaccion_Monetaria <= 7;";
+									 $ID = "ID_Tipo_Transaccion_Monetaria";
+									 $Data = "Descripcion_Tipo_Transaccion_Monetaria";
 									 Cargar_Combo($SQL,$ID,$Data,'0');
 									?>
 								</select>
@@ -84,12 +92,59 @@
 				</tr>
 				<tr>
 					<td class="nombrecampo">
+						Concepto
+					</td>
+					<td class="campo">
+						<ol>
+							<label>
+								<select name="Ddl_Concepto_Transaccion">
+									<?php
+									 $SQL = "SELECT ID_Concepto_Transaccion_Monetaria, Descripcion_Concepto_Transaccion_Monetaria FROM concepto_transaccion_monetaria WHERE ID_Concepto_Transaccion_Monetaria >= 7 AND ID_Concepto_Transaccion_Monetaria <> 11;";
+									 $ID = "ID_Tipo_Transaccion_Monetaria";
+									 $Data = "Descripcion_Tipo_Transaccion_Monetaria";
+									 Cargar_Combo($SQL,$ID,$Data,'0');
+									?>
+								</select>
+							</label>
+						</ol>
+					</td>
+				</tr>
+				<tr>
+					<td class="nombrecampo">
+						Monto
+					</td>
+					<td class="campo">
+						<ol>
+							<li class="form-row text-input-row">
+								<input type="text" name="txt_Monto_Retiro" value="" class="text-input required" title="" required />
+							</li>
+						</ol>
+					</td>
+				</tr>
+				<?php
+					if($Estado == 1){
+						echo "<tr>
+								<td class='nombrecampo'>
+									No. Boleta
+								</td>
+								<td class='campo'>
+									<ol>
+										<li class='form-row text-input-row'>
+											<input type='text' name='txt_Boleta_Deposito' value='' class='text-input required' title='' required />
+										</li>
+									</ol>
+								</td>
+							</tr>";
+					}
+				?>
+				<tr>
+					<td class="nombrecampo">
 						Observaciones
 					</td>
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<textarea rows="10" cols="50" name="txt_observaciones_Salida" required></textarea>
+								<textarea rows="10" cols="50" name="txt_Observaciones_Retiro" required></textarea>
 							</li>
 						</ol>
 					</td>

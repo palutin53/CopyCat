@@ -130,7 +130,7 @@ SELECT Fn_Select_Cant_Existente_Kiosco('J11-1','CM-A');
 
 SELECT '0' AS ID_Tipo_Producto, '--SELECCIONE--' AS Descripcion_Tipo_Producto UNION SELECT * FROM tipo_producto;
 
-CALL Inserta_Tipo_Actividad('Almuerzo Regreso');
+CALL Inserta_Tipo_Actividad('Regreso Asistencia/Receso');
 SELECT * FROM Tipo_Actividad;
 
 CALL Inserta_Actividad_Empleado(1,1,'N/A');

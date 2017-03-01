@@ -8,5 +8,10 @@
 
 	SPquery($SP_Actividad);
 
-	header("Location: Portada.php?STD=sal");
+	if($_POST['Ddl_Tipo_Actividad'] != 8){
+		header("Location: Portada.php?STD=sal");
+	}
+	else{
+		header("Location: Retiro_Caja.php?STD=dep");	
+	}
 ?>
