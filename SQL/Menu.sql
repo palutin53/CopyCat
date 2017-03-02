@@ -90,7 +90,7 @@ INSERT INTO copycat.rol_menu (ID_Rol_Menu, Rol_ID_Rol, Sub_Menu_Menu_ID_Menu, Su
 select * from menu;
 SELECT * FROM sub_menu;
 select * from rol;
-
+SELECT * FROM rol_menu;
 
 UPDATE copycat.menu SET Nombre_Menu='Administración' WHERE ID_Menu='5';
 UPDATE copycat.menu SET Nombre_Menu='Cerrar Sesión' WHERE ID_Menu='7';
