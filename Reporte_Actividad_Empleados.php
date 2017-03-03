@@ -153,7 +153,7 @@ require("PHP/Funciones.php");
 		));
 	
 	$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->applyFromArray($estiloTituloReporte);
-	$objPHPExcel->getActiveSheet()->getStyle('A3:V3')->applyFromArray($estiloTituloColumnas);
+	$objPHPExcel->getActiveSheet()->getStyle('A3:E3')->applyFromArray($estiloTituloColumnas);
 
 	// Se asigna el nombre a la hoja
 	$objPHPExcel->getActiveSheet()->setTitle('Actividad_Empleados');
