@@ -267,20 +267,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-		
-		<link rel="stylesheet" href="style/Tabs.css">
-		<link rel="stylesheet" href="style/Fonts-Tabs.css">
-		<link rel="stylesheet" href="style/sky-tabs.css">
-		
-		<!--[if lt IE 9]>
-			<link rel="stylesheet" href="css/sky-tabs-ie8.css">
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-			<script src="js/sky-tabs-ie8.js"></script>
-		<![endif]-->
-
-<title>Recursos Humanos</title>
+<title>CopyCat</title>
 <link rel="stylesheet" type="text/css" media="all" href="style.css" />
 <link rel="stylesheet" type="text/css" href="style/css/media-queries.css" />
 <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300,700,700italic|Open+Sans+Condensed:300,700' rel="stylesheet" type='text/css'>-->
@@ -299,9 +286,7 @@
 <script type="text/javascript" src="style/js/jquery.backstretch.min.js"></script>
 <script type="text/javascript" src="style/js/jquery.dcflickr.1.0.js"></script>
 <script type="text/javascript" src="style/js/twitter.min.js"></script>
-<script type="text/javascript">
-	$.backstretch("style/images/bg/Movistar.jpg");
-</script>
+
 </head>
 <body>
 <div class="scanlines"></div>
@@ -314,13 +299,13 @@
 
 <!-- Begin Wrapper -->
 <div class="wrapper"><!-- Begin Intro -->
-<div class="intro">Recursos Humanos</div>
+<div class="intro">COPYCAT</div>
 <!-- End Intro --> 
 
 <!-- Begin Container -->
 <div class="box">
 
-	<h1 class="title">Alta de Personal</h1>
+	<h1 class="title">Registro de Horarios</h1>
 	<hr>
 <div class="form-container">
 <form class="forms" action="" method="post">

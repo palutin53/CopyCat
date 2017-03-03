@@ -1,5 +1,6 @@
 <?php
-
+include("PHP/db_connect.php");
+require("PHP/Funciones.php");
 /** Se agrega la libreria PHPExcel */
 	require_once 'PHP/PHPExcel/classes/PHPExcel.php';
 
@@ -9,8 +10,8 @@
 	 $objPHPExcel = new PHPExcel();
 
 	 // Se asignan las propiedades del libro
-	$objPHPExcel->getProperties()->setCreator("Recursos Humanos") // Nombre del autor
-    ->setLastModifiedBy("Recursos Humanos") //Ultimo usuario que lo modificó
+	$objPHPExcel->getProperties()->setCreator("copycat") // Nombre del autor
+    ->setLastModifiedBy("copycat") //Ultimo usuario que lo modificó
     ->setTitle("Reporte General Actividad Empleados") // Titulo
     ->setSubject("Reporte General Actividad Empleados") //Asunto
     ->setDescription("Reporte de Actividad Empleados") //Descripción
@@ -18,7 +19,7 @@
     ->setCategory("Reporte de Actividad Empleados"); //Categorias
 
     $tituloReporte = "Reporte General de Actividad Empleados";
-	$titulosColumnas = array('FECHA_ACTIVIDAD', 'TIPO_DE_ACTVIDAD', 'ID_EMPLEADO', 'JUSTIFICACION_ACTIVIDAD_EMPLEADO');
+	$titulosColumnas = array('NOMBRE','FECHA_ACTIVIDAD', 'TIPO_DE_ACTVIDAD', 'JUSTIFICACION', 'KIOSCO');
 
 	$objPHPExcel->setActiveSheetIndex(0)->mergeCells('A1:E1');
 
@@ -28,11 +29,12 @@
     	->setCellValue('B3', $titulosColumnas[1])
     	->setCellValue('C3', $titulosColumnas[2])
     	->setCellValue('D3', $titulosColumnas[3])
+    	->setCellValue('E3', $titulosColumnas[4]);
     $queryText_Reporte = "SELECT 
 						    ae.Fecha_Actividad,
 						    CONCAT(e.Nombre_Empleado,
 						            ' ',
-						            e.Apellido_Empleado),
+						            e.Apellido_Empleado) Nombre,
 						    ta.Descripcion_Tipo_Actividad,
 						    IFNULL(ae.Justificacion_Actividad_Empleado, 'N/A') Justificacion,
 						    k.Descripcion_Kiosco
@@ -50,10 +52,11 @@
     $i = 4; //Numero de fila donde se va a comenzar a rellenar
 	 while ($Data_Record = mysqli_fetch_array($Resultado_Data)) {
 	     $objPHPExcel->setActiveSheetIndex(0)
-	         ->setCellValue('A'.$i, $Data_Record['Fecha_Actividad'])
-	         ->setCellValue('B'.$i, $Data_Record['Tipo_Actividad_ID_Tipo_Actividad'])
-	         ->setCellValue('C'.$i, $Data_Record['Empleado_ID_Empleado'])
-	         ->setCellValue('D'.$i, $Data_Record['Justificacion_Actividad_Empleado']);
+	         ->setCellValue('A'.$i, $Data_Record['Nombre'])
+	         ->setCellValue('B'.$i, $Data_Record['Fecha_Actividad'])
+	         ->setCellValue('C'.$i, $Data_Record['Descripcion_Tipo_Actividad'])
+	         ->setCellValue('D'.$i, $Data_Record['Justificacion'])
+	         ->setCellValue('E'.$i, $Data_Record['Descripcion_Kiosco']);
 	     $i++;
 	 }
 
@@ -179,20 +182,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-		
-		<link rel="stylesheet" href="style/Tabs.css">
-		<link rel="stylesheet" href="style/Fonts-Tabs.css">
-		<link rel="stylesheet" href="style/sky-tabs.css">
-		
-		<!--[if lt IE 9]>
-			<link rel="stylesheet" href="css/sky-tabs-ie8.css">
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-			<script src="js/sky-tabs-ie8.js"></script>
-		<![endif]-->
-
-<title>Recursos Humanos</title>
+<title>CopyCat</title>
 <link rel="stylesheet" type="text/css" media="all" href="style.css" />
 <link rel="stylesheet" type="text/css" href="style/css/media-queries.css" />
 <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300,700,700italic|Open+Sans+Condensed:300,700' rel="stylesheet" type='text/css'>-->
@@ -211,9 +201,7 @@
 <script type="text/javascript" src="style/js/jquery.backstretch.min.js"></script>
 <script type="text/javascript" src="style/js/jquery.dcflickr.1.0.js"></script>
 <script type="text/javascript" src="style/js/twitter.min.js"></script>
-<script type="text/javascript">
-	$.backstretch("style/images/bg/Movistar.jpg");
-</script>
+
 </head>
 <body>
 <div class="scanlines"></div>
@@ -226,13 +214,13 @@
 
 <!-- Begin Wrapper -->
 <div class="wrapper"><!-- Begin Intro -->
-<div class="intro">Recursos Humanos</div>
+<div class="intro">COPYCAT</div>
 <!-- End Intro --> 
 
 <!-- Begin Container -->
 <div class="box">
 
-	<h1 class="title">Actividad Empleados</h1>
+	<h1 class="title">Registro de Horarios</h1>
 	<hr>
 <div class="form-container">
 <form class="forms" action="" method="post">
@@ -241,33 +229,20 @@
 
 <div class="body">
 		
-			<!-- tabs -->
-			<div class="sky-tabs sky-tabs-pos-top-left sky-tabs-anim-flip sky-tabs-response-to-icons">
-				<input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
-				<label for="sky-tab1"><span><span><i class="fa fa-bolt"></i>Reporte General Actividad Empleados</span></span></label>
-				
-				<ul>
-					<li class="sky-tab-content-1">					
-						<div class="">
-							<h4>Reporte General Actividad Empleados</h4>
-							<form class="forms" action="Reporte_General.php" method="post">
-						  <table>
+	<form class="forms" action="Reporte_General.php" method="post">
+						    <table>
 								<tr>
 									<td class="nombrecampo">
 										Buscar Empleado
 									</td>
 									<td class="campo">
-										<ol>
-										<li class="form-row text-input-row">
 										<input type="text" name="txt_Busqueda_Empleado" value="" class="text-input required" title="" />
-										</li>
-										</ol>
 									</td>
 									<td class="campo">
-										<li class="button-row"><input type="submit" value="Buscar" name="Buscar_Data" class="btn-submit" />
+										<input type="submit" value="Buscar" name="Buscar_Data" class="btn-submit" />
 									</td>
 									<td class="campo">
-										<li class="button-row"><input type="submit" value="Descargar Reporte" name="Descarga_Reporte" class="btn-submit" />
+										<input type="submit" value="Descargar Reporte" name="Descarga_Reporte" class="btn-submit" />
 									</td>
 								</tr>								
 							</table>
@@ -275,20 +250,20 @@
 
 						  <table class="tableData">
 										<tr class="TableHeader">
+											<td><span class="ColumnHeader"><STRONG>NOMBRE</STRONG></span></td>
 											<td><span class="ColumnHeader"><STRONG>FECHA ACTIVIDAD</STRONG></span></td>
 											<td><span class="ColumnHeader"><STRONG>TIPO DE ACTIVIDAD</STRONG></span></td>
-											<td><span class="ColumnHeader"><STRONG>ID EMPLEADO</STRONG></span></td>
-											<td><span class="ColumnHeader"><STRONG>JUSTIFIACIÓN</STRONG></span></td>
+											<td><span class="ColumnHeader"><STRONG>JUSTIFICACIÓN</STRONG></span></td>
+											<td><span class="ColumnHeader"><STRONG>KIOSCO</STRONG></span></td>
 											
 										</tr>
 									<?php
 									/*----------------------Consulta de Parqueos-------------------*/
-									if($data == 0){
 									$queryText = "SELECT 
 													    ae.Fecha_Actividad,
 													    CONCAT(e.Nombre_Empleado,
 													            ' ',
-													            e.Apellido_Empleado),
+													            e.Apellido_Empleado) Nombre,
 													    ta.Descripcion_Tipo_Actividad,
 													    IFNULL(ae.Justificacion_Actividad_Empleado, 'N/A') Justificacion,
 													    k.Descripcion_Kiosco
@@ -300,25 +275,6 @@
 													    tipo_actividad ta ON ta.ID_Tipo_Actividad = ae.Tipo_Actividad_ID_Tipo_Actividad
 															INNER JOIN
 														kiosco k ON e.Kiosco_ID_Kiosco = k.ID_Kiosco ORDER BY ae.Fecha_Actividad;";
-									}
-									else{
-									$queryText = "SELECT 
-													    ae.Fecha_Actividad,
-													    CONCAT(e.Nombre_Empleado,
-													            ' ',
-													            e.Apellido_Empleado),
-													    ta.Descripcion_Tipo_Actividad,
-													    IFNULL(ae.Justificacion_Actividad_Empleado, 'N/A') Justificacion,
-													    k.Descripcion_Kiosco
-													FROM
-													    actividad_empleado ae
-													        INNER JOIN
-													    empleado e ON ae.Empleado_ID_Empleado = e.ID_Empleado
-													        INNER JOIN
-													    tipo_actividad ta ON ta.ID_Tipo_Actividad = ae.Tipo_Actividad_ID_Tipo_Actividad
-															INNER JOIN
-														kiosco k ON e.Kiosco_ID_Kiosco = k.ID_Kiosco ORDER BY ae.Fecha_Actividad;" . $WHERE_Info;	
-									}
 
 									$Paqueo_Result = mquery($queryText) or die ("Error al intentar Conectar: " . mysql_error());
 									/*-----------------------------------------------------------*/
@@ -334,27 +290,23 @@
 											}					
 									?>
 											<tr class="<?php echo($tabledetailclass); ?>">
+												<td><?php echo($Parqueo_Record["Nombre"]);?></td>
 												<td><?php echo($Parqueo_Record["Fecha_Actividad"]);?></td>
-												<td><?php echo(utf8_encode($Parqueo_Record["Tipo_Actividad_ID_Tipo_Actividad"]));?></td>
-												<td><?php echo($Parqueo_Record["Empleado_ID_Empleado"]);?></td>
-												<td><?php echo(utf8_encode($Parqueo_Record["Justificacion_Actividad_Empleado"]));?></td>												
+												<td><?php echo(utf8_encode($Parqueo_Record["Descripcion_Tipo_Actividad"]));?></td>
+												<td><?php echo($Parqueo_Record["Justificacion"]);?></td>
+												<td><?php echo(utf8_encode($Parqueo_Record["Descripcion_Kiosco"]));?></td>												
 											</tr>
 									<?php
 										$i++;
 										endwhile;				
 									?>
-						  </table>
-
-						</div>
-					</li>
-				</ul>
-			</div>
-			<!--/ tabs -->
+						  </table>			
 			
-		</div>
+</div>
 
 <!-- *******************************************************-->
-<li class="button-row"><input type="submit" value="Descargar Reporte" name="submit" class="btn-submit" />
+<li class="button-row">
+<input type="submit" value="Descargar Reporte" name="submit" class="btn-submit" />
 </fieldset>
 </form>
 	<br>
