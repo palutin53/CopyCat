@@ -1,8 +1,26 @@
 <?php
-session_start();
-$ID_KC = $_SESSION["Kiosco_Cod"];
+include("PHP/db_connect.php");
+require("PHP/Funciones.php");
 /** Se agrega la libreria PHPExcel */
 	require_once 'PHP/PHPExcel/classes/PHPExcel.php';
+
+	if(isset($_POST['Buscar_Data'])){
+
+			if(isset($_POST['txt_Busqueda_Empleado'])){
+				$Dato = $_POST['txt_Busqueda_Empleado'];
+				$data = 1;
+				$WHERE_Info = "WHERE k.Descripcion_Kiosco LIKE '%" . $Dato . "%' ORDER BY tm.Fecha_Transaccion_Monetaria DESC;";
+			}
+			else
+			{
+				$Dato = "";
+				$data = 0;
+			}
+	}
+	else{
+		$Dato = "";
+		$data = 0;
+	}
 
 	if(isset($_POST['Descarga_Reporte'])){
 
@@ -10,8 +28,8 @@ $ID_KC = $_SESSION["Kiosco_Cod"];
 	 $objPHPExcel = new PHPExcel();
 
 	 // Se asignan las propiedades del libro
-	$objPHPExcel->getProperties()->setCreator("Recursos Humanos") // Nombre del autor
-    ->setLastModifiedBy("Recursos Humanos") //Ultimo usuario que lo modificó
+	$objPHPExcel->getProperties()->setCreator("copycat") // Nombre del autor
+    ->setLastModifiedBy("copycat") //Ultimo usuario que lo modificó
     ->setTitle("Reporte General Movimiento de Efectivo Total por Kiosco") // Titulo
     ->setSubject("Reporte General Movimiento de Efectivo Total por Kiosco") //Asunto
     ->setDescription("Reporte de Movimiento de Efectivo Total por Kiosco") //Descripción
@@ -27,7 +45,7 @@ $ID_KC = $_SESSION["Kiosco_Cod"];
     	->setCellValue('A1', $tituloReporte) // Titulo del reporte
     	->setCellValue('A3', $titulosColumnas[0])  //Titulo de las columnas
     	->setCellValue('B3', $titulosColumnas[1])
-    	->setCellValue('C3', $titulosColumnas[2])
+    	->setCellValue('C3', $titulosColumnas[2]);
     $queryText_Reporte = "
 						SELECT 
 						    tm.Kiosco_ID_Kiosco,
@@ -148,7 +166,7 @@ $ID_KC = $_SESSION["Kiosco_Cod"];
 		));
 	
 	$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->applyFromArray($estiloTituloReporte);
-	$objPHPExcel->getActiveSheet()->getStyle('A3:V3')->applyFromArray($estiloTituloColumnas);
+	$objPHPExcel->getActiveSheet()->getStyle('A3:E3')->applyFromArray($estiloTituloColumnas);
 
 	// Se asigna el nombre a la hoja
 	$objPHPExcel->getActiveSheet()->setTitle('Movimiento_Efectivo_Total_por_Factura');
@@ -177,20 +195,7 @@ $ID_KC = $_SESSION["Kiosco_Cod"];
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-		
-		<link rel="stylesheet" href="style/Tabs.css">
-		<link rel="stylesheet" href="style/Fonts-Tabs.css">
-		<link rel="stylesheet" href="style/sky-tabs.css">
-		
-		<!--[if lt IE 9]>
-			<link rel="stylesheet" href="css/sky-tabs-ie8.css">
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-			<script src="js/sky-tabs-ie8.js"></script>
-		<![endif]-->
-
-<title>Recursos Humanos</title>
+<title>CopyCat</title>
 <link rel="stylesheet" type="text/css" media="all" href="style.css" />
 <link rel="stylesheet" type="text/css" href="style/css/media-queries.css" />
 <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300,700,700italic|Open+Sans+Condensed:300,700' rel="stylesheet" type='text/css'>-->
@@ -209,9 +214,7 @@ $ID_KC = $_SESSION["Kiosco_Cod"];
 <script type="text/javascript" src="style/js/jquery.backstretch.min.js"></script>
 <script type="text/javascript" src="style/js/jquery.dcflickr.1.0.js"></script>
 <script type="text/javascript" src="style/js/twitter.min.js"></script>
-<script type="text/javascript">
-	$.backstretch("style/images/bg/Movistar.jpg");
-</script>
+
 </head>
 <body>
 <div class="scanlines"></div>
@@ -224,7 +227,7 @@ $ID_KC = $_SESSION["Kiosco_Cod"];
 
 <!-- Begin Wrapper -->
 <div class="wrapper"><!-- Begin Intro -->
-<div class="intro">Recursos Humanos</div>
+<div class="intro">COPYCAT</div>
 <!-- End Intro --> 
 
 <!-- Begin Container -->
@@ -239,33 +242,20 @@ $ID_KC = $_SESSION["Kiosco_Cod"];
 
 <div class="body">
 		
-			<!-- tabs -->
-			<div class="sky-tabs sky-tabs-pos-top-left sky-tabs-anim-flip sky-tabs-response-to-icons">
-				<input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
-				<label for="sky-tab1"><span><span><i class="fa fa-bolt"></i>Reporte General Movimiento de Efectivo Total por Kiosco</span></span></label>
-				
-				<ul>
-					<li class="sky-tab-content-1">					
-						<div class="">
-							<h4>Reporte General Movimiento de Efectivo Total por Kiosco</h4>
-							<form class="forms" action="Reporte_General.php" method="post">
-						  <table>
+						  <form class="forms" action="Reporte_General.php" method="post">
+						  	<table>
 								<tr>
 									<td class="nombrecampo">
 										Buscar Kiosco
 									</td>
 									<td class="campo">
-										<ol>
-										<li class="form-row text-input-row">
 										<input type="text" name="txt_Busqueda_Empleado" value="" class="text-input required" title="" />
-										</li>
-										</ol>
 									</td>
 									<td class="campo">
-										<li class="button-row"><input type="submit" value="Buscar" name="Buscar_Data" class="btn-submit" />
+										<input type="submit" value="Buscar" name="Buscar_Data" class="btn-submit" />
 									</td>
 									<td class="campo">
-										<li class="button-row"><input type="submit" value="Descargar Reporte" name="Descarga_Reporte" class="btn-submit" />
+										<input type="submit" value="Descargar Reporte" name="Descarga_Reporte" class="btn-submit" />
 									</td>
 								</tr>								
 							</table>
@@ -280,12 +270,10 @@ $ID_KC = $_SESSION["Kiosco_Cod"];
 										</tr>
 									<?php
 									/*----------------------Consulta de Parqueos-------------------*/
-									if($data == 0){
-									$queryText = "
-												SELECT 
+									$queryText = "SELECT 
 												    tm.Kiosco_ID_Kiosco,
 												    k.Descripcion_Kiosco,
-												    SUM(tm.Monto_Transaccion_Monetaria) TOTAL_DIA
+												    SUM(tm.Monto_Transaccion_Monetaria) Total_Dia
 												FROM
 												    transaccion_monetaria tm
 												        INNER JOIN
@@ -294,26 +282,7 @@ $ID_KC = $_SESSION["Kiosco_Cod"];
 												    tipo_transaccion_monetaria ttm ON tm.ID_Tipo_Transaccion_Monetaria = ttm.ID_Tipo_Transaccion_Monetaria
 												        INNER JOIN
 												    concepto_transaccion_monetaria ctm ON tm.ID_Concepto_Transaccion_Monetaria = ctm.ID_Concepto_Transaccion_Monetaria 
-												WHERE tm.Kiosco_ID_Kiosco = '".$ID_KC."' and tm.ID_Tipo_Transaccion_Monetaria = 1;
-						   						";
-									}
-									else{
-									$queryText = "
-												SELECT 
-												    tm.Kiosco_ID_Kiosco,
-												    k.Descripcion_Kiosco,
-												    SUM(tm.Monto_Transaccion_Monetaria) TOTAL_DIA
-												FROM
-												    transaccion_monetaria tm
-												        INNER JOIN
-												    kiosco k ON tm.Kiosco_ID_Kiosco = k.ID_Kiosco
-												        INNER JOIN
-												    tipo_transaccion_monetaria ttm ON tm.ID_Tipo_Transaccion_Monetaria = ttm.ID_Tipo_Transaccion_Monetaria
-												        INNER JOIN
-												    concepto_transaccion_monetaria ctm ON tm.ID_Concepto_Transaccion_Monetaria = ctm.ID_Concepto_Transaccion_Monetaria 
-												WHERE tm.Kiosco_ID_Kiosco = '".$ID_KC."' and tm.ID_Tipo_Transaccion_Monetaria = 1;
-						   						";. $WHERE_Info;
-									}
+												WHERE tm.Kiosco_ID_Kiosco = k.ID_Kiosco and tm.ID_Tipo_Transaccion_Monetaria = 1;";
 
 									$Paqueo_Result = mquery($queryText) or die ("Error al intentar Conectar: " . mysql_error());
 									/*-----------------------------------------------------------*/
@@ -338,18 +307,13 @@ $ID_KC = $_SESSION["Kiosco_Cod"];
 										$i++;
 										endwhile;				
 									?>
-						  </table>
-
-						</div>
-					</li>
-				</ul>
-			</div>
-			<!--/ tabs -->
+						  </table>			
 			
-		</div>
+</div>
 
 <!-- *******************************************************-->
-<li class="button-row"><input type="submit" value="Descargar Reporte" name="submit" class="btn-submit" />
+<li class="button-row">
+<input type="submit" value="Descargar Reporte" name="Descarga_Reporte" class="btn-submit" />
 </fieldset>
 </form>
 	<br>
