@@ -306,7 +306,7 @@ require("PHP/Funciones.php");
 
 <!-- *******************************************************-->
 <li class="button-row">
-<input type="submit" value="Descargar Reporte" name="submit" class="btn-submit" />
+<input type="submit" value="Descargar Reporte" name="Descarga_Reporte" class="btn-submit" />
 </fieldset>
 </form>
 	<br>
