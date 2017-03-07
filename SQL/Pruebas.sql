@@ -248,3 +248,13 @@ WHERE
         AND tm.ID_Tipo_Transaccion_Monetaria IN (4 , 5, 6, 7);
 
 SELECT Fn_Efectivo_Caja('J11-1') Total;
+
+SELECT * FROM encabezado_factura WHERE Num_Factura_Encabezado_Factura = 'TS-12';
+SELECT * FROM detalle_encabezado_factura WHERE Num_Encabezado_Factura = 'J11-1-FA20';
+SELECT 
+    *
+FROM
+    linea_detalle_encabezado_factura
+WHERE
+    Factura_Encabezado_Factura_Num_Encabezado_Factura = 'J11-1-FA20'
+        AND Factura_ID_Detalle_Encabezado_Factura = '3';
