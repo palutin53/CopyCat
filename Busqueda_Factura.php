@@ -1,18 +1,6 @@
 <?php
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
-
-	if(isset($_GET['STD'])){
-		if($_GET['STD'] == 'cr'){
-			echo "<script type='text/javascript'>alert('Credenciales Actualizadas con Exito.');</script>";
-		}
-		else if($_GET['STD'] == 'al'){
-			echo "<script type='text/javascript'>alert('Salida a almuerzo Registrada.');</script>";	
-		}
-		else if($_GET['STD'] == 'sal'){
-			echo "<script type='text/javascript'>alert('Salida Registrada Correctamente.');</script>";	
-		}
-	}
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US">
@@ -52,77 +40,47 @@
 
 <!-- Begin Wrapper -->
 <div class="wrapper"><!-- Begin Intro -->
-<div class="intro">CopyCat</div>
+<div class="intro">COPYCAT</div>
 <!-- End Intro --> 
 
 <!-- Begin Container -->
 <div class="box">
 
-	<h1 class="title">Reportes Administrativos</h1>
+	<h1 class="title">Busqueda de Facturas</h1>
 	<!-- <img src="style/images/bg/Logo2.jpg" id='logo'> -->
 <div class="form-container">
-	<form class="forms" action="Mostrar_Reporte.php" method="post">
+	<form class="forms" action="Busqueda_Ventas_Factura.php" method="post">
 		<fieldset>
 			<table>
 				<tr>
 					<td class="nombrecampo">
-						Seleccione su Reporte
+						No. Factura
 					</td>
 					<td class="campo">
-						<ol>
-							<label>
-								<select name="Ddl_Reporte">
+						<input type="text" name="txt_Num_Factura_Busqueda" id="txt_Num_Factura_Busqueda" value="" class="text-input required=" title="" required/>
+					</td>
+				</tr>
+				<tr>
+					<td class="nombrecampo">
+						Tipo de Incidencia
+					</td>
+					<td class="campo">
+						<label>
+								<select name="DDl_Tipo_Inc">
 									<option value="#">--SELECCIONE--</option>
-									<option value="Reporte_Actividad_Empleados.php">
-										Reporte Actividad Empleados
+									<option value="1">
+										Reclamo Productos
 									</option>
-									<option value="Reporte_Movimiento_Efectivo.php">
-										Reporte Movimiento de Efectivo
-									</option>
-									<option value="Reporte_Venta_por_Kiosco.php">
-										Reporte Venta por Kiosco
-									</option>
-									<option value="Reporte_Venta_por_Empleado.php">
-										Reporte Venta por Empleado
-									</option>
-									<option value="Reporte_Venta_por_Factura.php">
-										Reporte Venta por Factura
-									</option>
-									<option value="Reporte_Pagos_con_Tarjeta_Kiosco.php">
-										Reporte Pagos con Tarjeta por Kiosco
-									</option>
-									<option value="Reporte_Retiros_Caja_por_Kiosco.php">
-										Reporte Retiro de Efectivo por Kiosco
-									</option>
-									<option value="Reporte_Comisiones_por_Empleado_Anual.php">
-										Reporte Comisiones por Empleado Anual
-									</option>
-									<option value="Reporte_Comisiones_por_Empleado_Mensual.php">
-										Reporte Comisiones por Empleado Mensual
-									</option>
-									<option value="Reporte_Comisiones_por_Empleado_Diaria.php">
-										Reporte Comisiones por Empleado Diario
-									</option>
-									<option value="Reporte_Movimiento_Efectivo_por_Factura.php">
-										Reporte Movimiento de Efectivo por Factura
-									</option>
-									<option value="Reporte_Movimiento_Efectivo_Total_por_Factura.php">
-										Reporte Movimiento de Efectivo Total por Factura
-									</option>
-									<option value="Reporte_Movimiento_Efectivo_Total_por_Kiosco.php">
-										Reporte Movimiento de Efectivo Total por Kiosco
-									</option>
-									<option value="Reporte_Movimiento_Efectivo_por_Kiosco.php">
-										Reporte Movimiento de Efectivo por Kiosco
+									<option value="2">
+										Devolucion de Efectivo
 									</option>
 								</select>
-							</label>
-						</ol>
+						</label>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="submit" value="Generar" name="submit" class="button edit" />
+						<input type="submit" value="Buscar" name="submit" class="button edit" />
 					</td>
 				</tr>
 			</table>
