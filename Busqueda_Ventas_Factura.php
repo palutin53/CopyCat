@@ -2,6 +2,30 @@
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
 	
+	$Num_Fac = $_POST['txt_Num_Factura_Busqueda'];
+	$Tipo_Inc = $_POST['DDl_Tipo_Inc'];
+
+	$QueryEncabezado = "SELECT 
+						    Num_Encabezado_Factura,
+						    Fecha_Encabezado_Factura,
+						    Tipo_Pago_ID_Tipo_Pago,
+						    Estudio_Mercado_ID_Estudio_Mercado,
+						    Descuento_Encabezado_Factura,
+						    Total_Venta_Encabezado_Factura
+						FROM
+						    encabezado_factura
+						WHERE
+						    Num_Factura_Encabezado_Factura = '" . $Num_Fac . "';";
+	$Encabezado_result = mquery($QueryEncabezado);	
+	$Encabezado_Data = mysqli_fetch_array($Encabezado_result);
+
+	$Num_Enc_Fac = $Encabezado_Data["Num_Encabezado_Factura"];
+	$Fecha_Enc_Fac = $Encabezado_Data["Fecha_Encabezado_Factura"];
+	$Tipo_Pa = $Encabezado_Data["Tipo_Pago_ID_Tipo_Pago"];
+	$Estudio = $Encabezado_Data["Estudio_Mercado_ID_Estudio_Mercado"];
+	$Desc_Enc = $Encabezado_Data["Descuento_Encabezado_Factura"];
+	$Total_Fact = $Encabezado_Data["Total_Venta_Encabezado_Factura"];
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -154,13 +178,13 @@
 					N.Factura
 				</td>
 				<td class="campo">
-					<input type="text" name="txt_Num_Factura" id="txt_Num_Factura" value="" class="text-input required=" title="" disabled/>
+					<input type="text" name="txt_Num_Factura" id="txt_Num_Factura" value="<?php echo $Num_Fac?>" class="text-input required=" title="" disabled/>
 				</td>
 				<td class="nombreclase">
 					Fecha
 				</td>
 				<td class="campo">
-					<input type="text" name="txt_Fecha_Factura" id="txt_Fecha_Factura" value="<?php $time = time(); echo date("d-m-Y (H:i:s)", $time);?>" class="text-input required" title="" disabled/>
+					<input type="text" name="txt_Fecha_Factura" id="txt_Fecha_Factura" value="<?php echo $Fecha_Enc_Fac?>" class="text-input required" title="" disabled/>
 				</td>
 			</tr>
 		</table>
@@ -225,10 +249,9 @@
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final sub-div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 			</div>	
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-		<div class="linea"></div>
+		<!--<div class="linea"></div>
 		<div class="clear1"></div>
-		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-			
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			<table>
 					<tr>
 						<td class="campo">
@@ -239,7 +262,7 @@
 							</div>
 						</td>
 					</tr>
-			</table>
+			</table>-->
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 		<div class="linea"></div>
 		<div class="clear1"></div>
@@ -252,8 +275,78 @@
 						<td><span class="ColumnHeader"><STRONG>Descripción</STRONG></span></td>
 						<td><span class="ColumnHeader"><STRONG>Precio Q.</STRONG></span></td>
 						<td><span class="ColumnHeader"><STRONG>Total</STRONG></span></td>
-						<td><span class="ColumnHeader"><STRONG>Accion</STRONG></span></td>
 					</tr>
+
+					<?php
+					$QueryDetalle = "SELECT 
+										'0.00' AS Total_Detalle_Encabezado_Factura, '--' AS 
+										Cantidad_Producto_Detalle_Encabezado_Factura,
+										'--' AS Producto_Servicio_Cod_Producto_Servicio, '--' AS Descripcion_Producto_Servicio,
+										'--' AS Precio_Producto_Servicio, '0' AS ID_Detalle_Encabezado_Factura
+									UNION 
+									SELECT 
+										def.Total_Detalle_Encabezado_Factura,
+									    def.Cantidad_Producto_Detalle_Encabezado_Factura,
+									    def.Producto_Servicio_Cod_Producto_Servicio,
+									    p.Descripcion_Producto_Servicio,
+									    p.Precio_Producto_Servicio,
+									    def.ID_Detalle_Encabezado_Factura
+									FROM
+									    detalle_encabezado_factura def
+									    INNER JOIN producto_servicio p ON def.Producto_Servicio_Cod_Producto_Servicio = p.Cod_Producto_Servicio
+									WHERE
+									    def.Num_Encabezado_Factura = '" . $Num_Enc_Fac . "';";
+					$Detalle_result = mquery($QueryDetalle);	
+					$Detalle_Data = mysqli_fetch_array($Detalle_result);
+
+					$i = 0;
+					while ($Detalle_Data = mysqli_fetch_array($Detalle_result)) :
+						if ($i % 2 == 0) $tabledetailclass = "TableDetail1"; 
+						else $tabledetailclass = "TableDetail2";
+					?>
+						<tr class="<?php echo($tabledetailclass); ?>">
+							<td>
+								<span class="ColumnHeader">
+									<STRONG>
+											<?php echo($Detalle_Data["Cantidad_Producto_Detalle_Encabezado_Factura"]); ?>
+										</a>
+									</STRONG>
+								</span>
+							</td>
+							<td>
+								<span class="ColumnHeader">
+									<STRONG>
+										<?php echo($Detalle_Data["Producto_Servicio_Cod_Producto_Servicio"]); ?>
+									</STRONG>
+								</span>
+							</td>
+							<td>
+								<span class="ColumnHeader">
+									<STRONG>
+										<?php echo($Detalle_Data["Descripcion_Producto_Servicio"]); ?>
+									</STRONG>
+								</span>
+							</td>
+							<td>
+								<span class="ColumnHeader">
+									<STRONG>
+									<?php echo($Detalle_Data["Precio_Producto_Servicio"]); ?>
+									</STRONG>
+								</span>
+							</td>
+							<td>
+								<span class="ColumnHeader">
+									<STRONG>
+										<?php echo($Detalle_Data["Total_Detalle_Encabezado_Factura"]); ?>
+									</STRONG>
+								</span>
+							</td>
+						</tr>
+				<?php
+					$i++;
+					endwhile;
+				?>
+
 				</tbody>
 			</table>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Final div 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -268,7 +361,7 @@
 							Importe
 						</td>
 						<td class="campo">
-							<input type="text" id="total_importe" name="total_importe" class="text-input required" />
+							<input type="text" id="total_importe" name="total_importe" class="text-input required" disabled value="<?php echo $Total_Fact?>" />
 						</td>
 					</tr>
 					<tr>
@@ -276,7 +369,7 @@
 							Descuento
 						</td>
 						<td class="campo">
-							<input type="text" value="0.00" id="txt_Descuento" name="txt_Descuento" class="text-input required" />
+							<input type="text" value="<?php echo $Desc_Enc?>" id="txt_Descuento" name="txt_Descuento" class="text-input required" disabled  />
 						</td>
 					</tr>
 					<tr>
@@ -284,7 +377,7 @@
 							Total
 						</td>
 						<td class="campo">
-							<input type="text" id="txt_Total_Venta" name="txt_Total_Venta" class="text-input required" disabled />
+							<input type="text" id="txt_Total_Venta" name="txt_Total_Venta" class="text-input required" disabled value="<?php echo $Total_Fact?>"/>
 						</td>
 					</tr>
 					<tr>
@@ -294,12 +387,12 @@
 						<td class="campo">
 							<ol>
 								<label>
-									<select name="Ddl_Tipo_Pago" id="Ddl_Tipo_Pago">
+									<select name="Ddl_Tipo_Pago" id="Ddl_Tipo_Pago" disabled>
 										<?php
 										 $SQL = "SELECT ID_Tipo_Pago, Descripcion_Tipo_Pago FROM tipo_pago";
 										 $ID = "ID_Tipo_Pago";
 										 $Data = "Descripcion_Tipo_Pago";
-										 Cargar_Combo($SQL,$ID,$Data,'0');
+										 Cargar_Combo($SQL,$ID,$Data,$Tipo_Pa);
 										?>
 									</select>
 								</label>
@@ -313,24 +406,75 @@
 						<td class="campo">
 							<ol>
 								<label>
-									<select name="Ddl_Estudio_Mercado" id="Ddl_Estudio_Mercado">
+									<select name="Ddl_Estudio_Mercado" id="Ddl_Estudio_Mercado" disabled>
 										<?php
 										 $SQL = "SELECT ID_Estudio_Mercado, Detalle_Estudio_Mercado FROM estudio_mercado";
 										 $ID = "ID_Estudio_Mercado";
 										 $Data = "Detalle_Estudio_Mercado";
-										 Cargar_Combo($SQL,$ID,$Data,'0');
+										 Cargar_Combo($SQL,$ID,$Data,$Estudio);
 										?>
 									</select>
 								</label>
 							</ol>
 						</td>
 					</tr>
+				</table>
+				<div class="clear1"></div>
+				<div class="linea"></div>
+				<table>
 					<tr>
-						<td>
-							<input type="submit" value="Cancelar Venta" name="Buscar_Data" class="btn-submit" />
+						<td class="nombrecampo">
+							Tipo Incidencia
 						</td>
 						<td class="campo">
-							<input type="submit" value="Procesar Venta" name="Buscar_Data" id="btnRecorrer" class="btn-submit" />
+							<ol>
+								<label>
+									<select name="Ddl_Estudio_Mercado" id="Ddl_Estudio_Mercado" disabled>
+										<?php
+										 	$SQL = "SELECT ID_Tipo_Incidencia, Descripcion_Tipo_Incidencia FROM tipo_incidencia";
+											$ID = "ID_Tipo_Incidencia";
+											$Data = "Descripcion_Tipo_Incidencia";
+										 	Cargar_Combo($SQL,$ID,$Data,$Tipo_Inc);
+										?>
+									</select>
+								</label>
+							</ol>
+						</td>
+					</tr>
+					<?php
+						if($Tipo_Inc == '1'){
+							echo "	<tr>
+										<td class='campo'>
+											<div class='contenido'>
+												<a href='#' class='mostrarmodal'>
+													<img src='style/images/boton.png'>
+												</a>
+											</div>
+										</td>
+									</tr>";
+						}
+						else{
+							echo "	<tr>
+										<td class='nombrecampo'>
+											Total
+										</td>
+										<td class='campo'>
+											<input type='text' id='txt_Devolucion_Venta' name='txt_Devolucion_Venta' class='text-input required'/>
+										</td>
+									</tr>";
+						}
+					?>
+					<tr>
+						<td class="nombrecampo">
+							Observaciones
+						</td>
+						<td class="campo">
+							<textarea name="txt_Observaciones_Incidencia" rows="10" cols="50" maxlength="100" required></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="campo">
+							<input type="submit" value="Procesar" name="Buscar_Data" id="btnRecorrer" class="btn-submit" />
 						</td>
 					</tr>
 				</table>

@@ -249,7 +249,17 @@ WHERE
 
 SELECT Fn_Efectivo_Caja('J11-1') Total;
 
-SELECT * FROM encabezado_factura WHERE Num_Factura_Encabezado_Factura = 'TS-12';
+SELECT 
+    Num_Encabezado_Factura,
+    Fecha_Encabezado_Factura,
+    Tipo_Pago_ID_Tipo_Pago,
+    Estudio_Mercado_ID_Estudio_Mercado,
+    Descuento_Encabezado_Factura,
+    Total_Venta_Encabezado_Factura
+FROM
+    encabezado_factura
+WHERE
+    Num_Factura_Encabezado_Factura = 'TS-17';
 SELECT * FROM detalle_encabezado_factura WHERE Num_Encabezado_Factura = 'J11-1-FA20';
 SELECT 
     *
@@ -258,3 +268,22 @@ FROM
 WHERE
     Factura_Encabezado_Factura_Num_Encabezado_Factura = 'J11-1-FA20'
         AND Factura_ID_Detalle_Encabezado_Factura = '3';
+        
+SELECT '0' AS ID_Detalle_Encabezado_Factura, '--' AS Cantidad_Producto_Detalle_Encabezado_Factura,
+'--' AS Producto_Servicio_Cod_Producto_Servicio, '--' AS Descripcion_Producto_Servicio,
+'--' AS Precio_Producto_Servicio, '--' AS Total_Detalle_Encabezado_Factura
+UNION 
+SELECT 
+	def.ID_Detalle_Encabezado_Factura,
+    def.Cantidad_Producto_Detalle_Encabezado_Factura,
+    def.Producto_Servicio_Cod_Producto_Servicio,
+    p.Descripcion_Producto_Servicio,
+    p.Precio_Producto_Servicio,
+    def.Total_Detalle_Encabezado_Factura
+FROM
+    detalle_encabezado_factura def
+    INNER JOIN producto_servicio p ON def.Producto_Servicio_Cod_Producto_Servicio = p.Cod_Producto_Servicio
+WHERE
+    def.Num_Encabezado_Factura = 'J11-1-FA20';
+    
+SELECT * FROM tipo_incidencia;

@@ -1,18 +1,6 @@
 <?php
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
-
-	if(isset($_GET['STD'])){
-		if($_GET['STD'] == 'cr'){
-			echo "<script type='text/javascript'>alert('Credenciales Actualizadas con Exito.');</script>";
-		}
-		else if($_GET['STD'] == 'al'){
-			echo "<script type='text/javascript'>alert('Salida a almuerzo Registrada.');</script>";	
-		}
-		else if($_GET['STD'] == 'sal'){
-			echo "<script type='text/javascript'>alert('Salida Registrada Correctamente.');</script>";	
-		}
-	}
 ?>
 <!DOCTYPE HTML>
 <html lang="en-US">
@@ -61,7 +49,7 @@
 	<h1 class="title">Busqueda de Facturas</h1>
 	<!-- <img src="style/images/bg/Logo2.jpg" id='logo'> -->
 <div class="form-container">
-	<form class="forms" action="Mostrar_Reporte.php" method="post">
+	<form class="forms" action="Busqueda_Ventas_Factura.php" method="post">
 		<fieldset>
 			<table>
 				<tr>
@@ -78,16 +66,16 @@
 					</td>
 					<td class="campo">
 						<label>
-								<select name="Ddl_Reporte">
+								<select name="DDl_Tipo_Inc">
 									<option value="#">--SELECCIONE--</option>
-									<option value="R">
+									<option value="1">
 										Reclamo Productos
 									</option>
-									<option value="D">
+									<option value="2">
 										Devolucion de Efectivo
 									</option>
 								</select>
-							</label>
+						</label>
 					</td>
 				</tr>
 				<tr>
