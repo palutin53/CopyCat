@@ -592,7 +592,7 @@ CREATE TABLE `menu` (
 
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (1,'Inicio','Portada.php','0','1'),(2,'Ventas/Compras','#','1','1'),(3,'Catalogo Productos','#','1','1'),(4,'Registro Horarios','#','1','1'),(5,'Administración','#','1','1'),(6,'Contabilidad','#','1','1'),(7,'Cerrar Sesión','PHP/Cerrar_Sesion.php','0','1');
+INSERT INTO `menu` VALUES (1,'Inicio','Portada.php','0','1'),(2,'Ventas/Compras','#','1','1'),(3,'Catalogo Productos','#','1','1'),(4,'Registro Horarios','#','1','1'),(5,'AdministraciÃ³n','#','1','1'),(6,'Contabilidad','#','1','1'),(7,'Cerrar SesiÃ³n','PHP/Cerrar_Sesion.php','0','1');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -766,7 +766,7 @@ CREATE TABLE `sub_menu` (
 
 LOCK TABLES `sub_menu` WRITE;
 /*!40000 ALTER TABLE `sub_menu` DISABLE KEYS */;
-INSERT INTO `sub_menu` VALUES (1,0,'Portada','#','1'),(2,1,'Venta','Compra_Clientes.php','1'),(2,2,'Devolución','Busqueda_Factura.php','1'),(2,3,'Reclamo','Busqueda_Factura.php','1'),(2,4,'Nuevo Producto','Solicitud_Clientes.php','1'),(2,5,'Ingreso de Mercaderia','Compra_Proveedores.php','1'),(2,6,'Venta VIP','Compra_Clientes_VIP.php','1'),(2,7,'Retiro Efectivo','Retiro_Caja.php','1'),(3,1,'General','#','1'),(3,2,'Filtros','#','1'),(4,1,'Almuerzo','Registro_Almuerzo.php','1'),(4,2,'Salidas Varias','Registro_Salidas.php','1'),(5,1,'Registrar Personal','Registro_Personal.php?STD=i','1'),(5,2,'Registrar Proveedores','Ingreso_Proveedores.php','1'),(5,3,'Registrar Clientes','Ingreso_Clientes.php','1'),(5,4,'Registro Producto','Registro_Producto.php?STD=i','1'),(5,5,'Crear Usuario','Ingreso_Usuarios.php','1'),(5,6,'Reiniciar Contraseña','Reset_Credenciales.php?STD=a','1'),(5,7,'Registrar Kiosko','Registro_Kiosco.php?STD=i','1'),(5,8,'Reportes','Menu_Reportes.php','1'),(6,1,'Planilla Salarios','#','1'),(6,2,'Generar Recibos','#','1'),(6,3,'Libro Compra/Venta','#','1'),(6,4,'Planilla IGSS','#','1'),(6,5,'Inventario','#','1'),(7,0,'Salida','#','1');
+INSERT INTO `sub_menu` VALUES (1,0,'Portada','#','1'),(2,1,'Venta','Compra_Clientes.php','1'),(2,2,'DevoluciÃ³n','Busqueda_Factura.php','1'),(2,3,'Reclamo','Busqueda_Factura.php','1'),(2,4,'Nuevo Producto','Solicitud_Clientes.php','1'),(2,5,'Ingreso de Mercaderia','Compra_Proveedores.php','1'),(2,6,'Venta VIP','Compra_Clientes_VIP.php','1'),(2,7,'Retiro Efectivo','Retiro_Caja.php','1'),(3,1,'General','#','1'),(3,2,'Filtros','#','1'),(4,1,'Almuerzo','Registro_Almuerzo.php','1'),(4,2,'Salidas Varias','Registro_Salidas.php','1'),(5,1,'Registrar Personal','Registro_Personal.php?STD=i','1'),(5,2,'Registrar Proveedores','Ingreso_Proveedores.php','1'),(5,3,'Registrar Clientes','Ingreso_Clientes.php','1'),(5,4,'Registro Producto','Registro_Producto.php?STD=i','1'),(5,5,'Crear Usuario','Ingreso_Usuarios.php','1'),(5,6,'Reiniciar ContraseÃ±a','Reset_Credenciales.php?STD=a','1'),(5,7,'Registrar Kiosko','Registro_Kiosco.php?STD=i','1'),(5,8,'Reportes','Menu_Reportes.php','1'),(6,1,'Planilla Salarios','Planilla_Salarios.php','1'),(6,2,'Generar Recibos','#','1'),(6,3,'Libro Compra/Venta','#','1'),(6,4,'Planilla IGSS','#','1'),(6,5,'Inventario','#','1'),(7,0,'Salida','#','1');
 /*!40000 ALTER TABLE `sub_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -790,7 +790,7 @@ CREATE TABLE `tipo_actividad` (
 
 LOCK TABLES `tipo_actividad` WRITE;
 /*!40000 ALTER TABLE `tipo_actividad` DISABLE KEYS */;
-INSERT INTO `tipo_actividad` VALUES (1,'Ingreso'),(2,'Salida'),(3,'Almuerzo Salida'),(4,'Receso'),(5,'Gestión Bancaria'),(6,'Asistencia Tecnica'),(7,'Almuerzo Regreso'),(8,'Regreso Gestión Bancaria'),(9,'Regreso Asistencia/Receso');
+INSERT INTO `tipo_actividad` VALUES (1,'Ingreso'),(2,'Salida'),(3,'Almuerzo Salida'),(4,'Receso'),(5,'GestiÃ³n Bancaria'),(6,'Asistencia Tecnica'),(7,'Almuerzo Regreso'),(8,'Regreso GestiÃ³n Bancaria'),(9,'Regreso Asistencia/Receso');
 /*!40000 ALTER TABLE `tipo_actividad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -838,7 +838,7 @@ CREATE TABLE `tipo_incidencia` (
 
 LOCK TABLES `tipo_incidencia` WRITE;
 /*!40000 ALTER TABLE `tipo_incidencia` DISABLE KEYS */;
-INSERT INTO `tipo_incidencia` VALUES (1,'Reclamo Productos'),(2,'Devolución Dinero');
+INSERT INTO `tipo_incidencia` VALUES (1,'Reclamo Productos'),(2,'DevoluciÃ³n Dinero');
 /*!40000 ALTER TABLE `tipo_incidencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -946,7 +946,7 @@ CREATE TABLE `transaccion_monetaria` (
 
 LOCK TABLES `transaccion_monetaria` WRITE;
 /*!40000 ALTER TABLE `transaccion_monetaria` DISABLE KEYS */;
-INSERT INTO `transaccion_monetaria` VALUES (1,'J11-1',1,1,'2017-02-11 10:27:12','Factura No. TS-20','N/A',255.00),(2,'J11-1',1,1,'2017-02-11 11:38:53','Factura No. TS-20','N/A',255.00),(3,'J11-1',1,1,'2017-02-11 11:59:04','Factura No. J11-1-FA25','N/A',125.00),(4,'J11-1',1,1,'2017-02-11 11:59:05','Factura No. J11-1-FA25','N/A',130.00),(5,'J11-1',2,3,'2017-02-11 12:02:33','Factura No. J11-1-FA26','N/A',125.00),(6,'J11-1',2,3,'2017-02-11 12:02:34','Factura No. J11-1-FA26','N/A',125.00),(7,'Okla-1',1,1,'2017-02-11 12:52:17','Factura No. Okla-1-FA2','N/A',175.00),(8,'Okla-1',1,1,'2017-02-11 12:52:18','Factura No. Okla-1-FA2','N/A',125.00),(9,'J11-1',4,6,'2017-02-15 19:47:20','Compra a Proveedor Ref. Factura No. J11-1-NI7','N/A',125.00),(10,'J11-1',1,1,'2017-02-21 18:03:02','Factura No. J11-1-FA27','N/A',125.00),(11,'J11-1',9,5,'2017-02-24 15:34:18','Cliente VIP Factura No. J11-1-FA27','N/A',125.00),(12,'J11-1',9,5,'2017-02-24 15:34:18','Cliente VIP Factura No. J11-1-FA27','N/A',125.00),(13,'J11-1',9,5,'2017-02-24 15:39:29','Cliente VIP Factura No. J11-1-FA28','N/A',125.00),(14,'J11-1',9,5,'2017-02-24 15:39:30','Cliente VIP Factura No. J11-1-FA28','N/A',125.00),(15,'J11-1',1,1,'2017-02-27 17:22:55','Factura No. J11-1-FA29','N/A',125.00),(16,'J11-1',1,1,'2017-02-27 17:22:56','Factura No. J11-1-FA29','N/A',250.00),(17,'J11-1',7,12,'2017-02-28 12:30:02','Retiro de Efectivo de caja, Observaciones: Deposito a Banco Industrial','N/A',140.00),(18,'J11-1',7,12,'2017-02-28 12:32:39','Retiro de Efectivo de caja para Deposito Bancario, Observaciones: Banco Industrial','12345678910',100.00),(19,'J11-1',3,11,'2017-02-28 12:32:39','Deposito Bancario SegÃºn Boleta No.: 12345678910','12345678910',100.00);
+INSERT INTO `transaccion_monetaria` VALUES (1,'J11-1',1,1,'2017-02-11 10:27:12','Factura No. TS-20','N/A',255.00),(2,'J11-1',1,1,'2017-02-11 11:38:53','Factura No. TS-20','N/A',255.00),(3,'J11-1',1,1,'2017-02-11 11:59:04','Factura No. J11-1-FA25','N/A',125.00),(4,'J11-1',1,1,'2017-02-11 11:59:05','Factura No. J11-1-FA25','N/A',130.00),(5,'J11-1',2,3,'2017-02-11 12:02:33','Factura No. J11-1-FA26','N/A',125.00),(6,'J11-1',2,3,'2017-02-11 12:02:34','Factura No. J11-1-FA26','N/A',125.00),(7,'Okla-1',1,1,'2017-02-11 12:52:17','Factura No. Okla-1-FA2','N/A',175.00),(8,'Okla-1',1,1,'2017-02-11 12:52:18','Factura No. Okla-1-FA2','N/A',125.00),(9,'J11-1',4,6,'2017-02-15 19:47:20','Compra a Proveedor Ref. Factura No. J11-1-NI7','N/A',125.00),(10,'J11-1',1,1,'2017-02-21 18:03:02','Factura No. J11-1-FA27','N/A',125.00),(11,'J11-1',9,5,'2017-02-24 15:34:18','Cliente VIP Factura No. J11-1-FA27','N/A',125.00),(12,'J11-1',9,5,'2017-02-24 15:34:18','Cliente VIP Factura No. J11-1-FA27','N/A',125.00),(13,'J11-1',9,5,'2017-02-24 15:39:29','Cliente VIP Factura No. J11-1-FA28','N/A',125.00),(14,'J11-1',9,5,'2017-02-24 15:39:30','Cliente VIP Factura No. J11-1-FA28','N/A',125.00),(15,'J11-1',1,1,'2017-02-27 17:22:55','Factura No. J11-1-FA29','N/A',125.00),(16,'J11-1',1,1,'2017-02-27 17:22:56','Factura No. J11-1-FA29','N/A',250.00),(17,'J11-1',7,12,'2017-02-28 12:30:02','Retiro de Efectivo de caja, Observaciones: Deposito a Banco Industrial','N/A',140.00),(18,'J11-1',7,12,'2017-02-28 12:32:39','Retiro de Efectivo de caja para Deposito Bancario, Observaciones: Banco Industrial','12345678910',100.00),(19,'J11-1',3,11,'2017-02-28 12:32:39','Deposito Bancario SegÃÂºn Boleta No.: 12345678910','12345678910',100.00);
 /*!40000 ALTER TABLE `transaccion_monetaria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -979,7 +979,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'jmazariegos',1,'�m�7�y�f�K�L���','2017-01-06 11:42:30','1','0'),(7,'drodas',2,'Hr������P60?�z','2017-01-16 18:31:44','1','0'),(8,'gmendez',1,'Â£ÃÂ¤kJidÃ§ÂcÃ>Â','2017-02-08 16:13:41','1','1');
+INSERT INTO `usuario` VALUES (1,'jmazariegos',1,'ÖmÌ7èyf»KßLÈüí','2017-01-06 11:42:30','1','0'),(7,'drodas',2,'Hr æêÚ´P60?Ðz','2017-01-16 18:31:44','1','0'),(8,'gmendez',1,'ÃÂ£ÃÂÃÂ¤kJidÃÂ§ÃÂcÃÂ>ÃÂ','2017-02-08 16:13:41','1','1');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
