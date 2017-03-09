@@ -287,3 +287,5 @@ WHERE
     def.Num_Encabezado_Factura = 'J11-1-FA20';
     
 SELECT * FROM tipo_incidencia;
+
+SELECT Fn_Select_Cant_Existente_Kiosco('J11-1','CJA-A');

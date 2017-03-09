@@ -6,20 +6,16 @@ require("PHP/Funciones.php");
 
 	if(isset($_POST['Buscar_Data'])){
 
-			if(isset($_POST['txt_Busqueda_Empleado'])){
-				$Dato = $_POST['txt_Busqueda_Empleado'];
-				$data = 1;
-				$WHERE_Info = "WHERE k.Descripcion_Kiosco LIKE '%" . $Dato . "%' ORDER BY tm.Fecha_Transaccion_Monetaria DESC;";
+			if(isset($_POST['Ddl_Mes'])){
+				$mes = $_POST['Ddl_Mes'];
 			}
 			else
 			{
-				$Dato = "";
-				$data = 0;
+				$mes = date("m");
 			}
 	}
 	else{
-		$Dato = "";
-		$data = 0;
+		$mes = "02";
 	}
 
 	if(isset($_POST['Descarga_Reporte'])){
@@ -71,7 +67,7 @@ require("PHP/Funciones.php");
 							        INNER JOIN
 							    encabezado_factura ef ON lf.Factura_Encabezado_Factura_Num_Encabezado_Factura = ef.Num_Encabezado_Factura
 							WHERE
-							    ef.Fecha_Encabezado_Factura LIKE '%-02-%'
+							    ef.Fecha_Encabezado_Factura LIKE '%-" . $mes . "-%'
 							GROUP BY lf.Factura_Encabezado_Factura_Empleado_ID_Empleado;";
 	
 	$Resultado_Data = mquery($queryText_Reporte) or die ("Error al intentar Conectar: " . mysql_error());
@@ -82,12 +78,12 @@ require("PHP/Funciones.php");
 	         ->setCellValue('A'.$i, $Data_Record['Fecha'])
 	         ->setCellValue('B'.$i, $Data_Record['Nombre_Completo'])
 	         ->setCellValue('C'.$i, $Data_Record['DPI_Empleado'])
-	         ->setCellValue('D'.$i, $Data_Record['Salario_Base'])
-	         ->setCellValue('E'.$i, $Data_Record['IGGS'])
-	         ->setCellValue('F'.$i, $Data_Record['IRTRA'])
-	         ->setCellValue('G'.$i, $Data_Record['INTECAP'])
-	         ->setCellValue('H'.$i, $Data_Record['Comision'])
-	         ->setCellValue('I'.$i, $Data_Record['Monto_Efectivo']);
+	         ->setCellValue('D'.$i, number_format($Data_Record['Salario_Base'], 2,'.',','))
+	         ->setCellValue('E'.$i, number_format($Data_Record['IGSS'], 2,'.',','))
+	         ->setCellValue('F'.$i, number_format($Data_Record['IRTRA'], 2,'.',','))
+	         ->setCellValue('G'.$i, number_format($Data_Record['INTECAP'], 2,'.',','))
+	         ->setCellValue('H'.$i, number_format($Data_Record['Comision'], 2,'.',','))
+	         ->setCellValue('I'.$i, number_format($Data_Record['Monto_Efectivo'], 2,'.',','));
 	     $i++;
 	 }
 
@@ -183,22 +179,22 @@ require("PHP/Funciones.php");
 		    )
 		));
 	
-	$objPHPExcel->getActiveSheet()->getStyle('A1:E1')->applyFromArray($estiloTituloReporte);
-	$objPHPExcel->getActiveSheet()->getStyle('A3:E3')->applyFromArray($estiloTituloColumnas);
+	$objPHPExcel->getActiveSheet()->getStyle('A1:I1')->applyFromArray($estiloTituloReporte);
+	$objPHPExcel->getActiveSheet()->getStyle('A3:I3')->applyFromArray($estiloTituloColumnas);
 
 	// Se asigna el nombre a la hoja
-	$objPHPExcel->getActiveSheet()->setTitle('Actividad_Empleados');
+	$objPHPExcel->getActiveSheet()->setTitle('Planilla_Empleados');
 	 
 	// Se activa la hoja para que sea la que se muestre cuando el archivo se abre
 	$objPHPExcel->setActiveSheetIndex(0);
 
-	for($i = 'A'; $i <= 'E'; $i++){
+	for($i = 'A'; $i <= 'I'; $i++){
     $objPHPExcel->setActiveSheetIndex(0)->getColumnDimension($i)->setAutoSize(TRUE);
 	}
 
 	// Se manda el archivo al navegador web, con el nombre que se indica, en formato 2007
 	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	header('Content-Disposition: attachment;filename="ReporteGeneralActividadEmpleados.xlsx"');
+	header('Content-Disposition: attachment;filename="PlanillaSalarios.xlsx"');
 	header('Cache-Control: max-age=0');
 	 
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
@@ -260,14 +256,52 @@ require("PHP/Funciones.php");
 
 <div class="body">
 		
-	<form class="forms" action="Reporte_General.php" method="post">
+	<form class="forms" action="Planilla_Salarios.php" method="post">
 						    <table>
 								<tr>
 									<td class="nombrecampo">
-										Buscar Empleado
+										Mes a Generar
 									</td>
 									<td class="campo">
-										<input type="text" name="txt_Busqueda_Empleado" value="" class="text-input required" title="" />
+										<select name="Ddl_Mes">
+											<option value="#">--SELECCIONE--</option>
+											<option value="01">
+												ENERO
+											</option>
+											<option value="02">
+												FEBRERO
+											</option>
+											<option value="03">
+												MARZO
+											</option>
+											<option value="04">
+												ABRIL
+											</option>
+											<option value="05">
+												MAYO
+											</option>
+											<option value="06">
+												JUNIO
+											</option>
+											<option value="07">
+												JULIO
+											</option>
+											<option value="08">
+												AGOSTO
+											</option>
+											<option value="09">
+												SEPTIEMBRE
+											</option>
+											<option value="10">
+												OCTUBRE
+											</option>
+											<option value="11">
+												NOVIEMBRE
+											</option>
+											<option value="12">
+												DICIEMBRE
+											</option>
+										</select>
 									</td>
 									<td class="campo">
 										<input type="submit" value="Buscar" name="Buscar_Data" class="btn-submit" />
@@ -313,7 +347,7 @@ require("PHP/Funciones.php");
 												        INNER JOIN
 												    encabezado_factura ef ON lf.Factura_Encabezado_Factura_Num_Encabezado_Factura = ef.Num_Encabezado_Factura
 												WHERE
-												    ef.Fecha_Encabezado_Factura LIKE '%-02-%'
+												    ef.Fecha_Encabezado_Factura LIKE '%-" . $mes . "-%'
 												GROUP BY lf.Factura_Encabezado_Factura_Empleado_ID_Empleado;";
 
 									$Paqueo_Result = mquery($queryText) or die ("Error al intentar Conectar: " . mysql_error());
@@ -332,17 +366,18 @@ require("PHP/Funciones.php");
 											<tr class="<?php echo($tabledetailclass); ?>">
 												<td><?php echo($Parqueo_Record["Fecha"]);?></td>
 												<td><?php echo($Parqueo_Record["Nombre_Completo"]);?></td>
-												<td><?php echo(utf8_encode($Parqueo_Record["DPI_Empleado"]));?></td>
-												<td><?php echo($Parqueo_Record["Salario_Base"]);?></td>
-												<td><?php echo round(utf8_encode($Parqueo_Record["IGSS"]), 2);?></td>
-												<td><?php echo round(utf8_encode($Parqueo_Record["IRTRA"]), 2);?></td>
-												<td><?php echo round(utf8_encode($Parqueo_Record["INTECAP"]), 2);?></td>
-												<td><?php echo round(utf8_encode($Parqueo_Record["Comision"]), 2);?></td>
-												<td><?php echo round(utf8_encode($Parqueo_Record["Monto_Efectivo"]), 2);?></td>											
+												<td><?php echo($Parqueo_Record["DPI_Empleado"]);?></td>
+												<td><?php echo number_format($Parqueo_Record["Salario_Base"], 2,'.',',');?></td>
+												<td><?php echo number_format($Parqueo_Record["IGSS"], 2,'.',',');?></td>
+												<td><?php echo number_format($Parqueo_Record["IRTRA"], 2,'.',',');?></td>
+												<td><?php echo number_format($Parqueo_Record["INTECAP"], 2,'.',',');?></td>
+												<td><?php echo number_format($Parqueo_Record["Comision"], 2,'.',',');?></td>
+												<td><?php echo number_format($Parqueo_Record["Monto_Efectivo"], 2,'.',',');?></td>											
 											</tr>
 									<?php
 										$i++;
-										endwhile;				
+										endwhile;
+										echo $mes;			
 									?>
 						  </table>			
 			
