@@ -230,3 +230,11 @@ FROM
 WHERE
     ef.Fecha_Encabezado_Factura LIKE '%2017-%'
 GROUP BY lf.Factura_Encabezado_Factura_Empleado_ID_Empleado;
+
+SELECT 
+    k.Descripcion_Kiosco,
+    p.Cod_Producto_Servicio,
+    p.Descripcion_Producto_Servicio,
+    IFNULL(FN_SELECT_CANT_EXISTENTE_KIOSCO(k.ID_Kiosco, p.Cod_Producto_Servicio), 0)
+FROM
+    kiosco k, producto_servicio p;

@@ -11,7 +11,7 @@ $db="wf_workflow";*/
 
 $srv="localhost";
 $usr="root";
-$pwd="CMVZrootJ11.16";
+$pwd="";
 $db="copycat";
 
 $connect = mysqli_connect($srv,$usr,$pwd,$db) or die ("Error al intentar Conectar: " . mysql_error()); 

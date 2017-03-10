@@ -55,7 +55,7 @@
 
 <script type="text/javascript" src="style/js/jquery-1.9.1.min.js"></script>
 
-<script type="text/javascript" src="Tabla_Detalle.js"></script>
+<script type="text/javascript" src="Tabla_Detalle_Reclamo.js"></script>
 
 <script>
 
@@ -167,10 +167,18 @@
 <!-- Begin Container -->
 <div class="box">
 
-	<h1 class="title">Ventas y/o Servicios</h1>
+	<h1 class="title">Reporte de Incidencias</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="" accept-charset="utf-8" method="POST">
+	<?php
+		if($Tipo_Inc == 1){
+			echo "<form class='forms' action='' accept-charset='utf-8' method='POST'>";
+		}
+		else{
+			echo "<form class='forms' action='Operar_Incidencia_Devolucion.php' accept-charset='utf-8' method='POST'>";	
+		}
+	?>
+	
 		<fieldset>
 		<table>
 			<tr>
@@ -241,6 +249,7 @@
 							<td class="campo" colspan="4">
 								<input type="text" id="txt_Email_Cliente" name="txt_Email_Cliente" value="" class="text-input required=" title="" disabled/>
 								<input type="hidden" name="txt_ID_Cliente" id="txt_ID_Cliente">
+								<input type="hidden" name="txt_Encabezado_Fac" id="txt_Encabezado_Fac" value="<?php echo $Num_Enc_Fac?>">
 							</td>
 						</tr>
 						
@@ -267,7 +276,7 @@
 		<div class="linea"></div>
 		<div class="clear1"></div>
 		<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inicio div 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-			<table class="tableData" id="myTable">
+			<table class="tableData" id="">
 				<tbody>
 					<tr class="TableHeader">
 						<td><span class="ColumnHeader"><STRONG>Cantidad</STRONG></span></td>
@@ -429,7 +438,7 @@
 						<td class="campo">
 							<ol>
 								<label>
-									<select name="Ddl_Estudio_Mercado" id="Ddl_Estudio_Mercado" disabled>
+									<select name="Ddl_Tipo_Inc" id="Ddl_Tipo_Inc" disabled>
 										<?php
 										 	$SQL = "SELECT ID_Tipo_Incidencia, Descripcion_Tipo_Incidencia FROM tipo_incidencia";
 											$ID = "ID_Tipo_Incidencia";
@@ -443,7 +452,26 @@
 					</tr>
 					<?php
 						if($Tipo_Inc == '1'){
-							echo "	<tr>
+							echo "	
+									<tr>
+										<td class='nombrecampo'>
+											¿Se Entrega Nuevo Producto?
+										</td>
+										<td class='campo'>
+											<label>
+													<select name='Ddl_Aplica_Prod' id='Ddl_Aplica_Prod'>
+														<option value='#'>--SELECCIONE--</option>
+														<option value='s'>
+															SI
+														</option>
+														<option value='n'>
+															NO
+														</option>
+													</select>
+											</label>
+										</td>
+									</tr>
+									<tr>
 										<td class='campo'>
 											<div class='contenido'>
 												<a href='#' class='mostrarmodal'>
@@ -451,6 +479,19 @@
 												</a>
 											</div>
 										</td>
+									</tr>
+									<tr>
+									<table class='tableData' id='myTable'>
+											<tbody>
+												<tr class='TableHeader'>
+													<td><span class='ColumnHeader'><STRONG>Cantidad</STRONG></span></td>
+													<td><span class='ColumnHeader'><STRONG>Cod Producto</STRONG></span></td>
+													<td><span class='ColumnHeader'><STRONG>Descripción</STRONG></span></td>
+													<td><span class='ColumnHeader'><STRONG>Precio Q.</STRONG></span></td>
+													<td><span class='ColumnHeader'><STRONG>Total</STRONG></span></td>
+												</tr>
+											</tbody>
+									</table>
 									</tr>";
 						}
 						else{
@@ -465,16 +506,31 @@
 						}
 					?>
 					<tr>
+						<td><div class="clear1"></div></td>
+						<td><div class="linea"></div></td>
+					</tr>
+					<tr>
 						<td class="nombrecampo">
 							Observaciones
 						</td>
 						<td class="campo">
-							<textarea name="txt_Observaciones_Incidencia" rows="10" cols="50" maxlength="100" required></textarea>
+							<textarea name="txt_Observaciones_Incidencia" id="txt_Observaciones_Incidencia" rows="10" cols="50" maxlength="100" required></textarea>
 						</td>
 					</tr>
 					<tr>
+						<td><div class="clear1"></div></td>
+					</tr>
+					<tr>
 						<td class="campo">
-							<input type="submit" value="Procesar" name="Buscar_Data" id="btnRecorrer" class="btn-submit" />
+							<?php
+								if($Tipo_Inc == 1){
+									echo "<input type='submit' value='Procesar' name='Buscar_Data' id='btnRecorrer' class='btn-submit' />";
+								}
+								else{
+									echo "<input type='submit' value='Procesar' name='Buscar_Data' id='Buscar_Data' class='btn-submit' />";	
+								}
+							?>
+							
 						</td>
 					</tr>
 				</table>
