@@ -48,6 +48,7 @@
                     $('input#txt_Existencia').val('');
                     $('input#des_prod').val('');
                     $('input#des_prod').focus();
+                    $("#img_prod").attr("src","img_prod/no-image.png");
             }
             else{
                 alert('Producto sin Existencias en Kisco.');
@@ -80,7 +81,7 @@
                         })
                         if(index == 1){
                             
-                            alert('Inserta Factura');
+                            //alert('Inserta Factura');
 
                             var ID_Cliente = document.getElementById("txt_ID_Cliente").value;
 
@@ -113,7 +114,7 @@
                                     descuento_factura:descuentofac
                                     }, function(data, textStatus){
                                     if(data != ''){
-                                        alert('Encabezado Factura Ingresado ' + data);
+                                        alert('Venta Registrada ' + data);
                                         enc_fact = data;
                                     }
                                     else{
@@ -139,7 +140,7 @@
                                     descuento_factura:descuentofac
                                     }, function(data, textStatus){
                                     if(data != ''){
-                                        alert('Encabezado Factura Ingresado ' + data);
+                                        alert('Venta Registrada ' + data);
                                         enc_fact = data;
                                     }
                                     else{
@@ -149,7 +150,7 @@
                             }
                         }
                         if(campo1 != 'Cantidad'){
-                            alert(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
+                            //alert(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
                             var tipop = $('select#Ddl_Tipo_Pago').val();
                             jQuery.post("Operar_Detalle_Factura.php", {
                                     codProducto:campo2,
@@ -163,7 +164,7 @@
                                         enc_fact = data;
                                     }
                                     else{
-                                        alert('Error en Encabezado Factura');
+                                        //alert('Error en Encabezado Factura');
                                     }
                             });
                         }

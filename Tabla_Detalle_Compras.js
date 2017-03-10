@@ -2,8 +2,6 @@
 	function displayResult()
         {
             var existencia = document.getElementById("txt_Existencia").value;
-
-            if(existencia != '0'){
                 
                 var Cantidad = document.getElementById("txt_Cantidad").value;
                 var Cod_Prod = document.getElementById("txt_Codigo_Producto").value;
@@ -50,11 +48,6 @@
                     $('input#des_prod').val('');
                     $('input#des_prod').focus();
                     $("#img_prod").attr("src","img_prod/no-image.png");
-            }
-            else{
-                alert('Producto sin Existencias en Kisco.');
-                $('input#des_prod').focus();
-            }
         };
 
     $(function () {
@@ -82,7 +75,7 @@
                         })
                         if(index == 1){
                             
-                            alert('Inserta Nota de Ingreso');
+                            //alert('Inserta Nota de Ingreso');
 
                             var ID_Proveedor = document.getElementById("txt_ID_Proveedor").value;
 
@@ -113,7 +106,7 @@
                                     usoc:uso
                                     }, function(data, textStatus){
                                     if(data != ''){
-                                        alert('Encabezado NI Ingresado ' + data);
+                                        alert('Compra Registrada ' + data);
                                         enc_fact = data;
                                     }
                                     else{
@@ -139,7 +132,7 @@
                                     usoc:uso
                                     }, function(data, textStatus){
                                     if(data != ''){
-                                        alert('Encabezado NI Ingresado ' + data);
+                                        alert('Compra Registrada ' + data);
                                         enc_fact = data;
                                     }
                                     else{
@@ -149,7 +142,7 @@
                             }
                         }
                         if(campo1 != 'Cantidad'){
-                            alert(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
+                            //alert(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
                             var tipop = $('select#Ddl_Tipo_Pago').val();
                             jQuery.post("Operar_Detalle_Compra.php", {
                                     codProducto:campo2,
@@ -163,7 +156,7 @@
                                         enc_fact = data;
                                     }
                                     else{
-                                        alert('Error en Detalle NI');
+                                        //alert('Error en Detalle NI');
                                     }
                             });
                         }

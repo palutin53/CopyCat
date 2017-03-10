@@ -27,20 +27,10 @@
 	$SP_Existencia = "Inserta_Det_Existencia('" . $ID_KC . "','" . $Cod_Producto . "', " . $Cantidad_Producto . ",'u');";
 
 	SPquery($SP_Existencia);
-
-		//if($Tipo_Pago == 1){ //Compra de Mercaderia en Efectivo
 			
+	
 			$SP_Transaccion = "Inserta_Transaccion_Monetaria('" . $ID_KC . "',4,6,'Compra a Proveedor Ref. Factura No. " . $Encabezado_NI . "','N/A'," . $Total_Linea . ");";
 
 			SPquery($SP_Transaccion);
-
-		//}
-		/*else if($Tipo_Pago == 2 || $Tipo_Pago == 3){//Compra de Mercaderia con Cheque
-
-			$SP_Transaccion = "Inserta_Transaccion_Monetaria('" . $ID_KC . "',2,3,'Factura No. " . $Encabezado_NI . "','N/A'," . $Total_Linea . ");";
-
-			SPquery($SP_Transaccion);
-
-		}*/
 
 ?>

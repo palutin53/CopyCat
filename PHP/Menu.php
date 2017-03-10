@@ -75,6 +75,7 @@ endwhile;
 
 $Encabezado_Menu = "<script type='text/javascript' src='InfoKiosco.js'></script>
 					<link rel='stylesheet' type='text/css' media='all' href='style/Botones.css' />
+					<link type='image/x-icon' href='favicon-copycat.png' rel='shortcut icon' />
 	<div class='header-wrapper opacity'>
 	<div class='header'>
 		<!-- Begin Logo -->
