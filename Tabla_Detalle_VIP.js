@@ -15,10 +15,13 @@
                                         //enc_fact = data;
                                     }
                                     else{
-                                        //alert('Error en Encabezado Factura');
+                                        alert('Servicio Nuevo Registrado');
                                     }
                                 });
-
+            $('input#txt_Codigo_Productop').val('');
+            $('textarea#txt_Descripcion_Productop').val('');
+            $('input#txt_Precio_Productop').val('');
+            $('input#txt_Codigo_Productop').focus();
         };
 
 	function displayResult()
@@ -102,7 +105,7 @@
                         })
                         if(index == 1){
                             
-                            alert('Inserta Factura');
+                            //alert('Inserta Factura');
 
                             var ID_Cliente = document.getElementById("txt_ID_Cliente").value;
 
@@ -131,11 +134,11 @@
                                     descuento_factura:descuentofac
                                     }, function(data, textStatus){
                                     if(data != ''){
-                                        alert('Encabezado Factura Ingresado ' + data);
+                                        alert('Venta VIP Registrada ' + data);
                                         enc_fact = data;
                                     }
                                     else{
-                                        alert('Error en Encabezado Factura');
+                                        //alert('Error en Encabezado Factura');
                                     }
                                 });
 
@@ -153,17 +156,17 @@
                                     descuento_factura:descuentofac
                                     }, function(data, textStatus){
                                     if(data != ''){
-                                        alert('Encabezado Factura Ingresado ' + data);
+                                        alert('Venta VIP Registrada ' + data);
                                         enc_fact = data;
                                     }
                                     else{
-                                        alert('Error en Encabezado Factura');
+                                        //alert('Error en Encabezado Factura');
                                     }
                                 });
                             }
                         }
                         if(campo1 != 'Cantidad'){
-                            alert(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
+                            //alert(campo1 + ' - ' + campo2 + ' - ' + campo3 + ' - ' + campo4 + ' - ' + campo5);
                             var tipop = $('select#Ddl_Tipo_Pago').val();
                             jQuery.post("Operar_Detalle_Factura_VIP.php", {
                                     codProducto:campo2,
@@ -173,11 +176,11 @@
                                     tipopago:tipop
                                     }, function(data, textStatus){
                                     if(data != ''){
-                                        alert('Encabezado Factura Ingresado ' + data);
+                                        //alert('Encabezado Factura Ingresado ' + data);
                                         enc_fact = data;
                                     }
                                     else{
-                                        alert('Error en Encabezado Factura');
+                                        //alert('Error en Encabezado Factura');
                                     }
                             });
                         }

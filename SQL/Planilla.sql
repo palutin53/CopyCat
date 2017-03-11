@@ -23,7 +23,7 @@ SELECT
     (e.Salario_Base_Empleado * 1) / 100 IRTRA,
     (e.Salario_Base_Empleado * 1) / 100 INTECAP,
     SUM(lf.Comision_Linea_Detalle_Encabezado_Factura) Comision,
-    e.Salario_Base_Empleado - ((e.Salario_Base_Empleado * 4.83) / 100) - ((e.Salario_Base_Empleado * 1) / 100) - ((e.Salario_Base_Empleado * 1) / 100) + SUM(lf.Comision_Linea_Detalle_Encabezado_Factura) Monto_Efectivo
+    e.Salario_Base_Empleado - ((e.Salario_Base_Empleado * 4.83) / 100) - ((e.Salario_Base_Empleado * 1) / 100) - ((e.Salario_Base_Empleado * 1) / 100) + SUM(lf.Comision_Linea_Detalle_Encabezado_Factura) + 250 Monto_Efectivo
 FROM
     empleado e
         INNER JOIN
@@ -31,5 +31,5 @@ FROM
         INNER JOIN
     encabezado_factura ef ON lf.Factura_Encabezado_Factura_Num_Encabezado_Factura = ef.Num_Encabezado_Factura
 WHERE
-    ef.Fecha_Encabezado_Factura LIKE '%-03-%'
+    ef.Fecha_Encabezado_Factura LIKE '%-02-%' AND e.ID_Empleado = 1
 GROUP BY lf.Factura_Encabezado_Factura_Empleado_ID_Empleado;

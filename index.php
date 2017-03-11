@@ -3,7 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" media="all" href="style/Style_Login.css" />
-<title>- CopyCat -</title>
+<link type="image/x-icon" href="favicon-copycat.png" rel="shortcut icon" />
+<title>- COPYCAT -</title>
 </head>
 <body>
 

@@ -16,7 +16,14 @@ $(document).ready(function(e) {
     function mostrar(e) {
         $(".cajaexterna").show();
         darEfecto("bounceIn");
-        $('input#des_prod').focus();      
+                    $('input#txt_Cantidad').val('1');
+                    $('input#txt_Codigo_Producto').val('');
+                    $('textarea#txt_Descripcion_Producto').val('');
+                    $('input#txt_Precio_Unitario').val('');
+                    $('input#txt_Existencia').val('');
+                    $('input#des_prod').val('');
+                    $('input#des_prod').focus();
+                    $("#img_prod").attr("src","img_prod/no-image.png");     
     }
     function ocultar() {
         $(".cajaexterna").fadeOut("fast", function() {
@@ -49,7 +56,11 @@ $(document).ready(function(e) {
     }
     function mostrar(e) {
         $(".cajaexterna2").show();
-        darEfecto("bounceIn");      
+        darEfecto("bounceIn");
+            $('input#txt_Codigo_Productop').val('');
+            $('textarea#txt_Descripcion_Productop').val('');
+            $('input#txt_Precio_Productop').val('');
+            $('input#txt_Codigo_Productop').focus();      
     }
     function ocultar() {
         $(".cajaexterna2").fadeOut("fast", function() {

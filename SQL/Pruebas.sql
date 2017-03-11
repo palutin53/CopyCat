@@ -84,7 +84,7 @@ SELECT * FROM encabezado_existencia;
 SELECT Fn_Select_ID_Enc_Existencia('J11-1');
 SELECT Fn_Select_ID_Enc_Existencia_Anterior('J11-1');
 SELECT Fn_Select_Cant_Anterior('J11-1-E18','CJA-B');
-SELECT Fn_Select_Cant_Existente('J11-1-E21','CJA-B') Existencia;
+SELECT IFNULL(Fn_Select_Cant_Existente('J11-1-E21','CJC-A'), 0) Existencia;
 
 SELECT 
     COUNT(ID_Detalle_Existencia) ID
@@ -93,7 +93,7 @@ FROM
 WHERE
     Encabezado_Existencia_id_Encabezado_Existencia = 'Okla-1-E5' AND Producto_Servicio_Cod_Producto_Servicio = 'CJA-A'; /* J11-1-E18 -- J11-1-E20 */
 
-CALL Inserta_Det_Existencia('Okla-1','CJC-A',15,'n');
+CALL Inserta_Det_Existencia('J11-1','CJC-A',0,'n');
 SELECT * FROM detalle_existencia; /* u->agregar -- d->quitar n->nuevo*/
 
 SELECT NOW();
@@ -126,7 +126,8 @@ WHERE
 ORDER BY Fecha_Movimiento_Detalle_Existencia DESC
 LIMIT 1;
 
-SELECT Fn_Select_Cant_Existente_Kiosco('J11-1','CM-A');
+SELECT Fn_Select_Cant_Existente_Kiosco('J11-1','CJC-A') Existencia;
+SELECT IFNULL(Fn_Select_Cant_Existente_Kiosco('J11-1','CJC-A'),0) Existencia;
 
 SELECT '0' AS ID_Tipo_Producto, '--SELECCIONE--' AS Descripcion_Tipo_Producto UNION SELECT * FROM tipo_producto;
 
@@ -301,3 +302,4 @@ LIMIT 1;
 SELECT * FROM tipo_incidencia;
 SELECT * FROM incidencia;
 SELECT * FROM producto_incidencia;
+SELECT ID_Empleado, CONCAT(Nombre_Empleado, ' ', Apellido_Empleado) Nombre FROM empleado;
