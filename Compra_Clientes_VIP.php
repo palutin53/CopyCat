@@ -132,7 +132,7 @@
 	<h1 class="title">Ventas y/o Servicios VIP</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="" accept-charset="utf-8" method="POST">
+	<form class="forms" action="Constancia_VIP.php" accept-charset="utf-8" method="POST">
 		<fieldset>
 		<table>
 			<tr>
@@ -287,6 +287,11 @@
 						</td>
 						<td class="campo">
 							<input type="submit" value="Procesar Venta" name="Buscar_Data" id="btnRecorrer" class="btn-submit" />
+						</td>
+						<td>
+							<form action="Constancia_VIP.php" method="post">
+								<input type="submit" value="Llenar Constancia" name="Buscar_Data" id="btnRecorrer" class="btn-submit" />
+							</form>
 						</td>
 					</tr>
 				</table>

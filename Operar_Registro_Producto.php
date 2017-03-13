@@ -36,10 +36,23 @@ require("PHP/Funciones.php");
 
 		SPquery($StoreProcedure);
 
+		$QueryKiosco = "SELECT ID_Kiosco FROM Kiosco;";
+		$Kiosco_result = mquery($QueryKiosco);
+
+			$i = 0;
+			while ($Kiosco_Data = mysqli_fetch_array($Kiosco_result)) :
+				
+				$ID_Kioscox = $Kiosco_Data["ID_Kiosco"];
+
+				$SP_Existencia = "Inserta_Det_Existencia('" . $ID_Kioscox . "','" . $Codigo_Producto . "',0,'n');";
+				SPquery($SP_Existencia);
+
+				$i++;
+
+			endwhile;
+
 		header("Location: Registro_Producto.php?STD=v");
 	}
-
-
 
 //echo "Datos-" . $Genera_Comision . "--" . $Domicilio_Producto . "--" . $Tipo_Producto . "--" . $Descripcion_Producto . "--" . $Precio_Producto;
 
