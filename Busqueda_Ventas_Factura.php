@@ -2,8 +2,16 @@
 	include("PHP/db_connect.php");
 	require("PHP/Funciones.php");
 	
-	$Num_Fac = $_POST['txt_Num_Factura_Busqueda'];
-	$Tipo_Inc = $_POST['DDl_Tipo_Inc'];
+	if(isset($_POST['txt_Num_Factura_Busqueda'] && $_POST['DDl_Tipo_Inc'])){
+
+		$Num_Fac = $_POST['txt_Num_Factura_Busqueda'];
+		$Tipo_Inc = $_POST['DDl_Tipo_Inc'];
+
+	}
+	else{
+		echo "<script type='text/javascript'>alert('Incidencia Registrada Correctamente.');</script>";
+		header("Location: Portada.php");
+	}
 
 	$QueryEncabezado = "SELECT 
 						    Num_Encabezado_Factura,
