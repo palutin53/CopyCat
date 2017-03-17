@@ -103,8 +103,8 @@ SELECT
 FROM
     detalle_existencia
 WHERE
-    Producto_Servicio_Cod_Producto_Servicio = 'CJA-B'
-        AND Encabezado_Existencia_Kiosco_ID_Kiosco = 'Okla-1'
+    Producto_Servicio_Cod_Producto_Servicio = 'LLA-E'
+        AND Encabezado_Existencia_Kiosco_ID_Kiosco = 'J11-1'
 ORDER BY Fecha_Movimiento_Detalle_Existencia DESC LIMIT 1;
 
 SELECT 
@@ -112,7 +112,7 @@ SELECT
 FROM
     detalle_existencia
 WHERE
-    Producto_Servicio_Cod_Producto_Servicio = 'CM-A'
+    Producto_Servicio_Cod_Producto_Servicio = 'LLA-E'
         AND Encabezado_Existencia_Kiosco_ID_Kiosco = 'J11-1'
 ORDER BY Fecha_Movimiento_Detalle_Existencia DESC;
 
@@ -121,8 +121,8 @@ SELECT
 FROM
     detalle_existencia
 WHERE
-    Encabezado_Existencia_Kiosco_ID_Kiosco = 'Okla-1'
-        AND Producto_Servicio_Cod_Producto_Servicio = 'LL-A'
+    Encabezado_Existencia_Kiosco_ID_Kiosco = 'J11-1'
+        AND Producto_Servicio_Cod_Producto_Servicio = 'LLA-E'
 ORDER BY Fecha_Movimiento_Detalle_Existencia DESC
 LIMIT 1;
 
@@ -303,3 +303,4 @@ SELECT * FROM tipo_incidencia;
 SELECT * FROM incidencia;
 SELECT * FROM producto_incidencia;
 SELECT ID_Empleado, CONCAT(Nombre_Empleado, ' ', Apellido_Empleado) Nombre FROM empleado;
+SELECT * FROM constancia_servicios_vip;
