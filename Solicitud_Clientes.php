@@ -49,7 +49,7 @@
 	<h1 class="title">Solicitud de Productos Nuevos</h1>
 	<hr>
 <div class="form-container">
-	<form class="forms" action="" method="post">
+	<form class="forms" action="Enviar_Email.php" method="post">
 		<fieldset>
 			<table>
 				<tr>
@@ -58,26 +58,15 @@
 					</td>
 					<td class="campo">
 						<label>
-						  <select name="ddl_Alergico">
+						  <select name="tipo_solicitud">
 							<option value="">--SELECCIONE--</option>
-							<option value="1">PRODUCTO</option>
-							<option value="0">SERVICIO</option>
+							<option value="SOLICITUD PRODUCTO">PRODUCTO</option>
+							<option value="SOLICITUD SERVICIO">SERVICIO</option>
 						  </select>
 						</label>
 					</td>
 				</tr>
-				<tr>
-					<td class="nombrecampo">
-						Fecha y Hora
-					</td>
-					<td class="campo">
-						<ol>
-							<li class="form-row text-input-row">
-								<input type="text" name="txt_Fecha_Salida" value="<?php $time = time(); echo date("d-m-Y (H:i:s)", $time);?>" class="text-input required" title="" disabled/>
-							</li>
-						</ol>
-					</td>
-				</tr>
+				
 				<tr>
 					<td class="nombrecampo">
 						Motivo
@@ -85,7 +74,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<textarea rows="10" cols="50"></textarea>
+								<textarea rows="10" cols="50" name="motivo"></textarea>
 							</li>
 						</ol>
 					</td>
@@ -97,7 +86,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<input type="text" class="text-input required"/>
+								<input type="text" name="cod_Producto" class="text-input required"/>
 							</li>
 						</ol>
 					</td>
@@ -109,7 +98,7 @@
 					<td class="campo">
 						<ol>
 							<li class="form-row text-input-row">
-								<textarea rows="10" cols="50"></textarea>
+								<textarea rows="10" cols="50" name="observaciones"></textarea>
 							</li>
 						</ol>
 					</td>
@@ -117,9 +106,8 @@
 			</table>
 			<ol>
 				<li class="button-row">
-					<input type="submit" value="Guardar" name="submit" class="btn-submit" />
+					<input type="submit" value="Solicitar" name="submit" class="btn-submit" />
 					<input type="submit" value="Cancelar" name="submit" class="btn-submit" />
-					<input type="submit" value="Ayuda" name="submit" class="btn-submit" />
 				</li>
 				<?php
 				//echo $_SESSION["User"];

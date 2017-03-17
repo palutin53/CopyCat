@@ -80,7 +80,7 @@ $Encabezado_Menu = "<script type='text/javascript' src='InfoKiosco.js'></script>
 	<div class='header'>
 		<!-- Begin Logo -->
 		<div class='logo'>
-		    <a href='index.html'>
+		    <a href='Portada.php'>
 				<img src='style/images/Logo1.jpg' alt='' />
 			</a>
 	    </div>
