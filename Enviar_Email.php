@@ -56,6 +56,7 @@
 		$motivo = $_POST['motivo'];
 		$cod_Producto = $_POST['cod_Producto'];
 		$observaciones = $_POST['observaciones'];
+<<<<<<< HEAD
 		$mensaje = "Motivo: ".$motivo."<br>"."Codigo de Producto Solicitado: ".$cod_Producto."<br>"."Observaciones: ".$observaciones;
 		$kiosco = $_SESSION["Kiosco"];
 	// ------------------------------------Enviar correos----------------------------------------------
@@ -92,6 +93,47 @@
 		}
 	//-------------------------------------------------------------------------------------------------
 		header("Location: Portada.php");
+=======
+		$mensaje = 'SOLICITUD DE DE PRODUCTO'."\r\n".'</b></b>Motivo: '.$motivo."\r\n".'</b>Codigo de Producto Solicitado: '.$cod_Producto."\r\n".'</b>Observaciones: '.$observaciones;
+		$kiosco = $_SESSION["Kiosco"];
+	// ------------------------------------Enviar correos----------------------------------------------
+		require ("PHP/PHPMailer/PHPMailerAutoload.php");
+
+		$mail = new PHPMailer;
+
+		//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+		$mail->isSMTP();                                      // Set mailer to use SMTP
+		$mail->Host = 'smtp1.gmail.com;smtp2.gmail.com';  // Specify main and backup SMTP servers
+		$mail->SMTPAuth = false;                               // Enable SMTP authentication
+		$mail->Username = 'palutin31@gmail.com';                 // SMTP username
+		$mail->Password = '';                           // SMTP password
+		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+		$mail->Port = 587;                                    // TCP port to connect to
+
+		$mail->setFrom('palutin31@gmail.com', 'Pablo Lutín');
+		$mail->addAddress('davidlutin3@gmail.com', 'Envio');     // Add a recipient
+		//$mail->addAddress('ellen@example.com');               // Name is optional
+		//$mail->addReplyTo('info@example.com', 'Information');
+		//$mail->addCC('cc@example.com');
+		//$mail->addBCC('bcc@example.com');
+
+		//$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+		//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+		//$mail->isHTML(true);                                  // Set email format to HTML
+
+		$mail->Subject = $motivo;
+		$mail->Body    = $mensaje;
+		$mail->AltBody = 'CopyCat';
+
+		if(!$mail->send()) {
+		    echo 'Message could not be sent.';
+		    echo 'Mailer Error: ' . $mail->ErrorInfo;
+		} else {
+		    echo 'Message has been sent';
+		}
+	//-------------------------------------------------------------------------------------------------
+>>>>>>> origin/master
 	?>
 	<br>
 </div>
